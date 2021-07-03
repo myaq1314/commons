@@ -2,8 +2,8 @@ package org.czh.commons.entity.eo;
 
 import org.czh.commons.entity.eo.example.BaseQueryTestEO;
 import org.czh.commons.entity.eo.example.BaseQueryTestEnum;
-import org.czh.commons.enums.LikeDict;
-import org.czh.commons.enums.ScopeDict;
+import org.czh.commons.enums.sql.LikeDict;
+import org.czh.commons.enums.sql.ScopeDict;
 import org.czh.commons.validate.EmptyValidate;
 import org.czh.commons.validate.FlagValidate;
 import org.junit.Test;

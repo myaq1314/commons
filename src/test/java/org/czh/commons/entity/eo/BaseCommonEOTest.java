@@ -3,7 +3,7 @@ package org.czh.commons.entity.eo;
 import org.czh.commons.entity.eo.example.BaseCommonTestEO;
 import org.czh.commons.entity.eo.example.BaseCommonTestEnum;
 import org.czh.commons.entity.eo.sql.InsertEO;
-import org.czh.commons.enums.LikeDict;
+import org.czh.commons.enums.sql.LikeDict;
 import org.czh.commons.utils.RandomUtil;
 import org.junit.Test;
 
