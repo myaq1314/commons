@@ -17,7 +17,7 @@ import java.util.UUID;
 
 /**
  * @author : czh
- * description :
+ * description : 过滤器，打印请求数据、响应结果
  * date : 2021-06-19
  * email 916419307@qq.com
  */
@@ -29,6 +29,13 @@ public class RequestExecutionTimeFilter implements Filter {
     public void doFilter(ServletRequest servletRequest,
                          ServletResponse servletResponse,
                          FilterChain chain) throws IOException, ServletException {
+        String requestURI = ((HttpServletRequest) servletRequest).getRequestURI();
+        // 跳过请求
+        if ("/".equals(requestURI)) {
+            chain.doFilter(servletRequest, servletResponse);
+            return;
+        }
+
         String uuid = UUID.randomUUID().toString().replace("-", "");
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
@@ -47,7 +54,7 @@ public class RequestExecutionTimeFilter implements Filter {
         } else {
             requestParamJsonObj = new JSONObject();
         }
-        String requestURI = httpServletRequest.getRequestURI();
+
         String requestParamJsonString = requestParamJsonObj.toJSONString();
         log.info("\nThe requestURI : {} \nThe UUID : {} \nThe Parameter : {}\n", requestURI, uuid, requestParamJsonString);
 

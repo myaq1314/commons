@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @author : czh
- * description :
+ * description : 注册分页拦截器
  * date : 2021-06-20
  * email 916419307@qq.com
  */

@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @author : czh
- * description :
+ * description : 注册 fastjson 转换器
  * date : 2021-07-01
  * email 916419307@qq.com
  */

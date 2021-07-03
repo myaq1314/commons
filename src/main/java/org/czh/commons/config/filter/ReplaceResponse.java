@@ -9,7 +9,7 @@ import java.io.IOException;
 
 /**
  * @author : czh
- * description :
+ * description : 替换响应流
  * date : 2021-06-19
  * email 916419307@qq.com
  */
@@ -24,6 +24,7 @@ public class ReplaceResponse extends HttpServletResponseWrapper {
         out = new ReplaceOutputStream(buffer);
     }
 
+    @SuppressWarnings("RedundantThrows")
     @Override
     public ServletOutputStream getOutputStream() throws IOException {
         return this.out;
@@ -57,6 +58,7 @@ public class ReplaceResponse extends HttpServletResponseWrapper {
 
         }
 
+        @SuppressWarnings("RedundantThrows")
         @Override
         public void write(int b) throws IOException {
             this.baos.write(b);
