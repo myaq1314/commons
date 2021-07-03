@@ -1,0 +1,24 @@
+package org.czh.commons.config.filter;
+
+import org.czh.commons.config.filter.RequestExecutionTimeFilter;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * @author : czh
+ * description : 注册Filter，不需要时，该Filter不生效
+ * date : 2021-06-20
+ * email 916419307@qq.com
+ */
+@Configuration
+public class FilterConfig {
+
+    @Bean
+    public FilterRegistrationBean<RequestExecutionTimeFilter> filterRegistrationBean() {
+        FilterRegistrationBean<RequestExecutionTimeFilter> bean = new FilterRegistrationBean<>();
+        bean.setFilter(new RequestExecutionTimeFilter());
+        bean.addUrlPatterns("/*");
+        return bean;
+    }
+}

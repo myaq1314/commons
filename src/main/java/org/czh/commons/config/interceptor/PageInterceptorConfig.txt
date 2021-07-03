@@ -1,0 +1,33 @@
+package org.czh.commons.config.interceptor;
+
+import org.czh.commons.config.interceptor.DialectResultSetHandlerInterceptor;
+import org.czh.commons.config.interceptor.DialectStatementHandlerInterceptor;
+import org.apache.ibatis.plugin.Interceptor;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * @author : czh
+ * description :
+ * date : 2021-06-20
+ * email 916419307@qq.com
+ */
+@Configuration
+public class PageInterceptorConfig {
+
+    /**
+     * 分页拦截器
+     */
+    @Bean("dialectStatementHandlerInterceptor")
+    public Interceptor dialectStatementHandlerInterceptor() {
+        return new DialectStatementHandlerInterceptor();
+    }
+
+    /**
+     * mysql响应映射 拦截器
+     */
+    @Bean("dialectResultSetHandlerInterceptor")
+    public Interceptor dialectResultSetHandlerInterceptor() {
+        return new DialectResultSetHandlerInterceptor();
+    }
+}

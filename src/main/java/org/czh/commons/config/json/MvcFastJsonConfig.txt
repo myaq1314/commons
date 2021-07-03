@@ -1,0 +1,27 @@
+package org.czh.commons.config.json;
+
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.support.config.FastJsonConfig;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * @author : czh
+ * description :
+ * date : 2021-07-01
+ * email 916419307@qq.com
+ */
+@Configuration
+public class MvcFastJsonConfig {
+
+    @Bean
+    public HttpMessageConverters fastJsonConverters() {
+        FastJsonHttpMessageConverter fastJsonConverter = new FastJsonHttpMessageConverter();
+        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+        fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
+        fastJsonConverter.setFastJsonConfig(fastJsonConfig);
+        return new HttpMessageConverters(fastJsonConverter);
+    }
+}
