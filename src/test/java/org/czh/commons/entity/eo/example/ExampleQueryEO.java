@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.czh.commons.entity.eo.BasePrimaryEO;
+import org.czh.commons.entity.eo.BaseQueryEO;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -16,10 +16,10 @@ import java.util.Date;
  * email 916419307@qq.com
  */
 @Data
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@ToString
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-public class TbExampleEO extends BasePrimaryEO {
+public class ExampleQueryEO extends BaseQueryEO {
 
     private static final long serialVersionUID = 7188796541231057703L;
 

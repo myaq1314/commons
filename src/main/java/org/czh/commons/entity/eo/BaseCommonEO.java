@@ -18,8 +18,8 @@ import java.util.List;
  * email 916419307@qq.com
  */
 @Data
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@ToString
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 public abstract class BaseCommonEO extends BaseQueryEO
         implements IBaseInsertEO, IBaseUpdateEO, IBaseEO {

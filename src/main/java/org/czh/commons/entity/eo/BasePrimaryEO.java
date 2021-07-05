@@ -12,8 +12,8 @@ import lombok.ToString;
  * email 916419307@qq.com
  */
 @Data
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@ToString
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 public abstract class BasePrimaryEO extends BaseCommonEO implements IBaseEO {
 

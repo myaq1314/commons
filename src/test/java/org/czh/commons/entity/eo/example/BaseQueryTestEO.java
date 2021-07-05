@@ -17,8 +17,8 @@ import java.util.Date;
  * email 916419307@qq.com
  */
 @Data
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@ToString
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
 public class BaseQueryTestEO extends BaseQueryEO {

@@ -1,6 +1,5 @@
 package org.czh.commons.entity.eo.example;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -13,24 +12,22 @@ import java.util.Date;
 /**
  * @author : czh
  * description :
- * date : 2021-07-03
+ * date : 2021-06-28
  * email 916419307@qq.com
  */
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-@AllArgsConstructor
-public class BasePrimaryTestEO extends BasePrimaryEO {
+public class ExamplePrimaryEO extends BasePrimaryEO {
 
-    private static final long serialVersionUID = -4209917368174259422L;
+    private static final long serialVersionUID = 7188796541231057703L;
 
-    private String studentName;
-
-    private Integer grade;
-
+    private String exampleName;
+    private Integer type;
+    private String label;
+    private Date createTime;
     private BigDecimal score;
-
-    private Date birthday;
+    private Double price;
 
 }
