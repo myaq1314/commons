@@ -1,11 +1,11 @@
 package org.czh.commons.entity.eo.sql;
 
 import org.czh.commons.entity.eo.IBaseEO;
+import org.czh.commons.enums.parent.IColumnEnum;
 import org.czh.commons.enums.sql.CircleDict;
 import org.czh.commons.enums.sql.LikeDict;
 import org.czh.commons.enums.sql.NullDict;
 import org.czh.commons.enums.sql.ScopeDict;
-import org.czh.commons.enums.parent.IColumnEnum;
 import org.czh.commons.utils.SqlJointUtil;
 import org.czh.commons.validate.EmptyAssert;
 import org.czh.commons.validate.EmptyValidate;

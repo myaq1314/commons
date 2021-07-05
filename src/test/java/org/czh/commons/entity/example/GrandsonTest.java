@@ -38,6 +38,9 @@ public class GrandsonTest extends SonTest {
         init();
     }
 
+    @NotBlank
+    @Getter
+    private final String gPri;
     @Pattern(regexp = "yyyy-MM-dd")
     @Getter
     public String gPub;
@@ -47,9 +50,6 @@ public class GrandsonTest extends SonTest {
     @NotNull
     @Getter
     String gDef;
-    @NotBlank
-    @Getter
-    private final String gPri;
 
     public GrandsonTest() {
         super();

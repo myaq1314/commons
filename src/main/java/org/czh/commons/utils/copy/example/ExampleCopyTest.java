@@ -1,7 +1,7 @@
 package org.czh.commons.utils.copy.example;
 
-import org.czh.commons.utils.copy.CopyUtil;
 import org.czh.commons.utils.DateUtil;
+import org.czh.commons.utils.copy.CopyUtil;
 
 import java.math.BigDecimal;
 

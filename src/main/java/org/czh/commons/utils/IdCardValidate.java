@@ -31,6 +31,12 @@ public final class IdCardValidate {
     private static Set<String> PROVINCE_CODE_SET;
     // 加权因子
     private static int[] WEIGHTING_ARRAY;
+    // 生肖
+    private static String[] ZODIAC_ARRAY;
+    // 天干
+    private static String[] HEAVENLY_ARRAY;
+    // 地支
+    private static String[] TERRESTRIAL_ARRAY;
 
     // 省份编码
     public static Set<String> getProvinceCodeSet() {
@@ -182,6 +188,10 @@ public final class IdCardValidate {
         return idCard.substring(17).equalsIgnoreCase(getCheckCode(idCard17.toCharArray()));
     }
 
+    /*
+      -----------------------------根据身份证号码计算生肖-------------------------------
+     */
+
     // 特殊的大陆15位身份证转换为18位身份证
     // 百岁老人15位身份证转变为18位身份证
     // 类似于 1902年出生的老人，身份证上的出生日期为020101，需要补充为19020101
@@ -227,11 +237,8 @@ public final class IdCardValidate {
     }
 
     /*
-      -----------------------------根据身份证号码计算生肖-------------------------------
+      -----------------------------根据身份证号码计算天干地支-------------------------------
      */
-
-    // 生肖
-    private static String[] ZODIAC_ARRAY;
 
     // 生肖
     public static String[] getZodiacArray() {
@@ -249,15 +256,6 @@ public final class IdCardValidate {
         int year = getYear(idCard);
         return getZodiacArray()[(year - 3) % 12];
     }
-
-    /*
-      -----------------------------根据身份证号码计算天干地支-------------------------------
-     */
-
-    // 天干
-    private static String[] HEAVENLY_ARRAY;
-    // 地支
-    private static String[] TERRESTRIAL_ARRAY;
 
     // 天干
     public static String[] getHeavenlyArray() {

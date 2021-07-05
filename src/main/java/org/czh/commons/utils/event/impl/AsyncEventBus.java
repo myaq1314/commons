@@ -32,9 +32,9 @@ import java.util.concurrent.Executors;
 public class AsyncEventBus implements IEventBus, ApplicationContextAware, InitializingBean {
 
     private static final int MAX_CONSUMER = 6;
+    private final ExecutorService consumer = Executors.newFixedThreadPool(MAX_CONSUMER);
     private Map<Class, List<IListener>> listenerMap;
     private ApplicationContext applicationContext;
-    private final ExecutorService consumer = Executors.newFixedThreadPool(MAX_CONSUMER);
 
     @Override
     public void publish(IEvent event) {

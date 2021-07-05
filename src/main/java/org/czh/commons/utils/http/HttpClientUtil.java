@@ -65,12 +65,6 @@ public final class HttpClientUtil {
       -----------------------------post/put/delete dict-------------------------------
      */
 
-    public enum EntityMethodDict implements IBaseEnum {
-        POST,
-        PUT,
-        DELETE
-    }
-
     /*
       -----------------------------post/put/delete json request-------------------------------
      */
@@ -120,10 +114,6 @@ public final class HttpClientUtil {
         return invoke(enclosingRequest);
     }
 
-    /*
-      -----------------------------config header-------------------------------
-     */
-
     public static <HeaderParam> void configHeaderParam(@NotNull final HttpRequestBase baseRequest,
                                                        final HeaderParam headerParam) {
         EmptyAssert.isNotNull(baseRequest);
@@ -159,7 +149,7 @@ public final class HttpClientUtil {
     }
 
     /*
-      -----------------------------config json-------------------------------
+      -----------------------------config header-------------------------------
      */
 
     public static <JsonParam> void configJsonParam(@NotNull final HttpEntityEnclosingRequestBase enclosingRequest,
@@ -178,6 +168,10 @@ public final class HttpClientUtil {
         entity.setContentType("application/json");
         enclosingRequest.setEntity(entity);
     }
+
+    /*
+      -----------------------------config json-------------------------------
+     */
 
     public static <UrlParam> String getParamUrl(@NotBlankTag final String url, final UrlParam urlParam) {
         EmptyAssert.isNotBlank(url);
@@ -261,5 +255,11 @@ public final class HttpClientUtil {
             } catch (IOException ignored) {
             }
         }
+    }
+
+    public enum EntityMethodDict implements IBaseEnum {
+        POST,
+        PUT,
+        DELETE
     }
 }

@@ -5,12 +5,12 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.czh.commons.entity.IBaseEntity;
 import org.czh.commons.utils.copy.CopyConverter;
 import org.czh.commons.utils.copy.converter.DateToTxtConverter;
 import org.czh.commons.utils.copy.converter.MoneyYuanToConverter;
 import org.czh.commons.utils.copy.converter.ObjectToTxtConverter;
 import org.czh.commons.utils.copy.converter.TxtToIntegerConverter;
-import org.czh.commons.entity.IBaseEntity;
 
 import java.math.BigDecimal;
 import java.util.Date;

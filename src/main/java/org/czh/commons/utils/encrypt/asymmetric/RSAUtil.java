@@ -40,7 +40,7 @@ public final class RSAUtil {
     /*
         生成 公钥
      */
-    public static Map<String, String> createKeyStringMap(@ValueTag(min = 1)  int keySize) {
+    public static Map<String, String> createKeyStringMap(@ValueTag(min = 1) int keySize) {
         FlagAssert.isTrue(keySize >= 512 && keySize <= 65536 && keySize % 64 == 0);
 
         Map<String, String> keyStringMap = new HashMap<>(2);

@@ -26,11 +26,10 @@ public class JmsEventBus<T> implements IEventBus<IJmsEvent<T>> {
 
     // 返回 Java 虚拟机可用的处理器数。
     private static final int PARALLELISM = Runtime.getRuntime().availableProcessors();
-
+    private final LinkedBlockingQueue<IJmsEvent<T>> queue = new LinkedBlockingQueue<>(5000);
     @Getter
     @Setter
     private JmsTemplate jmsTemplate;
-    private final LinkedBlockingQueue<IJmsEvent<T>> queue = new LinkedBlockingQueue<>(5000);
     private volatile boolean active = false;
     private ExecutorService executorService;
 

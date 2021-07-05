@@ -1,7 +1,7 @@
 package org.czh.commons.utils;
 
-import org.czh.commons.utils.convertor.CollectionConvertor;
 import org.czh.commons.entity.example.SonTest;
+import org.czh.commons.utils.convertor.CollectionConvertor;
 import org.czh.commons.validate.EmptyValidate;
 import org.czh.commons.validate.FlagAssert;
 import org.junit.Test;

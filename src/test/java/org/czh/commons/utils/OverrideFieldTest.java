@@ -33,10 +33,10 @@ public class OverrideFieldTest {
 @SuppressWarnings({"unused", "FieldCanBeLocal"})
 class Country implements Earth {
     private static final long serialVersionUID = 6632680298523103575L;
+    private final String privateField;
     public String publicField;
     protected String protectedField;
     String defaultField;
-    private final String privateField;
 
     public Country(String privateField,
                    String protectedField,
@@ -52,10 +52,10 @@ class Country implements Earth {
 @SuppressWarnings({"unused", "FieldCanBeLocal"})
 class Province extends Country {
     private static final long serialVersionUID = -4762977430838842849L;
+    private final Double privateField;
     public Double publicField;
     protected Double protectedField;
     Double defaultField;
-    private final Double privateField;
 
     public Province(Double privateField,
                     Double protectedField,
@@ -72,10 +72,10 @@ class Province extends Country {
 @SuppressWarnings({"unused", "FieldCanBeLocal"})
 class City extends Province {
     private static final long serialVersionUID = 4124330573768932417L;
+    private final Integer privateField;
     public Integer publicField;
     protected Integer protectedField;
     Integer defaultField;
-    private final Integer privateField;
 
     public City(Integer privateField,
                 Integer protectedField,

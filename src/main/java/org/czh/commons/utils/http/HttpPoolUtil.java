@@ -35,16 +35,14 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public final class HttpPoolUtil {
 
+    private static final PoolingHttpClientConnectionManager connectionManager;
+    private static final ScheduledExecutorService monitorExecutor;
+    private static final CloseableHttpClient httpClient;
     private static int maxTotal = 100;// 连接池最大连接数
     private static int maxPerRoute = 10;// 每个主机的并发
     private static int maxRoute = 50;// 目标主机的最大并发，如果只有一台，可以和maxTotal一样
     private static int timeout = 5000;
-
     private static boolean isShowUsePoolLog = true;
-
-    private static final PoolingHttpClientConnectionManager connectionManager;
-    private static final ScheduledExecutorService monitorExecutor;
-    private static final CloseableHttpClient httpClient;
 
     static {
         connectionManager = configConnectionManager();

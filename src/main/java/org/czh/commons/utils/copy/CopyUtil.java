@@ -1,9 +1,9 @@
 package org.czh.commons.utils.copy;
 
 import org.czh.commons.annotations.tag.NotNullTag;
-import org.czh.commons.utils.convertor.CollectionConvertor;
 import org.czh.commons.utils.ConstructorUtil;
 import org.czh.commons.utils.FieldUtil;
+import org.czh.commons.utils.convertor.CollectionConvertor;
 import org.czh.commons.validate.EmptyAssert;
 import org.czh.commons.validate.EmptyValidate;
 import org.czh.commons.validate.EqualsAssert;

@@ -362,18 +362,18 @@ public final class CalendarUtil {
       -----------------------------get before/after date now datetime-------------------------------
      */
 
-    public static Date getAddDate(@ValueTag(min = 1, max = 14)  final int field, final int addNum) {
+    public static Date getAddDate(@ValueTag(min = 1, max = 14) final int field, final int addNum) {
         return getAddDate(DateUtil.getNowDate(), field, addNum);
     }
 
     public static Date getAddDate(@NotNullTag final Date date,
-                                  @ValueTag(min = 1, max = 14)  final int field,
+                                  @ValueTag(min = 1, max = 14) final int field,
                                   final int addNum) {
         return getAddDate(getCalendar(date), field, addNum);
     }
 
     public static Date getAddDate(@NotNullTag final Calendar calendar,
-                                  @ValueTag(min = 1, max = 14)  final int field,
+                                  @ValueTag(min = 1, max = 14) final int field,
                                   final int addNum) {
         EmptyAssert.isNotNull(calendar);
         FlagAssert.isTrue(field >= 0 && field <= 17);

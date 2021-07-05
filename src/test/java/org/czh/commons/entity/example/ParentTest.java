@@ -38,6 +38,9 @@ public class ParentTest implements PersonTest {
         init();
     }
 
+    @NotBlank
+    @Getter
+    private final String pPri;
     @Pattern(regexp = "yyyy-MM-dd")
     @Getter
     public String pPub;
@@ -47,9 +50,6 @@ public class ParentTest implements PersonTest {
     @NotNull
     @Getter
     String pDef;
-    @NotBlank
-    @Getter
-    private final String pPri;
 
     public ParentTest() {
         this.pPri = "pPriVa";

@@ -21,16 +21,6 @@ import java.math.RoundingMode;
 @SuppressWarnings("unused")
 public final class DecimalUtil {
 
-    public enum TypeDict implements IBaseEnum {
-        ADD, // 加法
-        SUBTRACT, // 减法
-        MULTIPLY, // 乘法
-        DIVIDE, // 除法
-
-        // 占位符
-        ;
-    }
-
     public static BigDecimal parse(@NotNullTag final Double doubleNum) {
         EmptyAssert.isNotNull(doubleNum);
         return new BigDecimal(String.valueOf(doubleNum));
@@ -90,6 +80,16 @@ public final class DecimalUtil {
                 return one.divide(two);
         }
         throw new RuntimeException("未知的计算类型");
+    }
+
+    public enum TypeDict implements IBaseEnum {
+        ADD, // 加法
+        SUBTRACT, // 减法
+        MULTIPLY, // 乘法
+        DIVIDE, // 除法
+
+        // 占位符
+        ;
     }
 
 

@@ -38,6 +38,9 @@ public class SonTest extends ParentTest {
         init();
     }
 
+    @NotBlank
+    @Getter
+    private final String sPri;
     @Pattern(regexp = "yyyy-MM-dd")
     @Getter
     public String sPub;
@@ -47,9 +50,6 @@ public class SonTest extends ParentTest {
     @NotNull
     @Getter
     String sDef;
-    @NotBlank
-    @Getter
-    private final String sPri;
 
     public SonTest() {
         super();

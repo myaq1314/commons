@@ -35,12 +35,11 @@ import java.util.List;
 @Slf4j
 public final class Excel03FileParser extends AbstractExcelFileParser implements HSSFListener {
 
+    private final List<BoundSheetRecord> boundSheetRecords = new ArrayList<>();
     //    private boolean outputFormulaValues = true;
     private POIFSFileSystem poifsFileSystem;
     private SSTRecord sstRecord;
-
     private int sheetIndex = -1;
-    private final List<BoundSheetRecord> boundSheetRecords = new ArrayList<>();
     private BoundSheetRecord[] orderedBSRs;
     private int colNum;
 

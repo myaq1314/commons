@@ -1,8 +1,8 @@
 package org.czh.commons.utils.copy.converter;
 
+import org.czh.commons.utils.DateUtil;
 import org.czh.commons.utils.copy.FieldMapping;
 import org.czh.commons.utils.copy.IFieldConverter;
-import org.czh.commons.utils.DateUtil;
 import org.czh.commons.validate.EmptyAssert;
 
 import java.util.Date;
