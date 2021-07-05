@@ -267,14 +267,6 @@
             </exclusions>
         </dependency>
         <!--poi end-->
-
-
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.1.2</version>
-        </dependency>
-
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
