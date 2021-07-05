@@ -2,7 +2,7 @@ package org.czh.commons.dao.example;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.czh.commons.dao.IBasePrimaryDao;
-import org.czh.commons.entity.eo.example.TbExampleEO;
+import org.czh.commons.entity.eo.example.ExamplePrimaryEO;
 
 /**
  * @author : czh
@@ -11,6 +11,6 @@ import org.czh.commons.entity.eo.example.TbExampleEO;
  * email 916419307@qq.com
  */
 @Mapper
-public interface TbExampleDao extends IBasePrimaryDao<TbExampleEO> {
+public interface IExamplePrimaryDao extends IBasePrimaryDao<ExamplePrimaryEO> {
 
 }
