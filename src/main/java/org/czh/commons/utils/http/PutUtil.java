@@ -1,7 +1,6 @@
 package org.czh.commons.utils.http;
 
 import org.czh.commons.annotations.tag.NotBlankTag;
-import org.czh.commons.entity.IBaseEntity;
 import sun.net.www.protocol.http.HttpURLConnection;
 
 import java.util.HashMap;
@@ -15,6 +14,7 @@ import java.util.Map;
  */
 public final class PutUtil {
 
+    @SuppressWarnings("DuplicatedCode")
     public static void main(String[] args) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("ext_order_no", "12345678901234567890");
@@ -25,9 +25,9 @@ public final class PutUtil {
 
 
         try {
-            System.out.println(doPut("http://127.0.0.1:443/v1/siip/order/createAndPayPut"));
-            System.out.println(doPut("http://127.0.0.1:443/v1/siip/order/createAndPayPut", paramMap));
-            System.out.println(doPut("http://127.0.0.1:443/v1/siip/order/createAndPayPut", paramMap, headerMap));
+            System.out.println(doPutJson("http://127.0.0.1:443/v1/siip/order/createAndPayPut"));
+            System.out.println(doPutJson("http://127.0.0.1:443/v1/siip/order/createAndPayPut", paramMap));
+            System.out.println(doPutJson("http://127.0.0.1:443/v1/siip/order/createAndPayPut", paramMap, headerMap));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -35,25 +35,45 @@ public final class PutUtil {
         HttpPoolUtil.shutdown();
     }
 
-    public static String doPut(@NotBlankTag String url) {
-        return HttpClientUtil.doJson(HttpClientUtil.EntityMethodDict.PUT, url);
+    public static String doPutJson(@NotBlankTag String url) {
+        return doPutJson(url, null);
     }
 
-    public static String doPut(@NotBlankTag String url, Map<String, Object> jsonParam) {
-        return doPut(url, jsonParam, null);
+    public static <RequestParam> String doPutJson(@NotBlankTag String url, RequestParam requestParam) {
+        return doPutJson(url, requestParam, null);
     }
 
-    public static String doPut(@NotBlankTag String url,
-                               Map<String, Object> jsonParam,
-                               Map<String, Object> headerParam) {
-        return HttpClientUtil.doJson(HttpClientUtil.EntityMethodDict.PUT, url, null, jsonParam, headerParam);
+    public static <RequestParam, HeaderParam> String doPutJson(@NotBlankTag String url,
+                                                               RequestParam requestParam,
+                                                               HeaderParam headerParam) {
+        return doPutJson(url, null, requestParam, headerParam);
     }
 
-    public static String doPut(@NotBlankTag String url, IBaseEntity jsonParam) {
-        return doPut(url, jsonParam, null);
+    public static <UrlParam, RequestParam, HeaderParam> String doPutJson(@NotBlankTag String url,
+                                                                         UrlParam urlParam,
+                                                                         RequestParam requestParam,
+                                                                         HeaderParam headerParam) {
+        return HttpClientUtil.doJsonTxt(EnclosingEnum.PUT, url, urlParam, requestParam, headerParam);
     }
 
-    public static String doPut(@NotBlankTag String url, IBaseEntity jsonParam, Map<String, Object> headerParam) {
-        return HttpClientUtil.doJson(HttpClientUtil.EntityMethodDict.PUT, url, null, jsonParam, headerParam);
+    public static String doUrlencodedTxt(@NotBlankTag String url) {
+        return doUrlencodedTxt(url, null);
+    }
+
+    public static <RequestParam> String doUrlencodedTxt(@NotBlankTag String url, RequestParam requestParam) {
+        return doUrlencodedTxt(url, requestParam, null);
+    }
+
+    public static <RequestParam, HeaderParam> String doUrlencodedTxt(@NotBlankTag String url,
+                                                                     RequestParam requestParam,
+                                                                     HeaderParam headerParam) {
+        return doUrlencodedTxt(url, null, requestParam, headerParam);
+    }
+
+    public static <UrlParam, RequestParam, HeaderParam> String doUrlencodedTxt(@NotBlankTag String url,
+                                                                               UrlParam urlParam,
+                                                                               RequestParam requestParam,
+                                                                               HeaderParam headerParam) {
+        return HttpClientUtil.doUrlencodedTxt(EnclosingEnum.PUT, url, urlParam, requestParam, headerParam);
     }
 }

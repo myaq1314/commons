@@ -1,10 +1,10 @@
 package org.czh.commons.utils.tsdb;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import lombok.extern.slf4j.Slf4j;
 import org.czh.commons.utils.DateUtil;
-import org.czh.commons.utils.http.PostUtil;
+import org.czh.commons.utils.http.EnclosingEnum;
+import org.czh.commons.utils.http.HttpClientUtil;
 import org.czh.commons.utils.tsdb.enums.OptionalDict;
 import org.czh.commons.validate.EmptyAssert;
 import org.czh.commons.validate.EmptyValidate;
@@ -52,9 +52,9 @@ public class TsdbClient {
 
         try {
             if (EmptyValidate.isNull(optionalDict)) {
-                return PostUtil.doPost(url + "/api/put", JSONArray.toJSONString(voList));
+                return HttpClientUtil.doJsonTxt(EnclosingEnum.POST, url + "/api/put", voList);
             }
-            return PostUtil.doPost(url + "/api/put?" + optionalDict.key, JSONArray.toJSONString(voList));
+            return HttpClientUtil.doJsonTxt(EnclosingEnum.POST, url + "/api/put?" + optionalDict.key, voList);
         } catch (Exception e) {
             log.error("opentsdb put api wrong, reason:{}", e.getMessage());
             throw new RuntimeException("opentsdb put data wrong");
@@ -74,9 +74,9 @@ public class TsdbClient {
 
         try {
             if (EmptyValidate.isNull(optionalDict)) {
-                return PostUtil.doPost(url + "/api/query", vo);
+                return HttpClientUtil.doJsonTxt(EnclosingEnum.POST, url + "/api/query", vo);
             }
-            return PostUtil.doPost(url + "/api/query?" + optionalDict.key, JSONArray.toJSONString(vo));
+            return HttpClientUtil.doJsonTxt(EnclosingEnum.POST, url + "/api/query?" + optionalDict.key, vo);
         } catch (Exception e) {
             log.error("opentsdb query api wrong, reason:{}", e.getMessage());
             throw new RuntimeException("opentsdb query data wrong");

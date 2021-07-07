@@ -1,12 +1,9 @@
 package org.czh.commons.utils.http;
 
 import org.czh.commons.annotations.tag.NotBlankTag;
-import org.czh.commons.entity.IBaseEntity;
-import org.czh.commons.validate.EmptyAssert;
 import sun.net.www.protocol.http.HttpURLConnection;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,8 +12,10 @@ import java.util.Map;
  * date : 2021-06-30
  * email 916419307@qq.com
  */
+@SuppressWarnings("unused")
 public final class PostUtil {
 
+    @SuppressWarnings("DuplicatedCode")
     public static void main(String[] args) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("ext_order_no", "12345678901234567890");
@@ -27,9 +26,9 @@ public final class PostUtil {
 
 
         try {
-            System.out.println(doPost("http://127.0.0.1:443/v1/siip/order/preCreate"));
-            System.out.println(doPost("http://127.0.0.1:443/v1/siip/order/preCreate", paramMap));
-            System.out.println(doPost("http://127.0.0.1:443/v1/siip/order/preCreate", paramMap, headerMap));
+            System.out.println(doPostJson("http://127.0.0.1:443/v1/siip/order/createAndPayPost"));
+            System.out.println(doPostJson("http://127.0.0.1:443/v1/siip/order/createAndPayPost", paramMap));
+            System.out.println(doPostJson("http://127.0.0.1:443/v1/siip/order/createAndPayPost", paramMap, headerMap));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -37,44 +36,45 @@ public final class PostUtil {
         HttpPoolUtil.shutdown();
     }
 
-    public static String doPost(@NotBlankTag String url) {
-        return HttpClientUtil.doJson(HttpClientUtil.EntityMethodDict.POST, url);
+    public static String doPostJson(@NotBlankTag String url) {
+        return doPostJson(url, null);
     }
 
-    public static String doPost(@NotBlankTag String url, Map<String, Object> jsonParam) {
-        return doPost(url, jsonParam, null);
+    public static <RequestParam> String doPostJson(@NotBlankTag String url, RequestParam requestParam) {
+        return doPostJson(url, requestParam, null);
     }
 
-    public static String doPost(@NotBlankTag String url,
-                                Map<String, Object> jsonParam,
-                                Map<String, Object> headerParam) {
-        return HttpClientUtil.doJson(HttpClientUtil.EntityMethodDict.POST, url, null, jsonParam, headerParam);
+    public static <RequestParam, HeaderParam> String doPostJson(@NotBlankTag String url,
+                                                                RequestParam requestParam,
+                                                                HeaderParam headerParam) {
+        return doPostJson(url, null, requestParam, headerParam);
     }
 
-    public static String doPost(@NotBlankTag String url, IBaseEntity jsonParam) {
-        return doPost(url, jsonParam, null);
+    public static <UrlParam, RequestParam, HeaderParam> String doPostJson(@NotBlankTag String url,
+                                                                          UrlParam urlParam,
+                                                                          RequestParam requestParam,
+                                                                          HeaderParam headerParam) {
+        return HttpClientUtil.doJsonTxt(EnclosingEnum.POST, url, urlParam, requestParam, headerParam);
     }
 
-    public static String doPost(@NotBlankTag String url, IBaseEntity jsonParam, Map<String, Object> headerParam) {
-        return HttpClientUtil.doJson(HttpClientUtil.EntityMethodDict.POST, url, null, jsonParam, headerParam);
+    public static String doUrlencodedTxt(@NotBlankTag String url) {
+        return doUrlencodedTxt(url, null);
     }
 
-    public static String doPost(@NotBlankTag String url, @NotBlankTag String reqJson) {
-        return doPost(url, reqJson, null);
+    public static <RequestParam> String doUrlencodedTxt(@NotBlankTag String url, RequestParam requestParam) {
+        return doUrlencodedTxt(url, requestParam, null);
     }
 
-    public static String doPost(@NotBlankTag String url,
-                                @NotBlankTag String reqJson,
-                                Map<String, Object> headerParam) {
-        EmptyAssert.isNotBlank(reqJson);
-        return HttpClientUtil.doJson(HttpClientUtil.EntityMethodDict.POST, url, null, reqJson, headerParam);
+    public static <RequestParam, HeaderParam> String doUrlencodedTxt(@NotBlankTag String url,
+                                                                     RequestParam requestParam,
+                                                                     HeaderParam headerParam) {
+        return doUrlencodedTxt(url, null, requestParam, headerParam);
     }
 
-    public static String doPost(@NotBlankTag String url, List<?> list) {
-        return doPost(url, list, null);
-    }
-
-    public static String doPost(@NotBlankTag String url, List<?> list, Map<String, Object> headerParam) {
-        return HttpClientUtil.doJson(HttpClientUtil.EntityMethodDict.POST, url, null, list, headerParam);
+    public static <UrlParam, RequestParam, HeaderParam> String doUrlencodedTxt(@NotBlankTag String url,
+                                                                               UrlParam urlParam,
+                                                                               RequestParam requestParam,
+                                                                               HeaderParam headerParam) {
+        return HttpClientUtil.doUrlencodedTxt(EnclosingEnum.POST, url, urlParam, requestParam, headerParam);
     }
 }
