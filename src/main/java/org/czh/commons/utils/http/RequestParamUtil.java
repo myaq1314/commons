@@ -42,7 +42,7 @@ public final class RequestParamUtil {
     public static <RequestParam> void setUrlencodedParam(@NotNullTag final HttpEntityEnclosingRequestBase enclosingRequest,
                                                          final RequestParam requestParam) {
         EmptyAssert.isNotNull(enclosingRequest);
-        HeaderParamUtil.setHeader(enclosingRequest, "Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+        HeaderParamUtil.addHeader(enclosingRequest, "Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
 
         List<NameValuePair> pairList = NameValuePairUtil.getListByParam(requestParam);
         if (EmptyValidate.isEmpty(pairList)) {

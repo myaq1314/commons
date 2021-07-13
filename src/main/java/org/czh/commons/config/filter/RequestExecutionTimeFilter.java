@@ -25,18 +25,23 @@ import java.util.UUID;
 @SuppressWarnings("unused")
 public class RequestExecutionTimeFilter implements Filter {
 
+    public static final ThreadLocal<String> localUuid = new ThreadLocal<>();
+
     @Override
     public void doFilter(ServletRequest servletRequest,
                          ServletResponse servletResponse,
                          FilterChain chain) throws IOException, ServletException {
         String requestURI = ((HttpServletRequest) servletRequest).getRequestURI();
         // 跳过请求
-        if ("/".equals(requestURI)) {
+        if ("/".equals(requestURI)
+                || requestURI.endsWith(".html")) {
             chain.doFilter(servletRequest, servletResponse);
             return;
         }
 
         String uuid = UUID.randomUUID().toString().replace("-", "");
+        localUuid.set(uuid);
+
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
 

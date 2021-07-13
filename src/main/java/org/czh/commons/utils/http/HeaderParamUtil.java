@@ -17,6 +17,7 @@ import org.czh.commons.validate.EmptyValidate;
 import javax.validation.constraints.NotNull;
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,13 +42,13 @@ public final class HeaderParamUtil {
             private int age = 0;
         };
         HttpGet httpGet = new HttpGet("www.baidu.com");
-        setHeaderByParam(httpGet, baseEntity);
+        addHeaderByParam(httpGet, baseEntity);
         Map<String, String> httpGetHeaderMap = getHeaderMap(httpGet);
         System.out.println(httpGetHeaderMap);
         System.out.println();
 
         HttpEntityEnclosingRequestBase httpPost = EnclosingEnum.getEnclosingRequest(EnclosingEnum.POST, "www.baidu.com?aaa=123");
-        setHeaderByEntity(httpPost, baseEntity);
+        addHeaderByEntity(httpPost, baseEntity);
         Map<String, String> httpPostHeaderMap = getHeaderMap(httpPost);
         System.out.println(httpPostHeaderMap);
         System.out.println();
@@ -56,20 +57,20 @@ public final class HeaderParamUtil {
         map.put("name", "Map");
         map.put("age", 1);
         HttpEntityEnclosingRequestBase httpPut = EnclosingEnum.getEnclosingRequest(EnclosingEnum.PUT, "www.baidu.com");
-        setHeaderByParam(httpPut, map);
+        addHeaderByParam(httpPut, map);
         Map<String, String> httpPutHeaderMap = getHeaderMap(httpPut);
         System.out.println(httpPutHeaderMap);
         System.out.println();
 
         HttpEntityEnclosingRequestBase httpDelete = EnclosingEnum.getEnclosingRequest(EnclosingEnum.DELETE, "www.baidu.com?aaa=123");
-        setHeaderByMap(httpDelete, map);
+        addHeaderByMap(httpDelete, map);
         Map<String, String> httpDeleteHeaderMap = getHeaderMap(httpDelete);
         System.out.println(httpDeleteHeaderMap);
         System.out.println();
 
     }
 
-    public static <HeaderParam> void setHeaderByParam(@NotNull final HttpRequestBase baseRequest,
+    public static <HeaderParam> void addHeaderByParam(@NotNull final HttpRequestBase baseRequest,
                                                       final HeaderParam headerParam) {
         EmptyAssert.isNotNull(baseRequest);
         if (EmptyValidate.isNull(headerParam)) {
@@ -77,15 +78,15 @@ public final class HeaderParamUtil {
         }
 
         if (headerParam instanceof IBaseEntity) {
-            setHeaderByEntity(baseRequest, (IBaseEntity) headerParam);
+            addHeaderByEntity(baseRequest, (IBaseEntity) headerParam);
         } else if (headerParam instanceof Map) {
-            setHeaderByMap(baseRequest, (Map<?, ?>) headerParam);
+            addHeaderByMap(baseRequest, (Map<?, ?>) headerParam);
         } else {
             throw new RuntimeException("未知的HeaderParam类型");
         }
     }
 
-    public static void setHeaderByEntity(@NotNullTag final HttpRequestBase baseRequest,
+    public static void addHeaderByEntity(@NotNullTag final HttpRequestBase baseRequest,
                                          final IBaseEntity baseEntity) {
         EmptyAssert.isNotNull(baseRequest);
         if (EmptyValidate.isNull(baseEntity)) {
@@ -100,12 +101,12 @@ public final class HeaderParamUtil {
         fieldList.stream().filter(field -> !"serialVersionUID".equals(field.getName())).forEach(field -> {
             Object fieldValue = FieldUtil.readField(baseEntity, field);
             if (EmptyValidate.isNotNull(fieldValue)) {
-                setHeader(baseRequest, field.getName(), fieldValue);
+                addHeader(baseRequest, field.getName(), fieldValue);
             }
         });
     }
 
-    public static void setHeaderByMap(@NotNullTag final HttpRequestBase baseRequest, final Map<?, ?> map) {
+    public static void addHeaderByMap(@NotNullTag final HttpRequestBase baseRequest, final Map<?, ?> map) {
         EmptyAssert.isNotNull(baseRequest);
         if (EmptyValidate.isEmpty(map)) {
             return;
@@ -115,15 +116,23 @@ public final class HeaderParamUtil {
             if (EmptyValidate.isNull(key) || EmptyValidate.isNull(value)) {
                 return;
             }
-            setHeader(baseRequest, key, value);
+            addHeader(baseRequest, key, value);
         });
     }
 
-    public static void setHeader(@NotNull final HttpRequestBase baseRequest,
+    public static void addHeader(@NotNull final HttpRequestBase baseRequest,
                                  @NotBlankTag final Object key,
                                  @NotBlankTag final Object value) {
         EmptyAssert.allNotNull(baseRequest, key, value);
-        baseRequest.setHeader(key.toString(), value.toString());
+        if (value instanceof Collection<?>) {
+            ((Collection<?>) value).forEach(each -> baseRequest.addHeader(key.toString(), each.toString()));
+        } else if (value instanceof IBaseEntity) {
+            addHeaderByEntity(baseRequest, (IBaseEntity) value);
+        } else if (value instanceof Map<?, ?>) {
+            addHeaderByMap(baseRequest, (Map<?, ?>) value);
+        } else {
+            baseRequest.addHeader(key.toString(), value.toString());
+        }
     }
 
     public static Map<String, String> getHeaderMap(@NotNull final HttpRequestBase baseRequest) {

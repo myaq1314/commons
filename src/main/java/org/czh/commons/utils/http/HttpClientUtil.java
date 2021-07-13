@@ -52,7 +52,7 @@ public final class HttpClientUtil {
                                                                           final HeaderParam headerParam) {
         String tmpUrl = UrlParamUtil.getUrlByParam(url, urlParam);
         HttpGet httpGet = new HttpGet(tmpUrl);
-        HeaderParamUtil.setHeaderByParam(httpGet, headerParam);
+        HeaderParamUtil.addHeaderByParam(httpGet, headerParam);
         return invokeResp(httpGet);
     }
 
@@ -88,7 +88,7 @@ public final class HttpClientUtil {
         String tmpUrl = UrlParamUtil.getUrlByParam(url, urlParam);
         HttpEntityEnclosingRequestBase enclosingRequest = EnclosingEnum.getEnclosingRequest(enclosingEnum, tmpUrl);
         RequestParamUtil.setUrlencodedParam(enclosingRequest, requestParam);
-        HeaderParamUtil.setHeaderByParam(enclosingRequest, headerParam);
+        HeaderParamUtil.addHeaderByParam(enclosingRequest, headerParam);
         return invokeResp(enclosingRequest);
     }
 
@@ -124,7 +124,7 @@ public final class HttpClientUtil {
         String tmpUrl = UrlParamUtil.getUrlByParam(url, urlParam);
         HttpEntityEnclosingRequestBase enclosingRequest = EnclosingEnum.getEnclosingRequest(enclosingEnum, tmpUrl);
         RequestParamUtil.setJsonParam(enclosingRequest, requestParam);
-        HeaderParamUtil.setHeaderByParam(enclosingRequest, headerParam);
+        HeaderParamUtil.addHeaderByParam(enclosingRequest, headerParam);
         return invokeResp(enclosingRequest);
     }
 
