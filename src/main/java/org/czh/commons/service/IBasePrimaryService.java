@@ -13,6 +13,7 @@ import java.util.List;
  * date : 2021-06-28
  * email 916419307@qq.com
  */
+@SuppressWarnings("unused")
 public interface IBasePrimaryService<Entity extends BasePrimaryEO> extends IBaseCommonService<Entity> {
 
     Entity getById(@NotNullTag final java.io.Serializable id);

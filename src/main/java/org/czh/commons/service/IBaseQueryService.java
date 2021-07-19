@@ -16,21 +16,22 @@ import java.util.Map;
  * date : 2021-06-21
  * email 916419307@qq.com
  */
-public interface IBaseQueryService<Entity extends BaseQueryEO> extends IBaseService<Entity> {
+@SuppressWarnings("unused")
+public interface IBaseQueryService<Entity extends BaseQueryEO> extends IBaseEOService<Entity> {
 
-    Entity createCondition(@NotBlankTag final String tableName,
-                           @NotNullTag final IColumnEnum columnEnum,
-                           @NotNullTag final Object columnValue);
+    Entity createEntity(@NotBlankTag final String tableName,
+                        @NotNullTag final IColumnEnum columnEnum,
+                        @NotNullTag final Object columnValue);
 
-    Entity createCondition(@NotNullTag final IColumnEnum columnEnum,
-                           @NotNullTag final Object columnValue);
+    Entity createEntity(@NotNullTag final IColumnEnum columnEnum,
+                        @NotNullTag final Object columnValue);
 
-    Entity createCondition(@NotBlankTag final String tableName,
-                           @NotEmptyTag final IColumnEnum[] columnEnums,
-                           @NotEmptyTag final Object[] columnValues);
+    Entity createEntity(@NotBlankTag final String tableName,
+                        @NotEmptyTag final IColumnEnum[] columnEnums,
+                        @NotEmptyTag final Object[] columnValues);
 
-    Entity createCondition(@NotEmptyTag final IColumnEnum[] columnEnums,
-                           @NotEmptyTag final Object[] columnValues);
+    Entity createEntity(@NotEmptyTag final IColumnEnum[] columnEnums,
+                        @NotEmptyTag final Object[] columnValues);
 
     Entity getSureOneEntity(@NotNullTag final Entity condition);
 

@@ -1,18 +1,13 @@
 package org.czh.commons.service.impl;
 
-import org.czh.commons.annotations.tag.NotBlankTag;
 import org.czh.commons.annotations.tag.NotEmptyTag;
 import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.dao.IBaseCommonDao;
 import org.czh.commons.entity.eo.BaseCommonEO;
-import org.czh.commons.enums.parent.IColumnEnum;
 import org.czh.commons.service.IBaseCommonService;
-import org.czh.commons.utils.FieldUtil;
 import org.czh.commons.validate.EmptyAssert;
-import org.czh.commons.validate.FlagAssert;
 
 import java.util.List;
-import java.util.stream.IntStream;
 
 /**
  * @author : czh
@@ -20,57 +15,10 @@ import java.util.stream.IntStream;
  * date : 2021-06-28
  * email 916419307@qq.com
  */
+@SuppressWarnings("unused")
 public abstract class BaseCommonServiceImpl<Dao extends IBaseCommonDao<Entity>, Entity extends BaseCommonEO>
         extends BaseQueryServiceImpl<Dao, Entity>
         implements IBaseCommonService<Entity> {
-
-    @Override
-    @SuppressWarnings("DuplicatedCode")
-    public Entity createEntity(@NotBlankTag final String tableName,
-                               @NotNullTag final IColumnEnum columnEnum,
-                               @NotNullTag final Object columnValue) {
-        EmptyAssert.isNotBlank(tableName);
-
-        Entity entity = this.createEntity(columnEnum, columnValue);
-        entity.setTableName(tableName);
-        return entity;
-    }
-
-    @Override
-    @SuppressWarnings("DuplicatedCode")
-    public Entity createEntity(@NotNullTag final IColumnEnum columnEnum,
-                               @NotNullTag final Object columnValue) {
-        EmptyAssert.allNotNull(columnEnum, columnValue);
-
-        Entity entity = this.newInstance();
-        FieldUtil.writeField(entity, columnEnum.getField(), columnValue);
-        return entity;
-    }
-
-    @Override
-    @SuppressWarnings("DuplicatedCode")
-    public Entity createEntity(@NotBlankTag final String tableName,
-                               @NotEmptyTag final IColumnEnum[] columnEnums,
-                               @NotEmptyTag final Object[] columnValues) {
-        EmptyAssert.isNotBlank(tableName);
-
-        Entity entity = this.createEntity(columnEnums, columnValues);
-        entity.setTableName(tableName);
-        return entity;
-    }
-
-    @Override
-    @SuppressWarnings("DuplicatedCode")
-    public Entity createEntity(@NotEmptyTag final IColumnEnum[] columnEnums,
-                               @NotEmptyTag final Object[] columnValues) {
-        EmptyAssert.allNotEmpty(columnEnums, columnValues);
-        FlagAssert.isTrue(columnEnums.length == columnValues.length);
-
-        Entity entity = this.newInstance();
-        IntStream.range(0, columnEnums.length)
-                .forEach(i -> FieldUtil.writeField(entity, columnEnums[i].getField(), columnValues[i]));
-        return entity;
-    }
 
     @Override
     public int insert(@NotNullTag final Entity entity) {

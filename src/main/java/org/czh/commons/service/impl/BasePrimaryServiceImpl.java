@@ -18,6 +18,7 @@ import java.util.List;
  * date : 2021-06-28
  * email 916419307@qq.com
  */
+@SuppressWarnings("unused")
 public abstract class BasePrimaryServiceImpl<Dao extends IBasePrimaryDao<Entity>, Entity extends BasePrimaryEO>
         extends BaseCommonServiceImpl<Dao, Entity>
         implements IBasePrimaryService<Entity> {
