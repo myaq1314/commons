@@ -56,6 +56,7 @@ public final class PutUtil {
         return HttpClientUtil.doJsonTxt(EnclosingEnum.PUT, url, urlParam, requestParam, headerParam);
     }
 
+    @SuppressWarnings("unused")
     public static String doUrlencodedTxt(@NotBlankTag String url) {
         return doUrlencodedTxt(url, null);
     }
