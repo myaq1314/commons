@@ -1,5 +1,8 @@
 package org.czh.commons.utils.copy;
 
+import org.czh.commons.utils.fastjson.serializer.IObjectSerializer;
+import org.czh.commons.utils.fastjson.serializer.NoneSerializer;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -9,20 +12,24 @@ import java.lang.annotation.Target;
 /**
  * @author : czh
  * description :
- * date : 2021-06-28
+ * date : 2021-07-21
  * email 916419307@qq.com
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD, ElementType.TYPE})
 @Documented
-public @interface CopyConverter {
+public @interface CopyFromField {
 
-    String name() default "";
+    // 匹配
+    String match() default "";
 
-    Class<? extends IFieldConverter<?, ?>> using() default IFieldConverter.None.class;
+    // 格式化输入
+    Class<? extends IObjectSerializer<?, ?>> using() default NoneSerializer.class;
 
+    // 排除
     boolean exclude() default false;
 
-    String expression() default "";
+    // 格式化
+    String format() default "";
 
 }

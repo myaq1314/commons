@@ -26,24 +26,24 @@ public final class DecimalUtil {
         return new BigDecimal(String.valueOf(doubleNum));
     }
 
-    public static BigDecimal parse(@NotBlankTag String decimalTxt) {
-        EmptyAssert.isNotBlank(decimalTxt);
+    public static BigDecimal parse(@NotBlankTag String decimalText) {
+        EmptyAssert.isNotBlank(decimalText);
 
-        decimalTxt = decimalTxt.replaceAll(",", "");
-        NumAssert.isNumber(decimalTxt);
+        decimalText = decimalText.replaceAll(",", "");
+        NumAssert.isNumber(decimalText);
 
-        return new BigDecimal(decimalTxt);
+        return new BigDecimal(decimalText);
     }
 
-    public static BigDecimal parseDefault(String decimalTxt) {
-        if (EmptyValidate.isBlank(decimalTxt)) {
+    public static BigDecimal parseDefault(String decimalText) {
+        if (EmptyValidate.isBlank(decimalText)) {
             return BigDecimal.ZERO;
         }
-        decimalTxt = decimalTxt.replaceAll(",", "");
-        if (!NumValidate.isNumber(decimalTxt)) {
+        decimalText = decimalText.replaceAll(",", "");
+        if (!NumValidate.isNumber(decimalText)) {
             return BigDecimal.ZERO;
         }
-        return new BigDecimal(decimalTxt);
+        return new BigDecimal(decimalText);
     }
 
     public static String trim(@NotNullTag BigDecimal decimal) {
@@ -51,9 +51,9 @@ public final class DecimalUtil {
         return decimal.stripTrailingZeros().toPlainString();
     }
 
-    public static String trim(@NotBlankTag String decimalTxt) {
-        EmptyAssert.isNotBlank(decimalTxt);
-        return trim(parse(decimalTxt));
+    public static String trim(@NotBlankTag String decimalText) {
+        EmptyAssert.isNotBlank(decimalText);
+        return trim(parse(decimalText));
     }
 
     public static BigDecimal format(@NotNullTag BigDecimal decimal,

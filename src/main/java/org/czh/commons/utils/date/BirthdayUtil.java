@@ -23,15 +23,15 @@ public final class BirthdayUtil {
       -----------------------------get max birthday-------------------------------
      */
 
-    public static String getMaxBirthdayTxt(@ValueTag(min = 1) final int age) {
-        return getMaxBirthdayTxt(DateUtil.getNowDate(), age);
+    public static String getMaxBirthdayText(@ValueTag(min = 1) final int age) {
+        return getMaxBirthdayText(DateUtil.getNowDate(), age);
     }
 
-    public static String getMaxBirthdayTxt(@NotNullTag final Date endDate, @ValueTag(min = 1) final int age) {
-        return getMaxBirthdayTxt(CalendarUtil.getCalendar(endDate), age);
+    public static String getMaxBirthdayText(@NotNullTag final Date endDate, @ValueTag(min = 1) final int age) {
+        return getMaxBirthdayText(CalendarUtil.getCalendar(endDate), age);
     }
 
-    public static String getMaxBirthdayTxt(@NotNullTag final Calendar calendar, @ValueTag(min = 1) final int age) {
+    public static String getMaxBirthdayText(@NotNullTag final Calendar calendar, @ValueTag(min = 1) final int age) {
         return DateUtil.formatToText(getMaxBirthdayDate(calendar, age));
     }
 
@@ -56,15 +56,15 @@ public final class BirthdayUtil {
       -----------------------------get min birthday-------------------------------
      */
 
-    public static String getMinBirthdayTxt(@ValueTag(min = 1) final int age) {
-        return getMinBirthdayTxt(DateUtil.getNowDate(), age);
+    public static String getMinBirthdayText(@ValueTag(min = 1) final int age) {
+        return getMinBirthdayText(DateUtil.getNowDate(), age);
     }
 
-    public static String getMinBirthdayTxt(@NotNullTag final Date endDate, @ValueTag(min = 1) final int age) {
-        return getMinBirthdayTxt(CalendarUtil.getCalendar(endDate), age);
+    public static String getMinBirthdayText(@NotNullTag final Date endDate, @ValueTag(min = 1) final int age) {
+        return getMinBirthdayText(CalendarUtil.getCalendar(endDate), age);
     }
 
-    public static String getMinBirthdayTxt(@NotNullTag final Calendar calendar, @ValueTag(min = 1) final int age) {
+    public static String getMinBirthdayText(@NotNullTag final Calendar calendar, @ValueTag(min = 1) final int age) {
         return DateUtil.formatToText(getMinBirthdayDate(calendar, age));
     }
 
@@ -96,18 +96,18 @@ public final class BirthdayUtil {
         return "maxBirthdayKey";
     }
 
-    public static Map<String, String> getPointBirthdayTxtMap(@ValueTag(min = 1) final int age) {
-        return getPointBirthdayTxtMap(DateUtil.getNowDate(), age);
+    public static Map<String, String> getPointBirthdayTextMap(@ValueTag(min = 1) final int age) {
+        return getPointBirthdayTextMap(DateUtil.getNowDate(), age);
     }
 
-    public static Map<String, String> getPointBirthdayTxtMap(@NotNullTag final Date endDate,
+    public static Map<String, String> getPointBirthdayTextMap(@NotNullTag final Date endDate,
                                                              @ValueTag(min = 1) final int age) {
         Map<String, Date> pointBirthdayDateMap = getPointBirthdayDateMap(endDate, age);
         EmptyAssert.isNotEmpty(pointBirthdayDateMap);
 
-        Map<String, String> pointBirthdayTxtMap = new HashMap<>(pointBirthdayDateMap.size());
-        pointBirthdayDateMap.forEach((key, value) -> pointBirthdayTxtMap.put(key, DateUtil.formatToText(value)));
-        return pointBirthdayTxtMap;
+        Map<String, String> pointBirthdayTextMap = new HashMap<>(pointBirthdayDateMap.size());
+        pointBirthdayDateMap.forEach((key, value) -> pointBirthdayTextMap.put(key, DateUtil.formatToText(value)));
+        return pointBirthdayTextMap;
     }
 
     public static Map<String, Date> getPointBirthdayDateMap(@ValueTag(min = 1) final int age) {

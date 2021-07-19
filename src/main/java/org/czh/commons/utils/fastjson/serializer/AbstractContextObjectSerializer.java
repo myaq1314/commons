@@ -9,11 +9,12 @@ import java.lang.reflect.Type;
 
 /**
  * @author : czh
- * description :
+ * description : 格式化输出
  * date : 2021-07-01
  * email 916419307@qq.com
  */
-public abstract class AbstractContextObjectSerializer<S, T> implements ContextObjectSerializer {
+public abstract class AbstractContextObjectSerializer<S, T>
+        implements IObjectSerializer<S, T>, ContextObjectSerializer {
 
     @Override
     public void write(JSONSerializer serializer,
@@ -30,15 +31,13 @@ public abstract class AbstractContextObjectSerializer<S, T> implements ContextOb
         S source = (S) object;
         T target;
         if (EmptyValidate.isNull(context)) {
-            target = write(source, null);
+            target = serialize(source, null);
         } else {
-            target = write(source, context.getFormat());
+            target = serialize(source, context.getFormat());
         }
         if (EmptyValidate.isNotNull(target)) {
             serializer.write(target);
         }
     }
-
-    protected abstract T write(S source, String format);
 
 }

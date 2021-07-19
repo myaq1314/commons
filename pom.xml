@@ -16,7 +16,7 @@
 
         <junit.version>4.11</junit.version>
 
-        <lombok.version>1.18.10</lombok.version>
+        <lombok.version>1.18.20</lombok.version>
         <jetbrains.annotations.version>20.1.0</jetbrains.annotations.version>
 
         <slf4j-api.version>2.0.0-alpha1</slf4j-api.version>

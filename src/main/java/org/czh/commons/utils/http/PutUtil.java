@@ -1,7 +1,7 @@
 package org.czh.commons.utils.http;
 
 import org.czh.commons.annotations.tag.NotBlankTag;
-import sun.net.www.protocol.http.HttpURLConnection;
+//import sun.net.www.protocol.http.HttpURLConnection;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +20,7 @@ public final class PutUtil {
         paramMap.put("ext_order_no", "12345678901234567890");
 
         Map<String, Object> headerMap = new HashMap<>();
-        headerMap.put("User-Agent", HttpURLConnection.userAgent);
+//        headerMap.put("User-Agent", HttpURLConnection.userAgent);
         headerMap.put("Accept", "application/json");
 
 
@@ -53,28 +53,28 @@ public final class PutUtil {
                                                                          UrlParam urlParam,
                                                                          RequestParam requestParam,
                                                                          HeaderParam headerParam) {
-        return HttpClientUtil.doJsonTxt(EnclosingEnum.PUT, url, urlParam, requestParam, headerParam);
+        return HttpClientUtil.doJsonText(EnclosingEnum.PUT, url, urlParam, requestParam, headerParam);
     }
 
     @SuppressWarnings("unused")
-    public static String doUrlencodedTxt(@NotBlankTag String url) {
-        return doUrlencodedTxt(url, null);
+    public static String doUrlencodedText(@NotBlankTag String url) {
+        return doUrlencodedText(url, null);
     }
 
-    public static <RequestParam> String doUrlencodedTxt(@NotBlankTag String url, RequestParam requestParam) {
-        return doUrlencodedTxt(url, requestParam, null);
+    public static <RequestParam> String doUrlencodedText(@NotBlankTag String url, RequestParam requestParam) {
+        return doUrlencodedText(url, requestParam, null);
     }
 
-    public static <RequestParam, HeaderParam> String doUrlencodedTxt(@NotBlankTag String url,
+    public static <RequestParam, HeaderParam> String doUrlencodedText(@NotBlankTag String url,
                                                                      RequestParam requestParam,
                                                                      HeaderParam headerParam) {
-        return doUrlencodedTxt(url, null, requestParam, headerParam);
+        return doUrlencodedText(url, null, requestParam, headerParam);
     }
 
-    public static <UrlParam, RequestParam, HeaderParam> String doUrlencodedTxt(@NotBlankTag String url,
+    public static <UrlParam, RequestParam, HeaderParam> String doUrlencodedText(@NotBlankTag String url,
                                                                                UrlParam urlParam,
                                                                                RequestParam requestParam,
                                                                                HeaderParam headerParam) {
-        return HttpClientUtil.doUrlencodedTxt(EnclosingEnum.PUT, url, urlParam, requestParam, headerParam);
+        return HttpClientUtil.doUrlencodedText(EnclosingEnum.PUT, url, urlParam, requestParam, headerParam);
     }
 }

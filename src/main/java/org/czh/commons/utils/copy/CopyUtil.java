@@ -1,9 +1,14 @@
 package org.czh.commons.utils.copy;
 
+import org.czh.commons.annotations.tag.NotBlankTag;
 import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.utils.ConstructorUtil;
 import org.czh.commons.utils.FieldUtil;
 import org.czh.commons.utils.convertor.CollectionConvertor;
+import org.czh.commons.utils.fastjson.deserializer.IObjectDeserializer;
+import org.czh.commons.utils.fastjson.deserializer.NoneDeserializer;
+import org.czh.commons.utils.fastjson.serializer.IObjectSerializer;
+import org.czh.commons.utils.fastjson.serializer.NoneSerializer;
 import org.czh.commons.validate.EmptyAssert;
 import org.czh.commons.validate.EmptyValidate;
 import org.czh.commons.validate.EqualsAssert;
@@ -28,55 +33,99 @@ public final class CopyUtil {
 
     private static final Map<String, List<FieldMapping>> fieldMappingListMap = new HashMap<>();
 
-    public static <S, T> T copy(@NotNullTag final S source, @NotNullTag final Class<T> targetClazz) {
+    public static <Source, Target> Target copyFrom(@NotNullTag final Source source,
+                                                   @NotNullTag final Class<Target> targetClazz) {
         EmptyAssert.isNotNull(targetClazz);
 
-        T target = ConstructorUtil.newInstance(targetClazz);
-        copy(source, target);
+        Target target = ConstructorUtil.newInstance(targetClazz);
+        copyFrom(source, target);
         return target;
     }
 
-    public static <S, T> void copy(@NotNullTag final S source, @NotNullTag final T target) {
+    public static <Source, Target> void copyFrom(@NotNullTag final Source source, @NotNullTag final Target target) {
+        copy(source, target, getFromType());
+    }
+
+
+    public static <Source, Target> Target copyTo(@NotNullTag final Source source,
+                                                 @NotNullTag final Class<Target> targetClazz) {
+        EmptyAssert.isNotNull(targetClazz);
+
+        Target target = ConstructorUtil.newInstance(targetClazz);
+        copyTo(source, target);
+        return target;
+    }
+
+    public static <Source, Target> void copyTo(@NotNullTag final Source source, @NotNullTag final Target target) {
+        copy(source, target, getToType());
+    }
+
+    // type:    TO/FROM
+    // TO:      CopyUtil.getToType()
+    // FROM:    CopyUtil.getFromType()
+    private static <Source, Target> void copy(@NotNullTag final Source source,
+                                              @NotNullTag final Target target,
+                                              @NotBlankTag String type) {
         EmptyAssert.allNotNull(source, target);
+        EmptyAssert.isNotBlank(type);
 
         Class<?> sourceClazz = source.getClass();
         Class<?> targetClazz = target.getClass();
-        List<FieldMapping> fieldMappingList = getFieldMappingList(sourceClazz, targetClazz);
+        List<FieldMapping> fieldMappingList = getFieldMappingList(sourceClazz, targetClazz, type);
         EmptyAssert.isNotNull(fieldMappingList);
-        // 目标找不到任何可以匹配的属性
-        if (EmptyValidate.isEmpty(fieldMappingList)) {
+        if (EmptyValidate.isEmpty(fieldMappingList)) { // 目标找不到任何可以匹配的属性
             return;
         }
 
         for (FieldMapping fieldMapping : fieldMappingList) {
             Object resultFieldValue = FieldUtil.readField(source, fieldMapping.getSourceField());
-            if (EmptyValidate.isNull(resultFieldValue)) {
+            if (EmptyValidate.isNull(resultFieldValue)) { // null值结果不处理
                 continue;
             }
 
-            //noinspection rawtypes
-            Class<? extends IFieldConverter> fieldConverterClazz = fieldMapping.getFieldConverterClazz();
-            if (EmptyValidate.isNotNull(fieldConverterClazz)) {
+            if (getToType().equals(type)) {
                 //noinspection rawtypes
-                IFieldConverter fieldConverter = ConstructorUtil.newInstance(fieldConverterClazz);
-                //noinspection unchecked
-                resultFieldValue = fieldConverter.convert(resultFieldValue, fieldMapping);
+                Class<? extends IObjectDeserializer> objectDeserializerClazz = fieldMapping.getObjectDeserializerClazz();
+                if (EmptyValidate.isNotNull(objectDeserializerClazz)) {
+                    //noinspection rawtypes
+                    IObjectDeserializer objectDeserializer = ConstructorUtil.newInstance(objectDeserializerClazz);
+                    //noinspection unchecked
+                    resultFieldValue = objectDeserializer.deserialize(resultFieldValue, fieldMapping.getFormat());
+                }
+            } else {
+                //noinspection rawtypes
+                Class<? extends IObjectSerializer> objectSerializerClazz = fieldMapping.getObjectSerializerClazz();
+                if (EmptyValidate.isNotNull(objectSerializerClazz)) {
+                    //noinspection rawtypes
+                    IObjectSerializer objectSerializer = ConstructorUtil.newInstance(objectSerializerClazz);
+                    //noinspection unchecked
+                    resultFieldValue = objectSerializer.serialize(resultFieldValue, fieldMapping.getFormat());
+                }
             }
             FieldUtil.writeField(target, fieldMapping.getTargetField(), resultFieldValue);
         }
     }
 
+    // type:    TO/FROM
+    // TO:      CopyUtil.getToType()
+    // FROM:    CopyUtil.getFromType()
     private static List<FieldMapping> getFieldMappingList(@NotNullTag final Class<?> sourceClazz,
-                                                          @NotNullTag final Class<?> targetClazz) {
+                                                          @NotNullTag final Class<?> targetClazz,
+                                                          @NotBlankTag final String type) {
         EmptyAssert.allNotNull(sourceClazz, targetClazz);
+        EmptyAssert.isNotBlank(type);
 
-        String fieldMappingListMapKey = createFieldMappingListMapKey(sourceClazz, targetClazz);
+        String fieldMappingListMapKey = createFieldMappingListMapKey(sourceClazz, targetClazz, type);
         List<FieldMapping> fieldMappingList = fieldMappingListMap.get(fieldMappingListMapKey);
         if (EmptyValidate.isNull(fieldMappingList)) {
             synchronized (CopyUtil.class) {
                 fieldMappingList = fieldMappingListMap.get(fieldMappingListMapKey);
                 if (EmptyValidate.isNull(fieldMappingList)) {
-                    createFieldMapping(sourceClazz, targetClazz);
+                    if (getToType().equals(type)) {
+                        createToFieldMapping(sourceClazz, targetClazz);
+                    } else {
+                        createFromFieldMapping(sourceClazz, targetClazz);
+                    }
                     fieldMappingList = fieldMappingListMap.get(fieldMappingListMapKey);
                     EmptyAssert.isNotNull(fieldMappingList);
                 }
@@ -85,53 +134,51 @@ public final class CopyUtil {
         return fieldMappingList;
     }
 
-    private static void createFieldMapping(@NotNullTag final Class<?> sourceClazz,
-                                           @NotNullTag final Class<?> targetClazz) {
+    private static void createFromFieldMapping(@NotNullTag final Class<?> sourceClazz,
+                                               @NotNullTag final Class<?> targetClazz) {
         EmptyAssert.allNotNull(sourceClazz, targetClazz);
 
+        List<Field> sourceFieldList = FieldUtil.queryFieldList(sourceClazz);
         List<Field> targetFieldList = FieldUtil.queryFieldList(targetClazz);
-        if (EmptyValidate.isEmpty(targetFieldList)) {
-            fieldMappingListMap.put(createFieldMappingListMapKey(sourceClazz, targetClazz), new ArrayList<>(0));
+        if (EmptyValidate.isEmpty(sourceFieldList) || EmptyValidate.isEmpty(targetFieldList)) {
+            fieldMappingListMap.put(createFieldMappingListMapKey(sourceClazz, targetClazz, getFromType()), new ArrayList<>(0));
             return;
         }
-        Map<String, Field> targetFieldMap = CollectionConvertor.convertToMap(targetFieldList, Field::getName);
+        Map<String, Field> sourceFieldMap = CollectionConvertor.convertToMap(sourceFieldList, Field::getName);
 
-        List<Field> sourceFieldList = FieldUtil.queryFieldList(sourceClazz);
-        EmptyAssert.isNotEmpty(sourceFieldList);
-
-        List<FieldMapping> fieldMappingList = new ArrayList<>(sourceFieldList.size());
-        for (Field sourceField : sourceFieldList) {
-            if ("serialVersionUID".equals(sourceField.getName())) {
+        List<FieldMapping> fieldMappingList = new ArrayList<>(targetFieldList.size());
+        for (Field targetField : targetFieldList) {
+            if ("serialVersionUID".equals(targetField.getName())) {
                 continue;
             }
 
-            CopyConverter copyConverter = sourceField.getAnnotation(CopyConverter.class);
-            if (EmptyValidate.isNotNull(copyConverter) && copyConverter.exclude()) {
+            CopyFromField copyFromField = targetField.getAnnotation(CopyFromField.class);
+            if (EmptyValidate.isNotNull(copyFromField) && copyFromField.exclude()) {
                 continue;
             }
 
-            if (EmptyValidate.isNull(copyConverter)) {
-                Field targetField = targetFieldMap.get(sourceField.getName());
-                if (EmptyValidate.isNull(targetField)
+            if (EmptyValidate.isNull(copyFromField)) {
+                Field sourceField = sourceFieldMap.get(targetField.getName());
+                if (EmptyValidate.isNull(sourceField)
                         || EqualsValidate.notEquals(sourceField.getType(), targetField.getType())) {
                     continue;
                 }
-                fieldMappingList.add(new FieldMapping(sourceField, targetField, null, ""));
+                fieldMappingList.add(new FieldMapping(sourceField, targetField, null, null, ""));
             } else {
-                String sourceFieldMappingName = copyConverter.name();
-                if (EmptyValidate.isBlank(sourceFieldMappingName)) {
-                    sourceFieldMappingName = sourceField.getName();
+                String sourceFieldName = copyFromField.match();
+                if (EmptyValidate.isBlank(sourceFieldName)) {
+                    sourceFieldName = targetField.getName();
                 }
-                Field targetField = targetFieldMap.get(sourceFieldMappingName);
-                EmptyAssert.isNotNull(targetField, "[Assertion failed] - The target field could not be found");
+                Field sourceField = sourceFieldMap.get(sourceFieldName);
+                EmptyAssert.isNotNull(sourceField, "[Assertion failed] - The source field could not be found");
 
-                Class<? extends IFieldConverter<?, ?>> fieldConverterClazz = copyConverter.using();
-                if (EqualsValidate.equals(fieldConverterClazz, IFieldConverter.None.class)) {
-                    fieldConverterClazz = null;
+                Class<? extends IObjectSerializer<?, ?>> objectSerializerClazz = copyFromField.using();
+                if (EqualsValidate.equals(objectSerializerClazz, NoneSerializer.class)) {
+                    objectSerializerClazz = null;
                     EqualsAssert.isEquals(sourceField.getType(), targetField.getType());
                 } else {
-                    Type[] genericInterfaces = fieldConverterClazz.getGenericInterfaces();
-                    Type[] actualTypeArguments = ((ParameterizedType) genericInterfaces[0]).getActualTypeArguments();
+                    Type genericSuperclass = objectSerializerClazz.getGenericSuperclass();
+                    Type[] actualTypeArguments = ((ParameterizedType) genericSuperclass).getActualTypeArguments();
                     try {
                         Class<?> sourceClassMapping = Class.forName(actualTypeArguments[0].getTypeName());
                         FlagAssert.isTrue(sourceClassMapping.isAssignableFrom(sourceField.getType()));
@@ -142,15 +189,87 @@ public final class CopyUtil {
                         e.printStackTrace();
                     }
                 }
-                fieldMappingList.add(new FieldMapping(sourceField, targetField, fieldConverterClazz, copyConverter.expression()));
+                fieldMappingList.add(new FieldMapping(sourceField, targetField, null, objectSerializerClazz, copyFromField.format()));
             }
         }
-        fieldMappingListMap.put(createFieldMappingListMapKey(sourceClazz, targetClazz), fieldMappingList);
+        fieldMappingListMap.put(createFieldMappingListMapKey(sourceClazz, targetClazz, getFromType()), fieldMappingList);
+
+    }
+
+    private static void createToFieldMapping(@NotNullTag final Class<?> sourceClazz,
+                                             @NotNullTag final Class<?> targetClazz) {
+        EmptyAssert.allNotNull(sourceClazz, targetClazz);
+
+        List<Field> sourceFieldList = FieldUtil.queryFieldList(sourceClazz);
+        List<Field> targetFieldList = FieldUtil.queryFieldList(targetClazz);
+        if (EmptyValidate.isEmpty(sourceFieldList) || EmptyValidate.isEmpty(targetFieldList)) {
+            fieldMappingListMap.put(createFieldMappingListMapKey(sourceClazz, targetClazz, getToType()), new ArrayList<>(0));
+            return;
+        }
+        Map<String, Field> targetFieldMap = CollectionConvertor.convertToMap(targetFieldList, Field::getName);
+
+        List<FieldMapping> fieldMappingList = new ArrayList<>(sourceFieldList.size());
+        for (Field sourceField : sourceFieldList) {
+            if ("serialVersionUID".equals(sourceField.getName())) {
+                continue;
+            }
+
+            CopyToField copyToField = sourceField.getAnnotation(CopyToField.class);
+            if (EmptyValidate.isNotNull(copyToField) && copyToField.exclude()) {
+                continue;
+            }
+
+            if (EmptyValidate.isNull(copyToField)) {
+                Field targetField = targetFieldMap.get(sourceField.getName());
+                if (EmptyValidate.isNull(targetField)
+                        || EqualsValidate.notEquals(sourceField.getType(), targetField.getType())) {
+                    continue;
+                }
+                fieldMappingList.add(new FieldMapping(sourceField, targetField, null, null, ""));
+            } else {
+                String targetFieldName = copyToField.match();
+                if (EmptyValidate.isBlank(targetFieldName)) {
+                    targetFieldName = sourceField.getName();
+                }
+                Field targetField = targetFieldMap.get(targetFieldName);
+                EmptyAssert.isNotNull(targetField, "[Assertion failed] - The target field could not be found");
+
+                Class<? extends IObjectDeserializer<?, ?>> objectDeserializerClazz = copyToField.using();
+                if (EqualsValidate.equals(objectDeserializerClazz, NoneDeserializer.class)) {
+                    objectDeserializerClazz = null;
+                    EqualsAssert.isEquals(sourceField.getType(), targetField.getType());
+                } else {
+                    Type genericSuperclass = objectDeserializerClazz.getGenericSuperclass();
+                    Type[] actualTypeArguments = ((ParameterizedType) genericSuperclass).getActualTypeArguments();
+                    try {
+                        Class<?> sourceClassMapping = Class.forName(actualTypeArguments[0].getTypeName());
+                        FlagAssert.isTrue(sourceClassMapping.isAssignableFrom(sourceField.getType()));
+
+                        Class<?> targetClassMapping = Class.forName(actualTypeArguments[1].getTypeName());
+                        FlagAssert.isTrue(targetField.getType().isAssignableFrom(targetClassMapping));
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+                fieldMappingList.add(new FieldMapping(sourceField, targetField, objectDeserializerClazz, null, copyToField.format()));
+            }
+        }
+        fieldMappingListMap.put(createFieldMappingListMapKey(sourceClazz, targetClazz, getToType()), fieldMappingList);
+    }
+
+    private static String getToType() {
+        return "TO";
+    }
+
+    private static String getFromType() {
+        return "FROM";
     }
 
     private static String createFieldMappingListMapKey(@NotNullTag final Class<?> sourceClazz,
-                                                       @NotNullTag final Class<?> targetClazz) {
+                                                       @NotNullTag final Class<?> targetClazz,
+                                                       @NotBlankTag final String type) {
         EmptyAssert.allNotNull(sourceClazz, targetClazz);
-        return String.format("%s:%s", sourceClazz.getName(), targetClazz.getName());
+        EmptyAssert.isNotBlank(type);
+        return String.format("%s:%s:%s", sourceClazz.getName(), type, targetClazz.getName());
     }
 }

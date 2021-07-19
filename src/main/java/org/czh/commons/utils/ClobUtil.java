@@ -18,7 +18,7 @@ import java.sql.SQLException;
 @Slf4j
 public final class ClobUtil {
 
-    public static String covertToTxt(@NotNullTag Clob clob) {
+    public static String covertToText(@NotNullTag Clob clob) {
         EmptyAssert.isNotNull(clob);
 
         StringBuilder builder = new StringBuilder();

@@ -6,6 +6,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.czh.commons.entity.IBaseEntity;
+import org.czh.commons.utils.fastjson.deserializer.IObjectDeserializer;
+import org.czh.commons.utils.fastjson.serializer.IObjectSerializer;
 
 import java.lang.reflect.Field;
 
@@ -26,8 +28,8 @@ public class FieldMapping implements IBaseEntity {
 
     private Field sourceField;
     private Field targetField;
-    @SuppressWarnings("rawtypes")
-    private Class<? extends IFieldConverter> fieldConverterClazz;
-    private String expression;
+    private Class<? extends IObjectDeserializer<?, ?>> objectDeserializerClazz;
+    private Class<? extends IObjectSerializer<?, ?>> objectSerializerClazz;
+    private String format;
 
 }

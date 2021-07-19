@@ -13,6 +13,7 @@ import java.util.List;
  * date : 2021-06-21
  * email 916419307@qq.com
  */
+@SuppressWarnings("unused")
 public interface IBaseCommonDao<EO extends BaseCommonEO> extends IBaseQueryDao<EO> {
 
     /**
@@ -24,7 +25,7 @@ public interface IBaseCommonDao<EO extends BaseCommonEO> extends IBaseQueryDao<E
      * (id, student_name, grade)
      * values (100, 'TOM', 1);
      */
-    int insert(@NotNullTag @Param("eo") EO eo);
+    int insert(@NotNullTag @Param("entity") EO entity);
 
     /**
      * 表：student
@@ -37,7 +38,7 @@ public interface IBaseCommonDao<EO extends BaseCommonEO> extends IBaseQueryDao<E
      * on duplicate key
      * update id = values(id), student_name = values(student_name), grade = values(grade);
      */
-    int insertExistUpdate(@NotNullTag @Param("eo") EO eo);
+    int insertExistUpdate(@NotNullTag @Param("entity") EO entity);
 
     /**
      * 表：student
@@ -49,7 +50,7 @@ public interface IBaseCommonDao<EO extends BaseCommonEO> extends IBaseQueryDao<E
      * values (101, 'SALE', 1, 20), (102, 'JEKE', 2, 68);
      */
     int batchInsert(@NotNullTag @Param("condition") EO condition,
-                    @NotEmptyTag @Param("eoList") List<EO> eoList);
+                    @NotEmptyTag @Param("entityList") List<EO> entityList);
 
     /**
      * 表：student
@@ -63,7 +64,7 @@ public interface IBaseCommonDao<EO extends BaseCommonEO> extends IBaseQueryDao<E
      * update id = values(id), student_name = values(student_name), grade = values(grade), score = values(score);
      */
     int batchInsertExistUpdate(@NotNullTag @Param("condition") EO condition,
-                               @NotEmptyTag @Param("eoList") List<EO> eoList);
+                               @NotEmptyTag @Param("entityList") List<EO> entityList);
 
     /**
      * 表：student
@@ -84,6 +85,6 @@ public interface IBaseCommonDao<EO extends BaseCommonEO> extends IBaseQueryDao<E
      * set a.grade = 1, a.birthday = now()
      * where a.id in (1, 3, 5, 7, 9) and a.grade > 1;
      */
-    int update(@NotNullTag @Param("condition") EO condition, @NotNullTag @Param("eo") EO eo);
+    int update(@NotNullTag @Param("condition") EO condition, @NotNullTag @Param("entity") EO entity);
 
 }

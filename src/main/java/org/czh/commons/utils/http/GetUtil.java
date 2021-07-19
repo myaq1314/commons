@@ -1,7 +1,7 @@
 package org.czh.commons.utils.http;
 
 import org.czh.commons.annotations.tag.NotBlankTag;
-import sun.net.www.protocol.http.HttpURLConnection;
+//import sun.net.www.protocol.http.HttpURLConnection;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,13 +22,13 @@ public final class GetUtil {
         paramMap.put("ext_order_no", "12345678901234567890");
 
         Map<String, Object> headerMap = new HashMap<>();
-        headerMap.put("User-Agent", HttpURLConnection.userAgent);
+//        headerMap.put("User-Agent", HttpURLConnection.userAgent);
         headerMap.put("Accept", "application/json");
 
         try {
-            System.out.println(doGetTxt("http://127.0.0.1:443/v1/siip/order/createAndPay"));
-            System.out.println(doGetTxt("http://127.0.0.1:443/v1/siip/order/createAndPay", paramMap));
-            System.out.println(doGetTxt("http://127.0.0.1:443/v1/siip/order/createAndPay", paramMap, headerMap));
+            System.out.println(doGetText("http://127.0.0.1:443/v1/siip/order/createAndPay"));
+            System.out.println(doGetText("http://127.0.0.1:443/v1/siip/order/createAndPay", paramMap));
+            System.out.println(doGetText("http://127.0.0.1:443/v1/siip/order/createAndPay", paramMap, headerMap));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -36,18 +36,18 @@ public final class GetUtil {
         HttpPoolUtil.shutdown();
     }
 
-    public static String doGetTxt(@NotBlankTag final String url) {
-        return doGetTxt(url, null);
+    public static String doGetText(@NotBlankTag final String url) {
+        return doGetText(url, null);
     }
 
-    public static <UrlParam> String doGetTxt(@NotBlankTag final String url,
+    public static <UrlParam> String doGetText(@NotBlankTag final String url,
                                              final UrlParam urlParam) {
-        return doGetTxt(url, urlParam, null);
+        return doGetText(url, urlParam, null);
     }
 
-    public static <UrlParam, HeaderParam> String doGetTxt(@NotBlankTag final String url,
+    public static <UrlParam, HeaderParam> String doGetText(@NotBlankTag final String url,
                                                           final UrlParam urlParam,
                                                           final HeaderParam headerParam) {
-        return HttpClientUtil.doGetTxt(url, urlParam, headerParam);
+        return HttpClientUtil.doGetText(url, urlParam, headerParam);
     }
 }

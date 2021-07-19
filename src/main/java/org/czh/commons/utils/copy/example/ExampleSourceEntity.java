@@ -6,11 +6,16 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.czh.commons.entity.IBaseEntity;
-import org.czh.commons.utils.copy.CopyConverter;
-import org.czh.commons.utils.copy.converter.DateToTxtConverter;
-import org.czh.commons.utils.copy.converter.MoneyYuanToConverter;
-import org.czh.commons.utils.copy.converter.ObjectToTxtConverter;
-import org.czh.commons.utils.copy.converter.TxtToIntegerConverter;
+import org.czh.commons.utils.copy.CopyFromField;
+import org.czh.commons.utils.copy.CopyToField;
+import org.czh.commons.utils.fastjson.deserializer.DateToTextDeserializer;
+import org.czh.commons.utils.fastjson.deserializer.DecimalToLongDeserializer;
+import org.czh.commons.utils.fastjson.deserializer.ObjectToTextDeserializer;
+import org.czh.commons.utils.fastjson.deserializer.TextToIntegerDeserializer;
+import org.czh.commons.utils.fastjson.serializer.LongToDecimalSerializer;
+import org.czh.commons.utils.fastjson.serializer.ObjectToTextSerializer;
+import org.czh.commons.utils.fastjson.serializer.TextToDateSerializer;
+import org.czh.commons.utils.fastjson.serializer.TextToShortSerializer;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -30,26 +35,32 @@ public class ExampleSourceEntity implements IBaseEntity {
 
     private static final long serialVersionUID = -7099503280479595580L;
 
-    @CopyConverter(name = "exampleTargetEntityName")
+    @CopyFromField(match = "exampleTargetEntityName")
+    @CopyToField(match = "exampleTargetEntityName")
     private String exampleSourceEntityName;
 
-    @CopyConverter(name = "createDateTxt", using = DateToTxtConverter.class, expression = "yyyy-MM-dd HH:mm:ss")
+    @CopyFromField(match = "createDateText", using = TextToDateSerializer.class, format = "yyyy-MM-dd HH:mm:ss")
+    @CopyToField(match = "createDateText", using = DateToTextDeserializer.class, format = "yyyy-MM-dd HH:mm:ss")
     private Date createDate;
 
-    @CopyConverter(exclude = true)
+    @CopyFromField(exclude = true)
+    @CopyToField(exclude = true)
     private Boolean hidden;
 
-    @CopyConverter(using = TxtToIntegerConverter.class)
+    @CopyFromField(using = ObjectToTextSerializer.class)
+    @CopyToField(using = TextToIntegerDeserializer.class)
     private String exampleNum;
 
-    @CopyConverter(name = "fen", using = MoneyYuanToConverter.class, expression = "100")
+    @CopyFromField(match = "fen", using = LongToDecimalSerializer.class, format = "100")
+    @CopyToField(match = "fen", using = DecimalToLongDeserializer.class, format = "100")
     private BigDecimal yuan;
 
     private Character character;
 
     private Long id;
 
-    @CopyConverter(using = ObjectToTxtConverter.class)
+    @CopyFromField(using = TextToShortSerializer.class)
+    @CopyToField(using = ObjectToTextDeserializer.class)
     private Short age;
 
 }

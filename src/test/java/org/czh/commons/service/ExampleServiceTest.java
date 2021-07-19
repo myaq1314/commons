@@ -33,7 +33,7 @@ public class ExampleServiceTest {
         System.out.println(exampleCommonEO);
 
         IExampleQueryService queryService = new ExampleQueryServiceImpl();
-        ExampleQueryEO exampleQueryEO = queryService.createCondition(ExampleQueryEnum.PRICE, 34D);
+        ExampleQueryEO exampleQueryEO = queryService.createEntity(ExampleQueryEnum.PRICE, 34D);
         System.out.println(exampleQueryEO);
     }
 }

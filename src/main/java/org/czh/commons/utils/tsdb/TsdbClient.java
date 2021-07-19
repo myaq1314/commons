@@ -52,9 +52,9 @@ public class TsdbClient {
 
         try {
             if (EmptyValidate.isNull(optionalDict)) {
-                return HttpClientUtil.doJsonTxt(EnclosingEnum.POST, url + "/api/put", voList);
+                return HttpClientUtil.doJsonText(EnclosingEnum.POST, url + "/api/put", voList);
             }
-            return HttpClientUtil.doJsonTxt(EnclosingEnum.POST, url + "/api/put?" + optionalDict.key, voList);
+            return HttpClientUtil.doJsonText(EnclosingEnum.POST, url + "/api/put?" + optionalDict.key, voList);
         } catch (Exception e) {
             log.error("opentsdb put api wrong, reason:{}", e.getMessage());
             throw new RuntimeException("opentsdb put data wrong");
@@ -74,9 +74,9 @@ public class TsdbClient {
 
         try {
             if (EmptyValidate.isNull(optionalDict)) {
-                return HttpClientUtil.doJsonTxt(EnclosingEnum.POST, url + "/api/query", vo);
+                return HttpClientUtil.doJsonText(EnclosingEnum.POST, url + "/api/query", vo);
             }
-            return HttpClientUtil.doJsonTxt(EnclosingEnum.POST, url + "/api/query?" + optionalDict.key, vo);
+            return HttpClientUtil.doJsonText(EnclosingEnum.POST, url + "/api/query?" + optionalDict.key, vo);
         } catch (Exception e) {
             log.error("opentsdb query api wrong, reason:{}", e.getMessage());
             throw new RuntimeException("opentsdb query data wrong");

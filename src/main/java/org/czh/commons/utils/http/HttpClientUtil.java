@@ -31,15 +31,15 @@ public final class HttpClientUtil {
       -----------------------------get request-------------------------------
      */
 
-    public static <UrlParam, HeaderParam> String doGetTxt(@NotBlankTag final String url,
+    public static <UrlParam, HeaderParam> String doGetText(@NotBlankTag final String url,
                                                           final UrlParam urlParam) {
-        return doGetTxt(url, urlParam, null);
+        return doGetText(url, urlParam, null);
     }
 
-    public static <UrlParam, HeaderParam> String doGetTxt(@NotBlankTag final String url,
+    public static <UrlParam, HeaderParam> String doGetText(@NotBlankTag final String url,
                                                           final UrlParam urlParam,
                                                           final HeaderParam headerParam) {
-        return invokeTxt(doGetResp(url, urlParam, headerParam));
+        return invokeText(doGetResp(url, urlParam, headerParam));
     }
 
     public static <UrlParam, HeaderParam> CloseableHttpResponse doGetResp(@NotBlankTag String url,
@@ -60,18 +60,18 @@ public final class HttpClientUtil {
       -----------------------------post/put/delete x-www.form-urlencoded request-------------------------------
      */
 
-    public static <RequestParam> String doUrlencodedTxt(@NotNull final EnclosingEnum enclosingEnum,
+    public static <RequestParam> String doUrlencodedText(@NotNull final EnclosingEnum enclosingEnum,
                                                         @NotBlankTag final String url,
                                                         RequestParam requestParam) {
-        return doUrlencodedTxt(enclosingEnum, url, null, requestParam, null);
+        return doUrlencodedText(enclosingEnum, url, null, requestParam, null);
     }
 
-    public static <UrlParam, RequestParam, HeaderParam> String doUrlencodedTxt(@NotNull final EnclosingEnum enclosingEnum,
+    public static <UrlParam, RequestParam, HeaderParam> String doUrlencodedText(@NotNull final EnclosingEnum enclosingEnum,
                                                                                @NotBlankTag final String url,
                                                                                UrlParam urlParam,
                                                                                RequestParam requestParam,
                                                                                HeaderParam headerParam) {
-        return invokeTxt(doUrlencodedResp(enclosingEnum, url, urlParam, requestParam, headerParam));
+        return invokeText(doUrlencodedResp(enclosingEnum, url, urlParam, requestParam, headerParam));
     }
 
     public static <RequestParam> CloseableHttpResponse doUrlencodedResp(@NotNull final EnclosingEnum enclosingEnum,
@@ -96,18 +96,18 @@ public final class HttpClientUtil {
       -----------------------------post/put/delete json request-------------------------------
      */
 
-    public static <UrlParam, RequestParam, HeaderParam> String doJsonTxt(@NotNullTag final EnclosingEnum enclosingEnum,
+    public static <UrlParam, RequestParam, HeaderParam> String doJsonText(@NotNullTag final EnclosingEnum enclosingEnum,
                                                                          @NotBlankTag String url,
                                                                          RequestParam requestParam) {
-        return doJsonTxt(enclosingEnum, url, null, requestParam, null);
+        return doJsonText(enclosingEnum, url, null, requestParam, null);
     }
 
-    public static <UrlParam, RequestParam, HeaderParam> String doJsonTxt(@NotNullTag final EnclosingEnum enclosingEnum,
+    public static <UrlParam, RequestParam, HeaderParam> String doJsonText(@NotNullTag final EnclosingEnum enclosingEnum,
                                                                          @NotBlankTag String url,
                                                                          UrlParam urlParam,
                                                                          RequestParam requestParam,
                                                                          HeaderParam headerParam) {
-        return invokeTxt(doJsonResp(enclosingEnum, url, urlParam, requestParam, headerParam));
+        return invokeText(doJsonResp(enclosingEnum, url, urlParam, requestParam, headerParam));
     }
 
     public static <UrlParam, RequestParam, HeaderParam> CloseableHttpResponse doJsonResp(@NotNullTag final EnclosingEnum enclosingEnum,
@@ -132,7 +132,7 @@ public final class HttpClientUtil {
       -----------------------------set request-------------------------------
      */
 
-    public static String invokeTxt(@NotNull final HttpRequestBase baseRequest) {
+    public static String invokeText(@NotNull final HttpRequestBase baseRequest) {
         CloseableHttpResponse response = null;
         HttpEntity entity = null;
         try {
@@ -155,7 +155,7 @@ public final class HttpClientUtil {
         }
     }
 
-    public static String invokeTxt(@NotNullTag final CloseableHttpResponse response) {
+    public static String invokeText(@NotNullTag final CloseableHttpResponse response) {
         EmptyAssert.isNotNull(response);
 
         HttpEntity entity = null;

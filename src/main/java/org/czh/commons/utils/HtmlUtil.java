@@ -31,10 +31,10 @@ public final class HtmlUtil {
      */
     public static final String HTML_SPECIAL_REGEX = "&[a-zA-Z]{1,10};";
 
-    public static String parse(@NotBlankTag String txt) {
-        EmptyAssert.isNotBlank(txt);
+    public static String parse(@NotBlankTag String text) {
+        EmptyAssert.isNotBlank(text);
 
-        return txt.replaceAll("&", "&amp;")
+        return text.replaceAll("&", "&amp;")
                 .replaceAll("<", "&lt;")
                 .replaceAll(">", "&gt;")
                 .replaceAll(" ", "&nbsp;")

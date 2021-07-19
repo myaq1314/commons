@@ -10,11 +10,12 @@ import java.util.Map;
 
 /**
  * @author : czh
- * description :
+ * description : 格式化输入
  * date : 2021-07-01
  * email 916419307@qq.com
  */
-public abstract class AbstractContextObjectDeserializer<S, T> extends ContextObjectDeserializer {
+public abstract class AbstractContextObjectDeserializer<S, T>
+        extends ContextObjectDeserializer implements IObjectDeserializer<S, T> {
 
     protected static Map<Class<?>, Class<?>> sourceClazzMap = new HashMap<>();
 
@@ -40,8 +41,6 @@ public abstract class AbstractContextObjectDeserializer<S, T> extends ContextObj
         S source = parser.parseObject((Type) sourceClazz);
         return deserialize(source, format);
     }
-
-    protected abstract T deserialize(S source, String format);
 
     @Override
     public int getFastMatchToken() {

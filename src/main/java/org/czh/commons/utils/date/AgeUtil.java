@@ -17,12 +17,12 @@ import java.util.Date;
  */
 public final class AgeUtil {
 
-    public static int getCurrentAge(@NotBlankTag final String birthdayTxt) {
-        return getCurrentAge(birthdayTxt, DateConstant.DATE_STANDARD());
+    public static int getCurrentAge(@NotBlankTag final String birthdayText) {
+        return getCurrentAge(birthdayText, DateConstant.DATE_STANDARD());
     }
 
-    public static int getCurrentAge(@NotBlankTag final String birthdayTxt, @NotBlankTag final String pattern) {
-        return getCurrentAge(DateUtil.parseToDate(birthdayTxt, pattern));
+    public static int getCurrentAge(@NotBlankTag final String birthdayText, @NotBlankTag final String pattern) {
+        return getCurrentAge(DateUtil.parseToDate(birthdayText, pattern));
     }
 
     public static int getCurrentAge(@NotNullTag final Date birthdayDate) {

@@ -13,6 +13,7 @@ import java.util.Map;
  * date : 2021-06-21
  * email 916419307@qq.com
  */
+@SuppressWarnings("unused")
 public interface IBaseQueryDao<EO extends BaseQueryEO> extends IBaseDao<EO> {
 
     /**

@@ -1,4 +1,4 @@
-package org.czh.commons.utils.fastjson.deserializer;
+package org.czh.commons.utils.fastjson.serializer;
 
 import org.czh.commons.utils.fastjson.ConvertUtil;
 
@@ -11,10 +11,10 @@ import java.math.BigDecimal;
  * email 916419307@qq.com
  */
 @SuppressWarnings("unused")
-public class DecimalToLongDeserializer extends AbstractContextObjectDeserializer<BigDecimal, Long> {
+public class DecimalToLongSerializer extends AbstractContextObjectSerializer<BigDecimal, Long> {
 
     @Override
-    public Long deserialize(BigDecimal source, String format) {
+    public Long serialize(BigDecimal source, String format) {
         return ConvertUtil.decimalToLong(source, format);
     }
 }

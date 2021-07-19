@@ -20,7 +20,7 @@ public final class LogUtil {
         EmptyAssert.isNotNull(msg);
         String uuid = RequestExecutionTimeFilter.localUuid.get();
         if (EmptyValidate.isNull(uuid)) {
-            RequestExecutionTimeFilter.localUuid.set(UUIDUtil.getTrimUUID());
+            return msg;
         }
         return String.format("uuid:%s\t" + msg, RequestExecutionTimeFilter.localUuid.get());
     }

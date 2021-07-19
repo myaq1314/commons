@@ -25,24 +25,23 @@ import java.util.stream.IntStream;
  * date : 2021-06-21
  * email 916419307@qq.com
  */
+@SuppressWarnings("unused")
 public abstract class BaseQueryServiceImpl<Dao extends IBaseQueryDao<Entity>, Entity extends BaseQueryEO>
-        extends BaseServiceImpl<Dao, Entity>
+        extends BaseEOServiceImpl<Dao, Entity>
         implements IBaseQueryService<Entity> {
 
     @Override
-    @SuppressWarnings("DuplicatedCode")
-    public Entity createCondition(@NotBlankTag final String tableName,
-                                  @NotNullTag final IColumnEnum columnEnum,
-                                  @NotNullTag final Object columnValue) {
-        Entity entity = this.createCondition(columnEnum, columnValue);
+    public Entity createEntity(@NotBlankTag final String tableName,
+                               @NotNullTag final IColumnEnum columnEnum,
+                               @NotNullTag final Object columnValue) {
+        Entity entity = this.createEntity(columnEnum, columnValue);
         entity.setTableName(tableName);
         return entity;
     }
 
     @Override
-    @SuppressWarnings("DuplicatedCode")
-    public Entity createCondition(@NotNullTag final IColumnEnum columnEnum,
-                                  @NotNullTag final Object columnValue) {
+    public Entity createEntity(@NotNullTag final IColumnEnum columnEnum,
+                               @NotNullTag final Object columnValue) {
         EmptyAssert.allNotNull(columnEnum, columnValue);
 
         Entity entity = this.newInstance();
@@ -51,19 +50,17 @@ public abstract class BaseQueryServiceImpl<Dao extends IBaseQueryDao<Entity>, En
     }
 
     @Override
-    @SuppressWarnings("DuplicatedCode")
-    public Entity createCondition(@NotBlankTag final String tableName,
-                                  @NotEmptyTag final IColumnEnum[] columnEnums,
-                                  @NotEmptyTag final Object[] columnValues) {
-        Entity entity = this.createCondition(columnEnums, columnValues);
+    public Entity createEntity(@NotBlankTag final String tableName,
+                               @NotEmptyTag final IColumnEnum[] columnEnums,
+                               @NotEmptyTag final Object[] columnValues) {
+        Entity entity = this.createEntity(columnEnums, columnValues);
         entity.setTableName(tableName);
         return entity;
     }
 
     @Override
-    @SuppressWarnings("DuplicatedCode")
-    public Entity createCondition(@NotEmptyTag final IColumnEnum[] columnEnums,
-                                  @NotEmptyTag final Object[] columnValues) {
+    public Entity createEntity(@NotEmptyTag final IColumnEnum[] columnEnums,
+                               @NotEmptyTag final Object[] columnValues) {
         EmptyAssert.allNotEmpty(columnEnums, columnValues);
         FlagAssert.isTrue(columnEnums.length == columnValues.length);
 
