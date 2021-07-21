@@ -36,34 +36,53 @@ public class RequestExecutionTimeFilter implements Filter {
     @Getter
     private static final ThreadLocal<String> localUuid = new ThreadLocal<>();
 
+    // 需要过滤的uri特点
     private static final Map<String, BiPredicate<String, String>> filterMap = new HashMap<>();
+    // 需要跳过的uri特点
+    private static final Map<String, BiPredicate<String, String>> skipMap = new HashMap<>();
 
     static {
-        add("/", String::equals);
-        add("swagger-ui", String::contains);
-        add(".css", String::endsWith);
-        add(".js", String::endsWith);
-        add(".html", String::endsWith);
-        add(".png", String::endsWith);
-        add(".woff", String::endsWith);
-        add(".woff2", String::endsWith);
-        add(".map", String::endsWith);
+        addSkip("/", String::equals);
+        addSkip("swagger-ui", String::contains);
+        addSkip(".css", String::endsWith);
+        addSkip(".js", String::endsWith);
+        addSkip(".html", String::endsWith);
+        addSkip(".png", String::endsWith);
+        addSkip(".woff", String::endsWith);
+        addSkip(".woff2", String::endsWith);
+        addSkip(".map", String::endsWith);
     }
 
-    public static void reset() {
+    public static void resetFilter() {
         filterMap.clear();
     }
 
-    public static void remove(@NotBlankTag String uri) {
+    public static void resetSkip() {
+        skipMap.clear();
+    }
+
+    public static void removeFilter(@NotBlankTag String uri) {
         EmptyAssert.isNotBlank(uri);
         filterMap.remove(uri);
     }
 
-    public static void add(@NotBlankTag String uri, @NotNullTag BiPredicate<String, String> filter) {
+    public static void removeSkip(@NotBlankTag String uri) {
+        EmptyAssert.isNotBlank(uri);
+        skipMap.remove(uri);
+    }
+
+    public static void addFilter(@NotBlankTag String uri, @NotNullTag BiPredicate<String, String> filter) {
         EmptyAssert.isNotBlank(uri);
         EmptyAssert.isNotNull(filter);
 
         filterMap.put(uri, filter);
+    }
+
+    public static void addSkip(@NotBlankTag String uri, @NotNullTag BiPredicate<String, String> skip) {
+        EmptyAssert.isNotBlank(uri);
+        EmptyAssert.isNotNull(skip);
+
+        skipMap.put(uri, skip);
     }
 
     @Override
@@ -71,9 +90,19 @@ public class RequestExecutionTimeFilter implements Filter {
                          ServletResponse servletResponse,
                          FilterChain chain) throws IOException, ServletException {
         String requestURI = ((HttpServletRequest) servletRequest).getRequestURI();
-        // 跳过请求
+        // 是否为要过滤的请求
+        boolean filter = false;
         if (EmptyValidate.isNotEmpty(filterMap)) {
             for (Map.Entry<String, BiPredicate<String, String>> entry : filterMap.entrySet()) {
+                if (entry.getValue().test(requestURI, entry.getKey())) {
+                    filter = true;
+                    break;
+                }
+            }
+        }
+        // 跳过请求
+        if (!filter && EmptyValidate.isNotEmpty(skipMap)) {
+            for (Map.Entry<String, BiPredicate<String, String>> entry : skipMap.entrySet()) {
                 if (entry.getValue().test(requestURI, entry.getKey())) {
                     chain.doFilter(servletRequest, servletResponse);
                     return;
