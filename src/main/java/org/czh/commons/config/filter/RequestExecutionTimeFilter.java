@@ -1,7 +1,12 @@
 package org.czh.commons.config.filter;
 
 import com.alibaba.fastjson.JSONObject;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.czh.commons.annotations.tag.NotBlankTag;
+import org.czh.commons.annotations.tag.NotNullTag;
+import org.czh.commons.validate.EmptyAssert;
+import org.czh.commons.validate.EmptyValidate;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -12,7 +17,10 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
+import java.util.function.BiPredicate;
 
 
 /**
@@ -25,7 +33,38 @@ import java.util.UUID;
 @SuppressWarnings("unused")
 public class RequestExecutionTimeFilter implements Filter {
 
-    public static final ThreadLocal<String> localUuid = new ThreadLocal<>();
+    @Getter
+    private static final ThreadLocal<String> localUuid = new ThreadLocal<>();
+
+    private static final Map<String, BiPredicate<String, String>> filterMap = new HashMap<>();
+
+    static {
+        add("/", String::equals);
+        add("swagger-ui", String::contains);
+        add(".css", String::endsWith);
+        add(".js", String::endsWith);
+        add(".html", String::endsWith);
+        add(".png", String::endsWith);
+        add(".woff", String::endsWith);
+        add(".woff2", String::endsWith);
+        add(".map", String::endsWith);
+    }
+
+    public static void reset() {
+        filterMap.clear();
+    }
+
+    public static void remove(@NotBlankTag String uri) {
+        EmptyAssert.isNotBlank(uri);
+        filterMap.remove(uri);
+    }
+
+    public static void add(@NotBlankTag String uri, @NotNullTag BiPredicate<String, String> filter) {
+        EmptyAssert.isNotBlank(uri);
+        EmptyAssert.isNotNull(filter);
+
+        filterMap.put(uri, filter);
+    }
 
     @Override
     public void doFilter(ServletRequest servletRequest,
@@ -33,10 +72,13 @@ public class RequestExecutionTimeFilter implements Filter {
                          FilterChain chain) throws IOException, ServletException {
         String requestURI = ((HttpServletRequest) servletRequest).getRequestURI();
         // 跳过请求
-        if ("/".equals(requestURI)
-                || requestURI.endsWith(".html")) {
-            chain.doFilter(servletRequest, servletResponse);
-            return;
+        if (EmptyValidate.isNotEmpty(filterMap)) {
+            for (Map.Entry<String, BiPredicate<String, String>> entry : filterMap.entrySet()) {
+                if (entry.getValue().test(requestURI, entry.getKey())) {
+                    chain.doFilter(servletRequest, servletResponse);
+                    return;
+                }
+            }
         }
 
         String uuid = UUID.randomUUID().toString().replace("-", "");
