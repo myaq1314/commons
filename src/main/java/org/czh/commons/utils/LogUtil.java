@@ -18,11 +18,12 @@ public final class LogUtil {
 
     private static String formatMsg(@NotNullTag String msg) {
         EmptyAssert.isNotNull(msg);
-        String uuid = RequestExecutionTimeFilter.localUuid.get();
+        String uuid = RequestExecutionTimeFilter.getLocalUuid().get();
+        ;
         if (EmptyValidate.isNull(uuid)) {
             return msg;
         }
-        return String.format("uuid:%s\t" + msg, RequestExecutionTimeFilter.localUuid.get());
+        return String.format("uuid:%s\t" + msg, RequestExecutionTimeFilter.getLocalUuid().get());
     }
 
     public static void info(@NotNullTag Logger logger, String msg, Object... arguments) {
