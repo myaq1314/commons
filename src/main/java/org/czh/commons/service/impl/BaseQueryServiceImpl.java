@@ -189,6 +189,14 @@ public abstract class BaseQueryServiceImpl<Dao extends IBaseQueryDao<Entity>, En
     @Override
     public int getCount(@NotNullTag final Entity condition) {
         EmptyAssert.isNotNull(condition);
-        return this.baseDao.getCount(condition);
+
+        condition.resetSelect()
+                .addSelectFunction("count", "count", 1);
+        Map<String, Object> resultMap = this.getOnlyMap(condition);
+        if (EmptyValidate.isEmpty(resultMap)) {
+            return 0;
+        }
+        Long count = (Long) resultMap.get("count");
+        return count.intValue();
     }
 }

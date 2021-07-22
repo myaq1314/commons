@@ -32,12 +32,4 @@ public interface IBaseQueryDao<EO extends BaseQueryEO> extends IBaseDao<EO> {
      */
     List<Map<String, Object>> queryMapList(@NotNullTag @Param("condition") EO condition);
 
-    /**
-     * 表：student
-     * id int, student_name varchar, grade smallint, score decimal(5,2), birthday date
-     * id primary key, student_name unique key
-     * select count(1) as count from student as a where a.grade <= 3 and a.score > 60;
-     */
-    int getCount(@NotNullTag @Param("condition") EO condition);
-
 }
