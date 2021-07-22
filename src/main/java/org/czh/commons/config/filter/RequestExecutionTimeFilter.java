@@ -139,7 +139,6 @@ public class RequestExecutionTimeFilter implements Filter {
 
         // 打印 响应 结果
         String resultJsonString = new String(replaceResponse.getContent());
-        resultJsonString = JSONObject.parseObject(resultJsonString).toJSONString();
         log.info("\nThe requestURI : {} \nThe UUID : {} \nThe Response : {}\n", requestURI, uuid, resultJsonString);
 
         // 输出 响应 结果
