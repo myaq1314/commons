@@ -34,7 +34,7 @@
         <bcprov-jdk15on.version>1.68</bcprov-jdk15on.version>
 
         <fastjson.version>1.2.76</fastjson.version>
-        <swagger-annotations.version>1.6.2</swagger-annotations.version>
+        <io.springfox.version>2.9.2</io.springfox.version>
 
         <mybatis.version>3.5.7</mybatis.version>
         <jackson.version>2.12.3</jackson.version>
@@ -159,9 +159,14 @@
         <!--fastjson end-->
 
         <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <version>${swagger-annotations.version}</version>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${io.springfox.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${io.springfox.version}</version>
         </dependency>
 
         <dependency>
