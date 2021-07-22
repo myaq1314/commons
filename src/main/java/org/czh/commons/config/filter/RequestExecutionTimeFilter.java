@@ -43,7 +43,8 @@ public class RequestExecutionTimeFilter implements Filter {
 
     static {
         addSkip("/", String::equals);
-        addSkip("swagger-ui", String::contains);
+        addSkip("/swagger-ui", String::contains);
+        addSkip("/swagger-resources", String::contains);
         addSkip(".css", String::endsWith);
         addSkip(".js", String::endsWith);
         addSkip(".html", String::endsWith);
