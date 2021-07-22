@@ -32,7 +32,6 @@ public class BaseDaoTest {
         System.out.println(dao.insert(eo));
         System.out.println(dao.update(eo, eo));
         System.out.println(dao.queryMapList(eo));
-        System.out.println(dao.getCount(eo));
     }
 
 }
