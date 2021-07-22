@@ -19,7 +19,7 @@ public class BaseDaoTest {
     @Test
     public void test() {
         BasePrimaryTestEO eo = new BasePrimaryTestEO();
-        eo.setId(1);
+        eo.setId(1L);
         eo.setName("TOM");
         eo.setAge(2);
         eo.setScore(new BigDecimal(100));
