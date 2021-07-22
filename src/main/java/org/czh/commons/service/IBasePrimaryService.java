@@ -16,26 +16,22 @@ import java.util.List;
 @SuppressWarnings("unused")
 public interface IBasePrimaryService<Entity extends BasePrimaryEO> extends IBaseCommonService<Entity> {
 
-    Entity getById(@NotNullTag final java.io.Serializable id);
+    Entity getById(@NotNullTag final Long id);
 
-    Entity getById(@NotBlankTag final String tableName,
-                   @NotNullTag final java.io.Serializable id);
+    Entity getById(@NotBlankTag final String tableName, @NotNullTag final Long id);
 
     int updateById(@NotNullTag final Entity entity);
 
     int batchUpdateById(@NotEmptyTag final List<Entity> entityList);
 
-    int batchUpdateById(@NotBlankTag final String tableName,
-                        @NotEmptyTag final List<Entity> entityList);
+    int batchUpdateById(@NotBlankTag final String tableName, @NotEmptyTag final List<Entity> entityList);
 
-    int deleteById(@NotNullTag final java.io.Serializable id);
+    int deleteById(@NotNullTag final Long id);
 
-    int deleteById(@NotBlankTag final String tableName,
-                   @NotNullTag final java.io.Serializable id);
+    int deleteById(@NotBlankTag final String tableName, @NotNullTag final Long id);
 
-    List<Entity> queryListByIdList(@NotEmptyTag final List<java.io.Serializable> idList);
+    List<Entity> queryListByIdList(@NotEmptyTag final List<Long> idList);
 
-    List<Entity> queryListByIdList(@NotBlankTag final String tableName,
-                                   @NotEmptyTag final List<java.io.Serializable> idList);
+    List<Entity> queryListByIdList(@NotBlankTag final String tableName, @NotEmptyTag final List<Long> idList);
 
 }

@@ -9,7 +9,6 @@ import org.czh.commons.enums.sql.CircleDict;
 import org.czh.commons.service.IBasePrimaryService;
 import org.czh.commons.validate.EmptyAssert;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -24,7 +23,7 @@ public abstract class BasePrimaryServiceImpl<Dao extends IBasePrimaryDao<Entity>
         implements IBasePrimaryService<Entity> {
 
     @Override
-    public Entity getById(@NotNullTag final Serializable id) {
+    public Entity getById(@NotNullTag final Long id) {
         EmptyAssert.isNotNull(id);
 
         Entity entity = newInstance();
@@ -33,8 +32,7 @@ public abstract class BasePrimaryServiceImpl<Dao extends IBasePrimaryDao<Entity>
     }
 
     @Override
-    public Entity getById(@NotBlankTag final String tableName,
-                          @NotNullTag final Serializable id) {
+    public Entity getById(@NotBlankTag final String tableName, @NotNullTag final Long id) {
         EmptyAssert.isNotBlank(tableName);
         EmptyAssert.isNotNull(id);
 
@@ -68,8 +66,7 @@ public abstract class BasePrimaryServiceImpl<Dao extends IBasePrimaryDao<Entity>
     }
 
     @Override
-    public int batchUpdateById(@NotBlankTag final String tableName,
-                               @NotEmptyTag final List<Entity> entityList) {
+    public int batchUpdateById(@NotBlankTag final String tableName, @NotEmptyTag final List<Entity> entityList) {
         EmptyAssert.isNotBlank(tableName);
         EmptyAssert.isNotEmpty(entityList);
 
@@ -82,7 +79,7 @@ public abstract class BasePrimaryServiceImpl<Dao extends IBasePrimaryDao<Entity>
     }
 
     @Override
-    public int deleteById(@NotNullTag final Serializable id) {
+    public int deleteById(@NotNullTag final Long id) {
         EmptyAssert.isNotNull(id);
 
         Entity condition = newInstance();
@@ -91,8 +88,7 @@ public abstract class BasePrimaryServiceImpl<Dao extends IBasePrimaryDao<Entity>
     }
 
     @Override
-    public int deleteById(@NotBlankTag final String tableName,
-                          @NotNullTag final Serializable id) {
+    public int deleteById(@NotBlankTag final String tableName, @NotNullTag final Long id) {
         EmptyAssert.isNotBlank(tableName);
         EmptyAssert.isNotNull(id);
 
@@ -103,7 +99,7 @@ public abstract class BasePrimaryServiceImpl<Dao extends IBasePrimaryDao<Entity>
     }
 
     @Override
-    public List<Entity> queryListByIdList(@NotEmptyTag final List<Serializable> idList) {
+    public List<Entity> queryListByIdList(@NotEmptyTag final List<Long> idList) {
         EmptyAssert.isNotEmpty(idList);
 
         Entity condition = newInstance();
@@ -112,8 +108,7 @@ public abstract class BasePrimaryServiceImpl<Dao extends IBasePrimaryDao<Entity>
     }
 
     @Override
-    public List<Entity> queryListByIdList(@NotBlankTag final String tableName,
-                                          @NotEmptyTag final List<Serializable> idList) {
+    public List<Entity> queryListByIdList(@NotBlankTag final String tableName, @NotEmptyTag final List<Long> idList) {
         EmptyAssert.isNotBlank(tableName);
         EmptyAssert.isNotEmpty(idList);
 
