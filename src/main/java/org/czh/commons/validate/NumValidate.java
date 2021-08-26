@@ -2,6 +2,8 @@ package org.czh.commons.validate;
 
 import org.czh.commons.annotations.tag.NotBlankTag;
 
+import java.math.BigDecimal;
+
 /**
  * @author : czh
  * description : 数字 判断
@@ -127,6 +129,11 @@ public final class NumValidate {
         return num >= min;
     }
 
+    public static boolean isMin(final BigDecimal num, final BigDecimal min) {
+        EmptyAssert.allNotNull(num, min);
+        return num.compareTo(min) >= 0;
+    }
+
     public static boolean isMax(final Integer num, final Integer max) {
         EmptyAssert.allNotNull(num, max);
         return num >= max;
@@ -137,6 +144,11 @@ public final class NumValidate {
         return num <= max;
     }
 
+    public static boolean isMax(final BigDecimal num, final BigDecimal max) {
+        EmptyAssert.allNotNull(num, max);
+        return num.compareTo(max) <= 0;
+    }
+
     public static boolean isMinAndMax(final Integer num, final Integer min, final Integer max) {
         EmptyAssert.allNotNull(num, min, max);
         return num >= min && num <= max;
@@ -145,5 +157,10 @@ public final class NumValidate {
     public static boolean isMinAndMax(final Long num, final Long min, final Long max) {
         EmptyAssert.allNotNull(num, min, max);
         return num >= min && num <= max;
+    }
+
+    public static boolean isMinAndMax(final BigDecimal num, final BigDecimal min, final BigDecimal max) {
+        EmptyAssert.allNotNull(num, min, max);
+        return num.compareTo(min) >= 0 && num.compareTo(max) <= 0;
     }
 }

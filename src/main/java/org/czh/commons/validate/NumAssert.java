@@ -2,6 +2,8 @@ package org.czh.commons.validate;
 
 import org.czh.commons.annotations.tag.NotBlankTag;
 
+import java.math.BigDecimal;
+
 /**
  * @author : czh
  * description : 数字 断言
@@ -182,6 +184,16 @@ public final class NumAssert {
         }
     }
 
+    public static void isMin(final BigDecimal num, final BigDecimal min) {
+        isMin(num, min, "[Assertion failed] - This number should be greater than or equal to the minimum");
+    }
+
+    public static void isMin(final BigDecimal num, final BigDecimal min, final String message) {
+        if (!NumValidate.isMin(num, min)) {
+            throw new RuntimeException(message);
+        }
+    }
+
     public static void isMax(final Integer num, final Integer max) {
         isMax(num, max, "[Assertion failed] - This number should be less than or equal to the maximum");
     }
@@ -202,6 +214,16 @@ public final class NumAssert {
         }
     }
 
+    public static void isMax(final BigDecimal num, final BigDecimal max) {
+        isMax(num, max, "[Assertion failed] - This number should be less than or equal to the maximum");
+    }
+
+    public static void isMax(final BigDecimal num, final BigDecimal max, final String message) {
+        if (!NumValidate.isMax(num, max)) {
+            throw new RuntimeException(message);
+        }
+    }
+
     public static void isMinAndMax(final Integer num, final Integer min, final Integer max) {
         isMinAndMax(num, min, max, "[Assertion failed] - This number should be greater than or equal to the minimum and less than or equal to the maximum");
     }
@@ -217,6 +239,16 @@ public final class NumAssert {
     }
 
     public static void isMinAndMax(final Long num, final Long min, final Long max, final String message) {
+        if (!NumValidate.isMinAndMax(num, min, max)) {
+            throw new RuntimeException(message);
+        }
+    }
+
+    public static void isMinAndMax(final BigDecimal num, final BigDecimal min, final BigDecimal max) {
+        isMinAndMax(num, min, max, "[Assertion failed] - This number should be greater than or equal to the minimum and less than or equal to the maximum");
+    }
+
+    public static void isMinAndMax(final BigDecimal num, final BigDecimal min, final BigDecimal max, final String message) {
         if (!NumValidate.isMinAndMax(num, min, max)) {
             throw new RuntimeException(message);
         }
