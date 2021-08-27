@@ -32,13 +32,13 @@ public final class HttpClientUtil {
      */
 
     public static <UrlParam, HeaderParam> String doGetText(@NotBlankTag final String url,
-                                                          final UrlParam urlParam) {
+                                                           final UrlParam urlParam) {
         return doGetText(url, urlParam, null);
     }
 
     public static <UrlParam, HeaderParam> String doGetText(@NotBlankTag final String url,
-                                                          final UrlParam urlParam,
-                                                          final HeaderParam headerParam) {
+                                                           final UrlParam urlParam,
+                                                           final HeaderParam headerParam) {
         return invokeText(doGetResp(url, urlParam, headerParam));
     }
 
@@ -61,16 +61,16 @@ public final class HttpClientUtil {
      */
 
     public static <RequestParam> String doUrlencodedText(@NotNull final EnclosingEnum enclosingEnum,
-                                                        @NotBlankTag final String url,
-                                                        RequestParam requestParam) {
+                                                         @NotBlankTag final String url,
+                                                         RequestParam requestParam) {
         return doUrlencodedText(enclosingEnum, url, null, requestParam, null);
     }
 
     public static <UrlParam, RequestParam, HeaderParam> String doUrlencodedText(@NotNull final EnclosingEnum enclosingEnum,
-                                                                               @NotBlankTag final String url,
-                                                                               UrlParam urlParam,
-                                                                               RequestParam requestParam,
-                                                                               HeaderParam headerParam) {
+                                                                                @NotBlankTag final String url,
+                                                                                UrlParam urlParam,
+                                                                                RequestParam requestParam,
+                                                                                HeaderParam headerParam) {
         return invokeText(doUrlencodedResp(enclosingEnum, url, urlParam, requestParam, headerParam));
     }
 
@@ -97,16 +97,16 @@ public final class HttpClientUtil {
      */
 
     public static <UrlParam, RequestParam, HeaderParam> String doJsonText(@NotNullTag final EnclosingEnum enclosingEnum,
-                                                                         @NotBlankTag String url,
-                                                                         RequestParam requestParam) {
+                                                                          @NotBlankTag String url,
+                                                                          RequestParam requestParam) {
         return doJsonText(enclosingEnum, url, null, requestParam, null);
     }
 
     public static <UrlParam, RequestParam, HeaderParam> String doJsonText(@NotNullTag final EnclosingEnum enclosingEnum,
-                                                                         @NotBlankTag String url,
-                                                                         UrlParam urlParam,
-                                                                         RequestParam requestParam,
-                                                                         HeaderParam headerParam) {
+                                                                          @NotBlankTag String url,
+                                                                          UrlParam urlParam,
+                                                                          RequestParam requestParam,
+                                                                          HeaderParam headerParam) {
         return invokeText(doJsonResp(enclosingEnum, url, urlParam, requestParam, headerParam));
     }
 

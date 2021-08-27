@@ -6,6 +6,7 @@ package org.czh.commons.validate;
  * date : 2021-04-29
  * email 916419307@qq.com
  */
+@SuppressWarnings("unused")
 public final class EnumAssert {
 
     /**
@@ -17,7 +18,7 @@ public final class EnumAssert {
 
     public static void isEnum(final Class<?> clazz, final String message) {
         if (EnumValidate.isNotEnum(clazz)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -30,7 +31,7 @@ public final class EnumAssert {
 
     public static void isNotEnum(final Class<?> clazz, final String message) {
         if (EnumValidate.isEnum(clazz)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 }

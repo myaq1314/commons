@@ -6,6 +6,7 @@ package org.czh.commons.validate;
  * date : 2021-05-02
  * email 916419307@qq.com
  */
+@SuppressWarnings("unused")
 public final class EqualsAssert {
 
     @SafeVarargs
@@ -23,7 +24,7 @@ public final class EqualsAssert {
 
     public static <T> void isEquals(final T target, final T compare, final String message) {
         if (EqualsValidate.notEquals(target, compare)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -42,7 +43,7 @@ public final class EqualsAssert {
 
     public static <T> void isNotEquals(final T target, final T compare, final String message) {
         if (EqualsValidate.equals(target, compare)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -61,7 +62,7 @@ public final class EqualsAssert {
 
     public static <T> void isEquals(final T[] target, final T[] compare, final String message) {
         if (EqualsValidate.notEquals(target, compare)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -80,7 +81,7 @@ public final class EqualsAssert {
 
     public static <T> void isNotEquals(final T[] target, final T[] compare, final String message) {
         if (EqualsValidate.equals(target, compare)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -98,7 +99,7 @@ public final class EqualsAssert {
 
     public static void isEquals(final byte[] target, final byte[] compare, final String message) {
         if (EqualsValidate.notEquals(target, compare)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -116,7 +117,7 @@ public final class EqualsAssert {
 
     public static void isNotEquals(final byte[] target, final byte[] compare, final String message) {
         if (EqualsValidate.equals(target, compare)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -134,7 +135,7 @@ public final class EqualsAssert {
 
     public static void isEquals(final short[] target, final short[] compare, final String message) {
         if (EqualsValidate.notEquals(target, compare)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -152,7 +153,7 @@ public final class EqualsAssert {
 
     public static void isNotEquals(final short[] target, final short[] compare, final String message) {
         if (EqualsValidate.equals(target, compare)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -170,7 +171,7 @@ public final class EqualsAssert {
 
     public static void isEquals(final int[] target, final int[] compare, final String message) {
         if (EqualsValidate.notEquals(target, compare)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -188,7 +189,7 @@ public final class EqualsAssert {
 
     public static void isNotEquals(final int[] target, final int[] compare, final String message) {
         if (EqualsValidate.equals(target, compare)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -206,7 +207,7 @@ public final class EqualsAssert {
 
     public static void isEquals(final long[] target, final long[] compare, final String message) {
         if (EqualsValidate.notEquals(target, compare)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -224,7 +225,7 @@ public final class EqualsAssert {
 
     public static void isNotEquals(final long[] target, final long[] compare, final String message) {
         if (EqualsValidate.equals(target, compare)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -242,7 +243,7 @@ public final class EqualsAssert {
 
     public static void isEquals(final float[] target, final float[] compare, final String message) {
         if (EqualsValidate.notEquals(target, compare)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -260,7 +261,7 @@ public final class EqualsAssert {
 
     public static void isNotEquals(final float[] target, final float[] compare, final String message) {
         if (EqualsValidate.equals(target, compare)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -278,7 +279,7 @@ public final class EqualsAssert {
 
     public static void isEquals(final double[] target, final double[] compare, final String message) {
         if (EqualsValidate.notEquals(target, compare)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -296,7 +297,7 @@ public final class EqualsAssert {
 
     public static void isNotEquals(final double[] target, final double[] compare, final String message) {
         if (EqualsValidate.equals(target, compare)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -314,7 +315,7 @@ public final class EqualsAssert {
 
     public static void isEquals(final char[] target, final char[] compare, final String message) {
         if (EqualsValidate.notEquals(target, compare)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -332,7 +333,7 @@ public final class EqualsAssert {
 
     public static void isNotEquals(final char[] target, final char[] compare, final String message) {
         if (EqualsValidate.equals(target, compare)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -350,7 +351,7 @@ public final class EqualsAssert {
 
     public static void isEquals(final boolean[] target, final boolean[] compare, final String message) {
         if (EqualsValidate.notEquals(target, compare)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -368,7 +369,7 @@ public final class EqualsAssert {
 
     public static void isNotEquals(final boolean[] target, final boolean[] compare, final String message) {
         if (EqualsValidate.equals(target, compare)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 

@@ -1,7 +1,6 @@
 package org.czh.commons.utils.http;
 
 import org.czh.commons.annotations.tag.NotBlankTag;
-//import sun.net.www.protocol.http.HttpURLConnection;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,13 +40,13 @@ public final class GetUtil {
     }
 
     public static <UrlParam> String doGetText(@NotBlankTag final String url,
-                                             final UrlParam urlParam) {
+                                              final UrlParam urlParam) {
         return doGetText(url, urlParam, null);
     }
 
     public static <UrlParam, HeaderParam> String doGetText(@NotBlankTag final String url,
-                                                          final UrlParam urlParam,
-                                                          final HeaderParam headerParam) {
+                                                           final UrlParam urlParam,
+                                                           final HeaderParam headerParam) {
         return HttpClientUtil.doGetText(url, urlParam, headerParam);
     }
 }

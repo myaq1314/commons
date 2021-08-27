@@ -2,11 +2,11 @@ drop table if exists `student`;
 
 CREATE TABLE `student`
 (
-    `id`           bigint unsigned        NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-    `student_name` varchar(16)            NOT NULL DEFAULT '' COMMENT '学生姓名',
-    `grade`        smallint unsigned      NOT NULL DEFAULT '0' COMMENT '年级',
+    `id`           bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+    `student_name` varchar(16) NOT NULL DEFAULT '' COMMENT '学生姓名',
+    `grade`        smallint unsigned NOT NULL DEFAULT '0' COMMENT '年级',
     `score`        decimal(5, 2) unsigned NOT NULL DEFAULT '0.00' COMMENT '分数',
-    `birthday`     date                   NOT NULL DEFAULT '1970-01-01' COMMENT '出生日期',
+    `birthday`     date        NOT NULL DEFAULT '1970-01-01' COMMENT '出生日期',
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 COMMENT ='学生表';
@@ -54,7 +54,8 @@ SELECT a.`id`,
        (a.`grade` + a.`grade` + 1)                                         AS grade
 FROM student AS a;
 
-# id	student_name	grade	student_name(1)	birthday	student_name(2)	    student_name(3)	    grade(1)
+#
+id	student_name	grade	student_name(1)	birthday	student_name(2)	    student_name(3)	    grade(1)
 # 1	    张三	            1	    三张	            20140101	张三--2014-01-01	    张三--20140101	    3
 # 2	    李四	            2	    四李	            20130303	李四--2013-03-03	    李四--20130303	    5
 # 3	    王二	            3	    二王	            20120605	王二--2012-06-05	    王二--20120605	    7
@@ -75,7 +76,8 @@ FROM student AS a;
 SELECT DISTINCT *
 FROM student AS a;
 
-# id	student_name	grade	score	birthday
+#
+id	student_name	grade	score	birthday
 # 1	    张三	            1	    98.20	2014-01-01
 # 2	    李四	            2	    83.00	2013-03-03
 # 3	    王二      	    3	    74.00	2012-06-05
@@ -108,21 +110,23 @@ WHERE a.`id` >= 1
   AND a.`student_name` NOT LIKE '%小花'
   AND MONTH(a.`birthday`) <= DAYOFMONTH(a.`birthday`);
 
-# id	student_name	grade	score	birthday
+#
+id	student_name	grade	score	birthday
 # 10	张宇	            2	    92.00	2013-05-07
 # 12	张欣欣	        4	    94.00	2011-01-04
 
 SELECT a.`grade`,
-       LEFT(a.`student_name`, 1) AS `student_name`,
-       YEAR(a.`birthday`)        AS `birthday`,
-       min(a.`score`)            AS `score`,
-       avg(a.`score`)            AS `score`,
-       sum(a.`score`)            AS `score`
+    LEFT (a.`student_name`, 1) AS `student_name`,
+    YEAR (a.`birthday`) AS `birthday`,
+    min (a.`score`) AS `score`,
+    avg (a.`score`) AS `score`,
+    sum (a.`score`) AS `score`
 FROM student AS a
 WHERE 1 = 1
-GROUP BY a.`grade`, LEFT(a.`student_name`, 1), YEAR(a.`birthday`);
+GROUP BY a.`grade`, LEFT (a.`student_name`, 1), YEAR (a.`birthday`);
 
-# grade	student_name	birthday	score	score(1)	score(2)
+#
+grade	student_name	birthday	score	score(1)	score(2)
 # 1	    张	            2014	    28.00	75.066667	225.20
 # 2	    李	            2013	    83.00	91.500000	183.00
 # 3	    王	            2012	    74.00	74.000000	74.00
@@ -144,7 +148,8 @@ ORDER BY a.`grade` ASC,
          a.`score` DESC,
          field(a.`id`, 1, 3, 5, 7) DESC;
 
-# id	student_name	grade	score	birthday
+#
+id	student_name	grade	score	birthday
 # 13	张小花	        1	    99.00	2014-06-06
 # 1	    张三	            1	    98.20	2014-01-01
 # 9	    赵曦	            1	    32.00	2014-04-02
@@ -164,10 +169,10 @@ ORDER BY a.`grade` ASC,
 
 select *
 from student as a
-where 1 = 1
-limit 0, 5;
+where 1 = 1 limit 0, 5;
 
-# id	student_name	grade	score	birthday
+#
+id	student_name	grade	score	birthday
 # 1	    张三	            1	    98.20	2014-01-01
 # 2	    李四	            2	    83.00	2013-03-03
 # 3 	王二	            3	    74.00	2012-06-05
@@ -186,7 +191,8 @@ HAVING AVG(a.`score`) >= 60
    AND MIN(a.`id`) IN (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
    AND MAX(a.`birthday`) IS NOT NULL;
 
-# score	    student_name	id	birthday
+#
+score	    student_name	id	birthday
 # 64.300000	张三	            1	2014-08-31
 # 90.500000	张宇	            2	2013-05-07
 
@@ -201,7 +207,8 @@ select *
 from student
 where id = 17;
 
-# id	student_name	grade	score	birthday
+#
+id	student_name	grade	score	birthday
 # 17	宋晓佳	        1	    65.00	2021-06-26
 
 UPDATE student AS a
@@ -214,7 +221,8 @@ select *
 from student
 where id = 1;
 
-# id	student_name	grade	score	birthday
+#
+id	student_name	grade	score	birthday
 # 1	    JAK2	        4	    98.20	2021-06-26
 
 SELECT a.`grade`,
@@ -225,8 +233,8 @@ WHERE 1 = 1
   AND a.`student_name` LIKE '张%'
 GROUP BY a.`grade`
 HAVING AVG(a.`score`) >= 60
-ORDER BY a.`grade` ASC
-LIMIT 0,1;
+ORDER BY a.`grade` ASC LIMIT 0,1;
 
-# grade	score	birthday
+#
+grade	score	birthday
 # 1	127.00	2014-06-06

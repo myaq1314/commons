@@ -6,6 +6,7 @@ package org.czh.commons.validate;
  * date : 2021-04-28
  * email 916419307@qq.com
  */
+@SuppressWarnings("unused")
 public final class FlagAssert {
 
     /*
@@ -23,7 +24,7 @@ public final class FlagAssert {
 
     public static void isTrue(final boolean expression, final String message) {
         if (!expression) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -33,7 +34,7 @@ public final class FlagAssert {
 
     public static void isTrue(final Boolean flag, final String message) {
         if (FlagValidate.isFalse(flag)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -48,7 +49,7 @@ public final class FlagAssert {
 
     public static void isFalse(final boolean expression, final String message) {
         if (expression) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -58,7 +59,7 @@ public final class FlagAssert {
 
     public static void isFalse(final Boolean flag, final String message) {
         if (FlagValidate.isTrue(flag)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 }

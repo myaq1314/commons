@@ -6,6 +6,7 @@ package org.czh.commons.validate;
  * date : 2021-04-28
  * email 916419307@qq.com
  */
+@SuppressWarnings("unused")
 public final class MobileAssert {
 
     /**
@@ -19,7 +20,7 @@ public final class MobileAssert {
 
     public static void isMobile(final String mobile, final String message) {
         if (!MobileValidate.isMobile(mobile)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 }

@@ -1,7 +1,6 @@
 package org.czh.commons.utils.http;
 
 import org.czh.commons.annotations.tag.NotBlankTag;
-//import sun.net.www.protocol.http.HttpURLConnection;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -66,15 +65,15 @@ public final class DeleteUtil {
     }
 
     public static <RequestParam, HeaderParam> String doUrlencodedText(@NotBlankTag String url,
-                                                                     RequestParam requestParam,
-                                                                     HeaderParam headerParam) {
+                                                                      RequestParam requestParam,
+                                                                      HeaderParam headerParam) {
         return doUrlencodedText(url, null, requestParam, headerParam);
     }
 
     public static <UrlParam, RequestParam, HeaderParam> String doUrlencodedText(@NotBlankTag String url,
-                                                                               UrlParam urlParam,
-                                                                               RequestParam requestParam,
-                                                                               HeaderParam headerParam) {
+                                                                                UrlParam urlParam,
+                                                                                RequestParam requestParam,
+                                                                                HeaderParam headerParam) {
         return HttpClientUtil.doUrlencodedText(EnclosingEnum.DELETE, url, urlParam, requestParam, headerParam);
     }
 }

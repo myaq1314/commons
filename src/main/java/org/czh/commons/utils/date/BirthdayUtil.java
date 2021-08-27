@@ -101,7 +101,7 @@ public final class BirthdayUtil {
     }
 
     public static Map<String, String> getPointBirthdayTextMap(@NotNullTag final Date endDate,
-                                                             @ValueTag(min = 1) final int age) {
+                                                              @ValueTag(min = 1) final int age) {
         Map<String, Date> pointBirthdayDateMap = getPointBirthdayDateMap(endDate, age);
         EmptyAssert.isNotEmpty(pointBirthdayDateMap);
 

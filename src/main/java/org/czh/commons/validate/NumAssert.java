@@ -10,6 +10,7 @@ import java.math.BigDecimal;
  * date : 2021-04-28
  * email 916419307@qq.com
  */
+@SuppressWarnings("unused")
 public final class NumAssert {
 
     public static void isPureNumber(@NotBlankTag final String text) {
@@ -18,7 +19,7 @@ public final class NumAssert {
 
     public static void isPureNumber(@NotBlankTag final String text, final String message) {
         if (!NumValidate.isPureNumber(text)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -33,7 +34,7 @@ public final class NumAssert {
 
     public static void isNumber(final String text, final String message) {
         if (!NumValidate.isNumber(text)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -48,7 +49,7 @@ public final class NumAssert {
 
     public static void isInt(final String text, final String message) {
         if (!NumValidate.isInt(text)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -64,7 +65,7 @@ public final class NumAssert {
 
     public static void isDouble(final String text, final String message) {
         if (!NumValidate.isDouble(text)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -80,7 +81,7 @@ public final class NumAssert {
 
     public static void isNaturalInt(final Integer num, final String message) {
         if (!NumValidate.isNaturalInt(num)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -96,7 +97,7 @@ public final class NumAssert {
 
     public static void isNegativeInt(final Integer num, final String message) {
         if (!NumValidate.isNegativeInt(num)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -112,7 +113,7 @@ public final class NumAssert {
 
     public static void isPositiveInt(final Integer num, final String message) {
         if (!NumValidate.isPositiveInt(num)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -128,7 +129,7 @@ public final class NumAssert {
 
     public static void isNaturalLong(final Long num, final String message) {
         if (!NumValidate.isNaturalLong(num)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -144,7 +145,7 @@ public final class NumAssert {
 
     public static void isNegativeLong(final Long num, final String message) {
         if (!NumValidate.isNegativeLong(num)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -160,7 +161,7 @@ public final class NumAssert {
 
     public static void isPositiveLong(final Long num, final String message) {
         if (!NumValidate.isPositiveLong(num)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -170,7 +171,7 @@ public final class NumAssert {
 
     public static void isMin(final Integer num, final Integer min, final String message) {
         if (!NumValidate.isMin(num, min)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -180,7 +181,7 @@ public final class NumAssert {
 
     public static void isMin(final Long num, final Long min, final String message) {
         if (!NumValidate.isMin(num, min)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -190,7 +191,7 @@ public final class NumAssert {
 
     public static void isMin(final BigDecimal num, final BigDecimal min, final String message) {
         if (!NumValidate.isMin(num, min)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -200,7 +201,7 @@ public final class NumAssert {
 
     public static void isMax(final Integer num, final Integer max, final String message) {
         if (!NumValidate.isMax(num, max)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -210,7 +211,7 @@ public final class NumAssert {
 
     public static void isMax(final Long num, final Long max, final String message) {
         if (!NumValidate.isMax(num, max)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -220,7 +221,7 @@ public final class NumAssert {
 
     public static void isMax(final BigDecimal num, final BigDecimal max, final String message) {
         if (!NumValidate.isMax(num, max)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -230,7 +231,7 @@ public final class NumAssert {
 
     public static void isMinAndMax(final Integer num, final Integer min, final Integer max, final String message) {
         if (!NumValidate.isMinAndMax(num, min, max)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -240,7 +241,7 @@ public final class NumAssert {
 
     public static void isMinAndMax(final Long num, final Long min, final Long max, final String message) {
         if (!NumValidate.isMinAndMax(num, min, max)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -250,7 +251,7 @@ public final class NumAssert {
 
     public static void isMinAndMax(final BigDecimal num, final BigDecimal min, final BigDecimal max, final String message) {
         if (!NumValidate.isMinAndMax(num, min, max)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 }

@@ -10,6 +10,7 @@ import java.util.Map;
  * date : 2021-04-28
  * email 916419307@qq.com
  */
+@SuppressWarnings("unused")
 public final class EmptyAssert {
 
     /*
@@ -28,7 +29,7 @@ public final class EmptyAssert {
 
     public static <T> void isNull(final T t, final String message) {
         if (EmptyValidate.isNotNull(t)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -49,7 +50,7 @@ public final class EmptyAssert {
 
     public static <T> void isNotNull(final T t, final String message) {
         if (EmptyValidate.isNull(t)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -74,7 +75,7 @@ public final class EmptyAssert {
 
     public static void isEmpty(final String text, final String message) {
         if (EmptyValidate.isNotEmpty(text)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -93,7 +94,7 @@ public final class EmptyAssert {
 
     public static void isNotEmpty(final String text, final String message) {
         if (EmptyValidate.isEmpty(text)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -112,7 +113,7 @@ public final class EmptyAssert {
 
     public static void isBlank(final String text, final String message) {
         if (EmptyValidate.isNotBlank(text)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -131,7 +132,7 @@ public final class EmptyAssert {
 
     public static void isNotBlank(final String text, final String message) {
         if (EmptyValidate.isBlank(text)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -154,7 +155,7 @@ public final class EmptyAssert {
 
     public static void isEmpty(final Collection<?> collection, final String message) {
         if (EmptyValidate.isNotEmpty(collection)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -173,7 +174,7 @@ public final class EmptyAssert {
 
     public static void isNotEmpty(final Collection<?> collection, final String message) {
         if (EmptyValidate.isEmpty(collection)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -196,7 +197,7 @@ public final class EmptyAssert {
 
     public static void isEmpty(final Map<?, ?> map, final String message) {
         if (EmptyValidate.isNotEmpty(map)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -215,7 +216,7 @@ public final class EmptyAssert {
 
     public static void isNotEmpty(final Map<?, ?> map, final String message) {
         if (EmptyValidate.isEmpty(map)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -238,7 +239,7 @@ public final class EmptyAssert {
 
     public static void isEmpty(final byte[] bs, final String message) {
         if (EmptyValidate.isNotEmpty(bs)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -257,7 +258,7 @@ public final class EmptyAssert {
 
     public static void isNotEmpty(final byte[] bs, final String message) {
         if (EmptyValidate.isEmpty(bs)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -276,7 +277,7 @@ public final class EmptyAssert {
 
     public static void isEmpty(final short[] ss, final String message) {
         if (EmptyValidate.isNotEmpty(ss)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -295,7 +296,7 @@ public final class EmptyAssert {
 
     public static void isNotEmpty(final short[] ss, final String message) {
         if (EmptyValidate.isEmpty(ss)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -314,7 +315,7 @@ public final class EmptyAssert {
 
     public static void isEmpty(final int[] is, final String message) {
         if (EmptyValidate.isNotEmpty(is)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -333,7 +334,7 @@ public final class EmptyAssert {
 
     public static void isNotEmpty(final int[] is, final String message) {
         if (EmptyValidate.isEmpty(is)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -352,7 +353,7 @@ public final class EmptyAssert {
 
     public static void isEmpty(final long[] ls, final String message) {
         if (EmptyValidate.isNotEmpty(ls)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -371,7 +372,7 @@ public final class EmptyAssert {
 
     public static void isNotEmpty(final long[] ls, final String message) {
         if (EmptyValidate.isEmpty(ls)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -390,7 +391,7 @@ public final class EmptyAssert {
 
     public static void isEmpty(final float[] fs, final String message) {
         if (EmptyValidate.isNotEmpty(fs)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -409,7 +410,7 @@ public final class EmptyAssert {
 
     public static void isNotEmpty(final float[] fs, final String message) {
         if (EmptyValidate.isEmpty(fs)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -428,7 +429,7 @@ public final class EmptyAssert {
 
     public static void isEmpty(final double[] ds, final String message) {
         if (EmptyValidate.isNotEmpty(ds)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -447,7 +448,7 @@ public final class EmptyAssert {
 
     public static void isNotEmpty(final double[] ds, final String message) {
         if (EmptyValidate.isEmpty(ds)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -466,7 +467,7 @@ public final class EmptyAssert {
 
     public static void isEmpty(final char[] cs, final String message) {
         if (EmptyValidate.isNotEmpty(cs)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -485,7 +486,7 @@ public final class EmptyAssert {
 
     public static void isNotEmpty(final char[] cs, final String message) {
         if (EmptyValidate.isEmpty(cs)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -504,7 +505,7 @@ public final class EmptyAssert {
 
     public static void isEmpty(final boolean[] bs, final String message) {
         if (EmptyValidate.isNotEmpty(bs)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -523,7 +524,7 @@ public final class EmptyAssert {
 
     public static void isNotEmpty(final boolean[] bs, final String message) {
         if (EmptyValidate.isEmpty(bs)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -543,7 +544,7 @@ public final class EmptyAssert {
 
     public static <T> void isEmpty(final T[] ts, final String message) {
         if (EmptyValidate.isNotEmpty(ts)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 
@@ -564,7 +565,7 @@ public final class EmptyAssert {
 
     public static <T> void isNotEmpty(final T[] ts, final String message) {
         if (EmptyValidate.isEmpty(ts)) {
-            throw new RuntimeException(message);
+            throw new IllegalStateException(message);
         }
     }
 

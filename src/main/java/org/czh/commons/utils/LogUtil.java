@@ -14,12 +14,12 @@ import org.slf4j.Marker;
  * date : 2021-07-13
  * email 916419307@qq.com
  */
+@SuppressWarnings("unused")
 public final class LogUtil {
 
     private static String formatMsg(@NotNullTag String msg) {
         EmptyAssert.isNotNull(msg);
         String uuid = RequestExecutionTimeFilter.getLocalUuid().get();
-        ;
         if (EmptyValidate.isNull(uuid)) {
             return msg;
         }
