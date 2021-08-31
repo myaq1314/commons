@@ -31,7 +31,7 @@ public abstract class BaseQueryEO
 
     protected String tableName;
 
-    protected Boolean distinctSQL;
+    protected boolean distinctSQL;
 
     protected List<String> selectSQLList;
 

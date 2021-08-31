@@ -18,7 +18,7 @@ public class IBaseDistinctTestEO {
 
         StringBuilder builder = new StringBuilder();
         builder.append("select ");
-        if (studentTestEO.getDistinctSQL() != null && studentTestEO.getDistinctSQL()) {
+        if (studentTestEO.isDistinctSQL()) {
             builder.append(" distinct ");
         }
         builder.append(" * ");
