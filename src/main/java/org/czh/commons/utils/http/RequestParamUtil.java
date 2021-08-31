@@ -38,7 +38,6 @@ public final class RequestParamUtil {
         enclosingRequest.setEntity(entity);
     }
 
-
     public static <RequestParam> void setUrlencodedParam(@NotNullTag final HttpEntityEnclosingRequestBase enclosingRequest,
                                                          final RequestParam requestParam) {
         EmptyAssert.isNotNull(enclosingRequest);

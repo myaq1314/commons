@@ -28,7 +28,6 @@ public class IBaseGroupTestEO {
                 .addGroupFunction("year", StudentTestColumnEnum.BIRTHDAY);
         System.out.println(studentTestEO.getGroupSQLList()); // [ a.`grade` ,  left( a.`student_name` , 1 ) ,  year( a.`birthday` ) ]
 
-
         StringBuilder builder = new StringBuilder();
         builder.append(" select ");
         builder.append(" a.`grade` ");

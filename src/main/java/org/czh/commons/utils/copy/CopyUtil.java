@@ -46,7 +46,6 @@ public final class CopyUtil {
         copy(source, target, getFromType());
     }
 
-
     public static <Source, Target> Target copyTo(@NotNullTag final Source source,
                                                  @NotNullTag final Class<Target> targetClazz) {
         EmptyAssert.isNotNull(targetClazz);

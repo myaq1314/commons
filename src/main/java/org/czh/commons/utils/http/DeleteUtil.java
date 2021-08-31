@@ -23,7 +23,6 @@ public final class DeleteUtil {
 //        headerMap.put("User-Agent", HttpURLConnection.userAgent);
         headerMap.put("Accept", "application/json");
 
-
         try {
             System.out.println(doDeleteJson("http://127.0.0.1:443/v1/siip/order/createAndPayDelete"));
             System.out.println(doDeleteJson("http://127.0.0.1:443/v1/siip/order/createAndPayDelete", paramMap));

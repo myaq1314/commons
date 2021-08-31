@@ -31,7 +31,6 @@ public class ExampleCopyTest {
         System.out.println(exampleSourceEntity2);
         System.out.println(exampleTargetEntity1);
 
-
         ExampleTargetEntity exampleTargetEntity10 = new ExampleTargetEntity(
                 "exampleTargetEntityName",
                 "2021-07-21 15:17:46",

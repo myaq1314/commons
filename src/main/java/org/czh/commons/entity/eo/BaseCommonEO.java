@@ -10,7 +10,6 @@ import org.czh.commons.entity.eo.sql.InsertEO;
 
 import java.util.List;
 
-
 /**
  * @author : czh
  * description : 通用数据库实体，主要集成一些数据库表公用字段，类似创建时间、修改时间

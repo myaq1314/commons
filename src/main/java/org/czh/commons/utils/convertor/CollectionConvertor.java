@@ -56,7 +56,6 @@ public final class CollectionConvertor {
         return convertToFirst(source, filter, s -> s);
     }
 
-
     /**
      * 集合 转换为 第一个值
      *

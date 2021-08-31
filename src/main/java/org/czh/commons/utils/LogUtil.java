@@ -7,7 +7,6 @@ import org.czh.commons.validate.EmptyValidate;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
 
-
 /**
  * @author : czh
  * description :

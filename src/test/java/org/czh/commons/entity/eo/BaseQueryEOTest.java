@@ -36,7 +36,6 @@ public class BaseQueryEOTest {
 
         baseQueryTestEO.setLimit(1, 1);
 
-
         StringBuilder builder = new StringBuilder();
         builder.append(" select ");
 

@@ -22,7 +22,6 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.function.BiPredicate;
 
-
 /**
  * @author : czh
  * description : 过滤器，打印请求数据、响应结果

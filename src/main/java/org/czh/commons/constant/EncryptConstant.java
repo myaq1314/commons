@@ -68,7 +68,6 @@ public final class EncryptConstant {
         return "RSA";
     }
 
-
     @AllArgsConstructor
     public enum SHAType implements IKeyEnum<String> {
         SHA_1("SHA-1"), // 40位 适用范围 不超过 2^64 二进制位

@@ -30,7 +30,6 @@ public class BaseCommonEOTest {
         // delete from student as a where 1 = 1  and   a.`student_name`  LIKE  '%宋晓佳%'
         System.out.println(deleteBuilder.toString());
 
-
         BaseCommonTestEO entity = new BaseCommonTestEO();
         entity.addInsert(BaseCommonTestEnum.STUDENT_NAME, "宋晓佳")
                 .addInsert(BaseCommonTestEnum.GRADE, 1)

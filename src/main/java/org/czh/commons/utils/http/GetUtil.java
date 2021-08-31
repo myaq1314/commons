@@ -14,7 +14,6 @@ import java.util.Map;
 @SuppressWarnings("unused")
 public final class GetUtil {
 
-
     @SuppressWarnings("DuplicatedCode")
     public static void main(String[] args) {
         Map<String, Object> paramMap = new HashMap<>();

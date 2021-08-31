@@ -58,7 +58,6 @@ public final class PageHelper {
         }
     }
 
-
     private static void removePage() {
         localPage.remove();
     }

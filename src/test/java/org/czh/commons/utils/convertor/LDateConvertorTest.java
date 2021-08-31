@@ -70,7 +70,6 @@ public class LDateConvertorTest {
         String text3 = DateUtil.formatToText(localDateTime);
         EqualsAssert.isEquals(text2, text3);
 
-
         String text4 = DateUtil.formatToText(date);
         String text5 = DateUtil.formatToText(localDateTime1);
         EqualsAssert.isEquals(text4, text5);

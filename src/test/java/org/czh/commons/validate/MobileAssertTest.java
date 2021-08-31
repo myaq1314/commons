@@ -1,6 +1,5 @@
 package org.czh.commons.validate;
 
-
 import org.junit.Test;
 
 /**

@@ -29,7 +29,6 @@ public final class MD5Util {
         return RandomUtil.getHexRandomByCircle(null, length);
     }
 
-
     /**
      * 加密
      * 没有加盐
@@ -51,7 +50,6 @@ public final class MD5Util {
     public static String encode16(@NotBlankTag String src, String salt) {
         return encode32(src, salt).substring(8, 24);
     }
-
 
     /**
      * 加密

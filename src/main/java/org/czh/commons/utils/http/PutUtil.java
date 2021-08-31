@@ -22,7 +22,6 @@ public final class PutUtil {
 //        headerMap.put("User-Agent", HttpURLConnection.userAgent);
         headerMap.put("Accept", "application/json");
 
-
         try {
             System.out.println(doPutJson("http://127.0.0.1:443/v1/siip/order/createAndPayPut"));
             System.out.println(doPutJson("http://127.0.0.1:443/v1/siip/order/createAndPayPut", paramMap));
