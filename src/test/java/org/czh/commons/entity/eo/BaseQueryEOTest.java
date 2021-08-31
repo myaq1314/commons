@@ -40,7 +40,7 @@ public class BaseQueryEOTest {
         StringBuilder builder = new StringBuilder();
         builder.append(" select ");
 
-        if (FlagValidate.isTrue(baseQueryTestEO.getDistinctSQL())) {
+        if (FlagValidate.isTrue(baseQueryTestEO.isDistinctSQL())) {
             builder.append(" distinct ");
         }
 
