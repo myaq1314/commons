@@ -4,8 +4,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.czh.commons.entity.eo.sql.IBaseInsertEO;
-import org.czh.commons.entity.eo.sql.IBaseUpdateEO;
+import org.czh.commons.entity.eo.sql.IInsertEO;
+import org.czh.commons.entity.eo.sql.IUpdateEO;
 import org.czh.commons.entity.eo.sql.InsertEO;
 
 import java.util.List;
@@ -17,11 +17,11 @@ import java.util.List;
  * email 916419307@qq.com
  */
 @Data
-@ToString
-@EqualsAndHashCode(callSuper = false)
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-public abstract class BaseCommonEO extends BaseQueryEO
-        implements IBaseInsertEO, IBaseUpdateEO, IBaseEO {
+public abstract class BaseCommonEO extends BaseViewEO
+        implements IInsertEO, IUpdateEO, IBaseEO {
 
     private static final long serialVersionUID = -2976191070162397245L;
 

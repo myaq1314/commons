@@ -1,10 +1,11 @@
 package org.czh.commons.entity.eo.example;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.czh.commons.entity.eo.BaseQueryEO;
+import org.czh.commons.entity.eo.BaseViewEO;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -12,22 +13,26 @@ import java.util.Date;
 /**
  * @author : czh
  * description :
- * date : 2021-06-28
+ * date : 2021-07-03
  * email 916419307@qq.com
  */
 @Data
 @ToString
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-public class ExampleQueryEO extends BaseQueryEO {
+@AllArgsConstructor
+public class BaseViewTestEO extends BaseViewEO {
 
-    private static final long serialVersionUID = 7188796541231057703L;
+    private static final long serialVersionUID = 781235697309328917L;
 
-    private String exampleName;
-    private Integer type;
-    private String label;
-    private Date createTime;
+    private Long id;
+
+    private String studentName;
+
+    private Integer grade;
+
     private BigDecimal score;
-    private Double price;
+
+    private Date birthday;
 
 }

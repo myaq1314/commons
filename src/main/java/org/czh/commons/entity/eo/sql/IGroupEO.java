@@ -15,18 +15,18 @@ import java.util.List;
  * date : 2021-06-23
  * email 916419307@qq.com
  */
-public interface IBaseGroupEO extends IBaseEO {
+public interface IGroupEO extends IBaseEO {
 
     List<String> getGroupSQLList();
 
     void setGroupSQLList(final List<String> groupSQLList);
 
-    default IBaseGroupEO resetGroup() {
+    default IGroupEO resetGroup() {
         setGroupSQLList(null);
         return this;
     }
 
-    default IBaseGroupEO addGroup(final String... columnNames) {
+    default IGroupEO addGroup(final String... columnNames) {
         EmptyAssert.isNotEmpty(columnNames);
 
         for (String columnName : columnNames) {
@@ -35,7 +35,7 @@ public interface IBaseGroupEO extends IBaseEO {
         return this;
     }
 
-    default IBaseGroupEO addGroup(final IColumnEnum... columnEnums) {
+    default IGroupEO addGroup(final IColumnEnum... columnEnums) {
         EmptyAssert.isNotEmpty(columnEnums);
 
         for (IColumnEnum columnEnum : columnEnums) {
@@ -44,11 +44,11 @@ public interface IBaseGroupEO extends IBaseEO {
         return this;
     }
 
-    default IBaseGroupEO addGroupFunction(final String function, final Object... functionObjs) {
+    default IGroupEO addGroupFunction(final String function, final Object... functionObjs) {
         return addGroupSQL(SqlJointUtil.convertFunctionSql(function, functionObjs));
     }
 
-    default IBaseGroupEO addGroupSQL(final String groupSQL) {
+    default IGroupEO addGroupSQL(final String groupSQL) {
         EmptyAssert.isNotBlank(groupSQL);
 
         List<String> groupSQLList = getGroupSQLList();

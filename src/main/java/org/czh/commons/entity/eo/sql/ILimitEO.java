@@ -9,18 +9,18 @@ import org.czh.commons.validate.EmptyAssert;
  * date : 2021-06-23
  * email 916419307@qq.com
  */
-public interface IBaseLimitEO extends IBaseEO {
+public interface ILimitEO extends IBaseEO {
 
     String getLimitSQL();
 
     void setLimitSQL(String limitSQL);
 
-    default IBaseLimitEO resetLimit() {
+    default ILimitEO resetLimit() {
         setLimitSQL(null);
         return this;
     }
 
-    default IBaseLimitEO setLimit(final Integer currentPage, final Integer pageSize) {
+    default ILimitEO setLimit(final Integer currentPage, final Integer pageSize) {
         EmptyAssert.isNotNull(currentPage);
         EmptyAssert.isNotNull(pageSize);
 

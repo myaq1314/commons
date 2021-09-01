@@ -3,13 +3,13 @@ package org.czh.commons.service.impl;
 import org.czh.commons.annotations.tag.NotBlankTag;
 import org.czh.commons.annotations.tag.NotEmptyTag;
 import org.czh.commons.annotations.tag.NotNullTag;
-import org.czh.commons.dao.IBaseQueryDao;
+import org.czh.commons.dao.IBaseViewDao;
 import org.czh.commons.entity.Page;
 import org.czh.commons.entity.PageHelper;
-import org.czh.commons.entity.eo.BaseQueryEO;
+import org.czh.commons.entity.eo.BaseViewEO;
 import org.czh.commons.enums.parent.IColumnEnum;
 import org.czh.commons.exceptions.CommonException;
-import org.czh.commons.service.IBaseQueryService;
+import org.czh.commons.service.IBaseViewService;
 import org.czh.commons.utils.FieldUtil;
 import org.czh.commons.validate.EmptyAssert;
 import org.czh.commons.validate.EmptyValidate;
@@ -25,10 +25,9 @@ import java.util.stream.IntStream;
  * date : 2021-06-21
  * email 916419307@qq.com
  */
-@SuppressWarnings("unused")
-public abstract class BaseQueryServiceImpl<Dao extends IBaseQueryDao<Entity>, Entity extends BaseQueryEO>
+public abstract class BaseViewServiceImpl<Dao extends IBaseViewDao<Entity>, Entity extends BaseViewEO>
         extends BaseEOServiceImpl<Dao, Entity>
-        implements IBaseQueryService<Entity> {
+        implements IBaseViewService<Entity> {
 
     @Override
     public Entity createEntity(@NotBlankTag final String tableName,

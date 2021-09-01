@@ -4,12 +4,13 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.czh.commons.entity.eo.sql.IBaseGroupEO;
-import org.czh.commons.entity.eo.sql.IBaseHavingEO;
-import org.czh.commons.entity.eo.sql.IBaseLimitEO;
-import org.czh.commons.entity.eo.sql.IBaseOrderEO;
-import org.czh.commons.entity.eo.sql.IBaseSelectEO;
-import org.czh.commons.entity.eo.sql.IBaseWhereEO;
+import org.czh.commons.entity.eo.sql.IDistinctEO;
+import org.czh.commons.entity.eo.sql.IGroupEO;
+import org.czh.commons.entity.eo.sql.IHavingEO;
+import org.czh.commons.entity.eo.sql.ILimitEO;
+import org.czh.commons.entity.eo.sql.IOrderEO;
+import org.czh.commons.entity.eo.sql.ISelectEO;
+import org.czh.commons.entity.eo.sql.IWhereEO;
 
 import java.util.List;
 
@@ -21,11 +22,10 @@ import java.util.List;
  */
 @Data
 @ToString
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode
 @NoArgsConstructor
-public abstract class BaseQueryEO
-        implements IBaseSelectEO,
-        IBaseWhereEO, IBaseGroupEO, IBaseHavingEO, IBaseOrderEO, IBaseLimitEO, IBaseEO {
+public abstract class BaseViewEO
+        implements IDistinctEO, ISelectEO, IWhereEO, IGroupEO, IHavingEO, IOrderEO, ILimitEO, IBaseEO {
 
     private static final long serialVersionUID = -2418646692491059691L;
 

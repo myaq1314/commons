@@ -16,24 +16,24 @@ import java.util.List;
  * date : 2021-06-25
  * email 916419307@qq.com
  */
-public interface IBaseUpdateEO extends IBaseEO {
+public interface IUpdateEO extends IBaseEO {
 
     List<String> getUpdateSQLList();
 
     void setUpdateSQLList(final List<String> updateSQLList);
 
-    default IBaseUpdateEO resetUpdate() {
+    default IUpdateEO resetUpdate() {
         setUpdateSQLList(null);
         return this;
     }
 
-    default IBaseUpdateEO addUpdate(final IColumnEnum columnEnum, final Object columnValue) {
+    default IUpdateEO addUpdate(final IColumnEnum columnEnum, final Object columnValue) {
         EmptyAssert.allNotNull(columnEnum, columnValue);
         FlagAssert.isTrue(columnEnum.getType().equals(columnValue.getClass()));
         return addUpdate(columnEnum.getColumn(), columnValue);
     }
 
-    default IBaseUpdateEO addUpdate(final String columnName, final Object columnValue) {
+    default IUpdateEO addUpdate(final String columnName, final Object columnValue) {
         return addUpdateSQL(String.format(
                 " %s = %s",
                 SqlJointUtil.columnNameConvertSql(columnName),
@@ -41,16 +41,16 @@ public interface IBaseUpdateEO extends IBaseEO {
         ));
     }
 
-    default IBaseUpdateEO addUpdateFunction(final IColumnEnum columnEnum,
-                                            final String function,
-                                            final Object... functionObjs) {
+    default IUpdateEO addUpdateFunction(final IColumnEnum columnEnum,
+                                        final String function,
+                                        final Object... functionObjs) {
         EmptyAssert.isNotNull(columnEnum);
         return addUpdateFunction(columnEnum.getColumn(), function, functionObjs);
     }
 
-    default IBaseUpdateEO addUpdateFunction(final String columnName,
-                                            final String function,
-                                            final Object... functionObjs) {
+    default IUpdateEO addUpdateFunction(final String columnName,
+                                        final String function,
+                                        final Object... functionObjs) {
         return addUpdateSQL(String.format(
                 " %s = %s ",
                 SqlJointUtil.columnNameConvertSql(columnName),
@@ -58,7 +58,7 @@ public interface IBaseUpdateEO extends IBaseEO {
         ));
     }
 
-    default IBaseUpdateEO addUpdateSQL(final String updateSQL) {
+    default IUpdateEO addUpdateSQL(final String updateSQL) {
         EmptyAssert.isNotBlank(updateSQL);
 
         List<String> updateSQLList = getUpdateSQLList();

@@ -12,13 +12,11 @@ import lombok.ToString;
  * email 916419307@qq.com
  */
 @Data
-@ToString
-@EqualsAndHashCode(callSuper = false)
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public abstract class BasePrimaryEO extends BaseCommonEO implements IBaseEO {
 
     private static final long serialVersionUID = -1286551223745302224L;
-
-    protected Long id;
 
 }

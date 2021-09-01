@@ -18,21 +18,21 @@ import java.util.List;
  * date : 2021-06-23
  * email 916419307@qq.com
  */
-public interface IBaseHavingEO extends IBaseEO {
+public interface IHavingEO extends IBaseEO {
 
     List<String> getHavingSQLList();
 
     void setHavingSQLList(final List<String> havingSQLList);
 
-    default IBaseHavingEO resetHaving() {
+    default IHavingEO resetHaving() {
         setHavingSQLList(null);
         return this;
     }
 
-    default IBaseHavingEO addHavingScope(final ScopeDict scopeDict,
-                                         final Object compare,
-                                         final String function,
-                                         final Object... functionObjs) {
+    default IHavingEO addHavingScope(final ScopeDict scopeDict,
+                                     final Object compare,
+                                     final String function,
+                                     final Object... functionObjs) {
         EmptyAssert.isNotNull(scopeDict);
         return addHavingSQL(String.format(
                 " %s %s %s ",
@@ -42,9 +42,9 @@ public interface IBaseHavingEO extends IBaseEO {
         ));
     }
 
-    default IBaseHavingEO addHavingNull(final NullDict nullDict,
-                                        final String function,
-                                        final Object... functionObjs) {
+    default IHavingEO addHavingNull(final NullDict nullDict,
+                                    final String function,
+                                    final Object... functionObjs) {
         EmptyAssert.isNotNull(nullDict);
         return addHavingSQL(String.format(
                 " %s %s ",
@@ -53,10 +53,10 @@ public interface IBaseHavingEO extends IBaseEO {
         ));
     }
 
-    default IBaseHavingEO addHavingLike(final LikeDict likeDict,
-                                        final String compare,
-                                        final String function,
-                                        final Object... functionObjs) {
+    default IHavingEO addHavingLike(final LikeDict likeDict,
+                                    final String compare,
+                                    final String function,
+                                    final Object... functionObjs) {
         EmptyAssert.allNotNull(likeDict, compare);
         return addHavingSQL(String.format(
                 " %s %s %s ",
@@ -66,10 +66,10 @@ public interface IBaseHavingEO extends IBaseEO {
         ));
     }
 
-    default IBaseHavingEO addHavingCircle(final CircleDict circleDict,
-                                          final Object[] compareObjs,
-                                          final String function,
-                                          final Object... functionObjs) {
+    default IHavingEO addHavingCircle(final CircleDict circleDict,
+                                      final Object[] compareObjs,
+                                      final String function,
+                                      final Object... functionObjs) {
         return addHavingSQL(String.format(
                 " %s %s ",
                 SqlJointUtil.convertFunctionSql(function, functionObjs),
@@ -77,7 +77,7 @@ public interface IBaseHavingEO extends IBaseEO {
         ));
     }
 
-    default IBaseHavingEO addHavingSQL(final String havingSQL) {
+    default IHavingEO addHavingSQL(final String havingSQL) {
         EmptyAssert.isNotBlank(havingSQL);
 
         List<String> havingSQLList = getHavingSQLList();

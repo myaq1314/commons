@@ -13,8 +13,7 @@ import java.util.List;
  * date : 2021-06-21
  * email 916419307@qq.com
  */
-@SuppressWarnings("unused")
-public interface IBaseCommonDao<EO extends BaseCommonEO> extends IBaseQueryDao<EO> {
+public interface IBaseCommonDao<EO extends BaseCommonEO> extends IBaseViewDao<EO> {
 
     /**
      * 表：student

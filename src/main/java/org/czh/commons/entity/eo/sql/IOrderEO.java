@@ -15,18 +15,18 @@ import java.util.List;
  * date : 2021-06-23
  * email 916419307@qq.com
  */
-public interface IBaseOrderEO extends IBaseEO {
+public interface IOrderEO extends IBaseEO {
 
     List<String> getOrderSQLList();
 
     void setOrderSQLList(final List<String> orderSQLList);
 
-    default IBaseOrderEO resetOrder() {
+    default IOrderEO resetOrder() {
         setOrderSQLList(null);
         return this;
     }
 
-    default IBaseOrderEO addOrderASC(final String... columnNames) {
+    default IOrderEO addOrderASC(final String... columnNames) {
         EmptyAssert.isNotEmpty(columnNames);
 
         for (String columnName : columnNames) {
@@ -35,7 +35,7 @@ public interface IBaseOrderEO extends IBaseEO {
         return this;
     }
 
-    default IBaseOrderEO addOrderASC(final IColumnEnum... columnEnums) {
+    default IOrderEO addOrderASC(final IColumnEnum... columnEnums) {
         EmptyAssert.isNotEmpty(columnEnums);
 
         for (IColumnEnum columnEnum : columnEnums) {
@@ -44,7 +44,7 @@ public interface IBaseOrderEO extends IBaseEO {
         return this;
     }
 
-    default IBaseOrderEO addOrderDESC(final String... columnNames) {
+    default IOrderEO addOrderDESC(final String... columnNames) {
         EmptyAssert.isNotEmpty(columnNames);
 
         for (String columnName : columnNames) {
@@ -53,7 +53,7 @@ public interface IBaseOrderEO extends IBaseEO {
         return this;
     }
 
-    default IBaseOrderEO addOrderDESC(final IColumnEnum... columnEnums) {
+    default IOrderEO addOrderDESC(final IColumnEnum... columnEnums) {
         EmptyAssert.isNotEmpty(columnEnums);
 
         for (IColumnEnum columnEnum : columnEnums) {
@@ -62,15 +62,15 @@ public interface IBaseOrderEO extends IBaseEO {
         return this;
     }
 
-    default IBaseOrderEO addOrderASCFunction(final String function, final Object... functionObjs) {
+    default IOrderEO addOrderASCFunction(final String function, final Object... functionObjs) {
         return addOrderSQL(String.format(" %s ASC ", SqlJointUtil.convertFunctionSql(function, functionObjs)));
     }
 
-    default IBaseOrderEO addOrderDESCFunction(final String function, final Object... functionObjs) {
+    default IOrderEO addOrderDESCFunction(final String function, final Object... functionObjs) {
         return addOrderSQL(String.format("%s DESC ", SqlJointUtil.convertFunctionSql(function, functionObjs)));
     }
 
-    default IBaseOrderEO addOrderSQL(final String orderSQL) {
+    default IOrderEO addOrderSQL(final String orderSQL) {
         EmptyAssert.isNotBlank(orderSQL);
 
         List<String> orderSQLList = getOrderSQLList();

@@ -15,43 +15,43 @@ import java.util.List;
  * date : 2021-06-25
  * email 916419307@qq.com
  */
-public interface IBaseInsertEO extends IBaseEO {
+public interface IInsertEO extends IBaseEO {
 
     List<InsertEO> getInsertEOLList();
 
     void setInsertEOLList(final List<InsertEO> insertEOLList);
 
-    default IBaseInsertEO resetInsert() {
+    default IInsertEO resetInsert() {
         setInsertEOLList(null);
         return this;
     }
 
-    default IBaseInsertEO addInsert(final IColumnEnum columnEnum, final Object columnValue) {
+    default IInsertEO addInsert(final IColumnEnum columnEnum, final Object columnValue) {
         EmptyAssert.isNotNull(columnEnum);
         return addInsert(columnEnum.getColumn(), columnValue);
     }
 
-    default IBaseInsertEO addInsert(final String columnName, final Object columnValue) {
+    default IInsertEO addInsert(final String columnName, final Object columnValue) {
         EmptyAssert.allNotBlank(columnName);
         EmptyAssert.isNotNull(columnValue);
         return addInsertEO(new InsertEO(columnName, SqlJointUtil.objConvertSql(columnValue)));
     }
 
-    default IBaseInsertEO addInsertFunction(final IColumnEnum columnEnum,
-                                            final String function,
-                                            final Object... functionObjs) {
+    default IInsertEO addInsertFunction(final IColumnEnum columnEnum,
+                                        final String function,
+                                        final Object... functionObjs) {
         EmptyAssert.isNotNull(columnEnum);
         return addInsertFunction(columnEnum.getColumn(), function, functionObjs);
     }
 
-    default IBaseInsertEO addInsertFunction(final String columnName,
-                                            final String function,
-                                            final Object... functionObjs) {
+    default IInsertEO addInsertFunction(final String columnName,
+                                        final String function,
+                                        final Object... functionObjs) {
         EmptyAssert.isNotBlank(columnName);
         return addInsertEO(new InsertEO(columnName, SqlJointUtil.convertFunctionSql(function, functionObjs)));
     }
 
-    default IBaseInsertEO addInsertEO(final InsertEO insertEO) {
+    default IInsertEO addInsertEO(final InsertEO insertEO) {
         EmptyAssert.isNotNull(insertEO);
 
         List<InsertEO> insertEOLList = getInsertEOLList();

@@ -12,8 +12,7 @@ import java.util.List;
  * date : 2021-06-21
  * email 916419307@qq.com
  */
-@SuppressWarnings("unused")
-public interface IBaseCommonService<Entity extends BaseCommonEO> extends IBaseQueryService<Entity> {
+public interface IBaseCommonService<Entity extends BaseCommonEO> extends IBaseViewService<Entity> {
 
     int insert(@NotNullTag final Entity entity);
 

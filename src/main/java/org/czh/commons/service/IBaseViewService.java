@@ -4,7 +4,7 @@ import org.czh.commons.annotations.tag.NotBlankTag;
 import org.czh.commons.annotations.tag.NotEmptyTag;
 import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.entity.Page;
-import org.czh.commons.entity.eo.BaseQueryEO;
+import org.czh.commons.entity.eo.BaseViewEO;
 import org.czh.commons.enums.parent.IColumnEnum;
 
 import java.util.List;
@@ -16,8 +16,7 @@ import java.util.Map;
  * date : 2021-06-21
  * email 916419307@qq.com
  */
-@SuppressWarnings("unused")
-public interface IBaseQueryService<Entity extends BaseQueryEO> extends IBaseEOService<Entity> {
+public interface IBaseViewService<Entity extends BaseViewEO> extends IBaseEOService<Entity> {
 
     Entity createEntity(@NotBlankTag final String tableName,
                         @NotNullTag final IColumnEnum columnEnum,

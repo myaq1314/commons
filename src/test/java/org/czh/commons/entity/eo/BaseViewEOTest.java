@@ -1,6 +1,6 @@
 package org.czh.commons.entity.eo;
 
-import org.czh.commons.entity.eo.example.BaseQueryTestEO;
+import org.czh.commons.entity.eo.example.BaseViewTestEO;
 import org.czh.commons.entity.eo.example.BaseQueryTestEnum;
 import org.czh.commons.enums.sql.LikeDict;
 import org.czh.commons.enums.sql.ScopeDict;
@@ -16,11 +16,11 @@ import java.util.List;
  * date : 2021-06-26
  * email 916419307@qq.com
  */
-public class BaseQueryEOTest {
+public class BaseViewEOTest {
 
     @Test
     public void test() {
-        BaseQueryTestEO baseQueryTestEO = new BaseQueryTestEO();
+        BaseViewTestEO baseQueryTestEO = new BaseViewTestEO();
 
         baseQueryTestEO.addSelect(BaseQueryTestEnum.GRADE);
         baseQueryTestEO.addSelectFunction("SUM", BaseQueryTestEnum.SCORE);

@@ -1,14 +1,16 @@
 package org.czh.commons.service.impl;
 
-import org.czh.commons.annotations.tag.NotBlankTag;
 import org.czh.commons.annotations.tag.NotEmptyTag;
 import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.dao.IBasePrimaryDao;
 import org.czh.commons.entity.eo.BasePrimaryEO;
 import org.czh.commons.enums.sql.CircleDict;
 import org.czh.commons.service.IBasePrimaryService;
+import org.czh.commons.utils.FieldUtil;
 import org.czh.commons.validate.EmptyAssert;
+import org.czh.commons.validate.EqualsAssert;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 /**
@@ -17,57 +19,47 @@ import java.util.List;
  * date : 2021-06-28
  * email 916419307@qq.com
  */
-@SuppressWarnings("unused")
 public abstract class BasePrimaryServiceImpl<Dao extends IBasePrimaryDao<Entity>, Entity extends BasePrimaryEO>
         extends BaseCommonServiceImpl<Dao, Entity>
         implements IBasePrimaryService<Entity> {
 
     @Override
-    public Entity getById(@NotNullTag final Long id) {
-        EmptyAssert.isNotNull(id);
-
-        Entity entity = newInstance();
-        entity.setId(id);
-        return this.getOnlyEntity(entity);
+    public Entity getById(@NotNullTag final Object id) {
+        return getById(null, id);
     }
 
     @Override
-    public Entity getById(@NotBlankTag final String tableName, @NotNullTag final Long id) {
-        EmptyAssert.isNotBlank(tableName);
+    @SuppressWarnings("DuplicatedCode")
+    public Entity getById(final String tableName, @NotNullTag final Object id) {
         EmptyAssert.isNotNull(id);
+        Field idField = FieldUtil.getField(this.clazz, "id");
+        EqualsAssert.isEquals(idField.getType(), id.getClass());
 
-        Entity entity = newInstance();
-        entity.setTableName(tableName);
-        entity.setId(id);
-        return this.getOnlyEntity(entity);
+        Entity condition = newInstance();
+        condition.setTableName(tableName);
+        FieldUtil.writeField(condition, idField, id);
+        return this.getOnlyEntity(condition);
     }
 
     @Override
     public int updateById(@NotNullTag final Entity entity) {
         EmptyAssert.isNotNull(entity);
-        EmptyAssert.isNotNull(entity.getId());
+        Object id = FieldUtil.readField(entity, "id");
+        EmptyAssert.isNotNull(id);
 
         Entity condition = newInstance();
         condition.setTableName(entity.getTableName());
-        condition.setId(entity.getId());
-
+        FieldUtil.writeField(condition, "id", id);
         return this.update(condition, entity);
     }
 
     @Override
     public int batchUpdateById(@NotEmptyTag final List<Entity> entityList) {
-        EmptyAssert.isNotEmpty(entityList);
-
-        int count = 0;
-        for (Entity entity : entityList) {
-            count += this.updateById(entity);
-        }
-        return count;
+        return batchUpdateById(null, entityList);
     }
 
     @Override
-    public int batchUpdateById(@NotBlankTag final String tableName, @NotEmptyTag final List<Entity> entityList) {
-        EmptyAssert.isNotBlank(tableName);
+    public int batchUpdateById(final String tableName, @NotEmptyTag final List<Entity> entityList) {
         EmptyAssert.isNotEmpty(entityList);
 
         int count = 0;
@@ -79,37 +71,30 @@ public abstract class BasePrimaryServiceImpl<Dao extends IBasePrimaryDao<Entity>
     }
 
     @Override
-    public int deleteById(@NotNullTag final Long id) {
-        EmptyAssert.isNotNull(id);
-
-        Entity condition = newInstance();
-        condition.setId(id);
-        return this.delete(condition);
+    public int deleteById(@NotNullTag final Object id) {
+        return deleteById(null, id);
     }
 
     @Override
-    public int deleteById(@NotBlankTag final String tableName, @NotNullTag final Long id) {
-        EmptyAssert.isNotBlank(tableName);
+    @SuppressWarnings("DuplicatedCode")
+    public int deleteById(final String tableName, @NotNullTag final Object id) {
         EmptyAssert.isNotNull(id);
+        Field idField = FieldUtil.getField(this.clazz, "id");
+        EqualsAssert.isEquals(idField.getType(), id.getClass());
 
         Entity condition = newInstance();
         condition.setTableName(tableName);
-        condition.setId(id);
+        FieldUtil.writeField(condition, idField, id);
         return this.delete(condition);
     }
 
     @Override
-    public List<Entity> queryListByIdList(@NotEmptyTag final List<Long> idList) {
-        EmptyAssert.isNotEmpty(idList);
-
-        Entity condition = newInstance();
-        condition.addWhereCircle("id", CircleDict.IN, idList);
-        return this.queryEntityList(condition);
+    public List<Entity> queryListByIdList(@NotEmptyTag final List<Object> idList) {
+        return queryListByIdList(null, idList);
     }
 
     @Override
-    public List<Entity> queryListByIdList(@NotBlankTag final String tableName, @NotEmptyTag final List<Long> idList) {
-        EmptyAssert.isNotBlank(tableName);
+    public List<Entity> queryListByIdList(final String tableName, @NotEmptyTag final List<Object> idList) {
         EmptyAssert.isNotEmpty(idList);
 
         Entity condition = newInstance();

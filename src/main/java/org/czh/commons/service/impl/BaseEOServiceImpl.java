@@ -15,12 +15,12 @@ import java.lang.reflect.Type;
  * date : 2021-06-21
  * email 916419307@qq.com
  */
-@SuppressWarnings({"SpringJavaAutowiredMembersInspection", "unused"})
 public abstract class BaseEOServiceImpl<Dao extends IBaseDao<Entity>, Entity extends IBaseEO>
         extends BaseServiceImpl
         implements IBaseEOService<Entity> {
 
     @Autowired
+    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     protected Dao baseDao;
 
     protected Class<Entity> clazz;

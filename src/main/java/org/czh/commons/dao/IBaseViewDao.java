@@ -2,7 +2,7 @@ package org.czh.commons.dao;
 
 import org.apache.ibatis.annotations.Param;
 import org.czh.commons.annotations.tag.NotNullTag;
-import org.czh.commons.entity.eo.BaseQueryEO;
+import org.czh.commons.entity.eo.BaseViewEO;
 
 import java.util.List;
 import java.util.Map;
@@ -13,8 +13,7 @@ import java.util.Map;
  * date : 2021-06-21
  * email 916419307@qq.com
  */
-@SuppressWarnings("unused")
-public interface IBaseQueryDao<EO extends BaseQueryEO> extends IBaseDao<EO> {
+public interface IBaseViewDao<EO extends BaseViewEO> extends IBaseDao<EO> {
 
     /**
      * 表：student

@@ -8,7 +8,6 @@ import org.czh.commons.entity.eo.BasePrimaryEO;
  * date : 2021-06-21
  * email 916419307@qq.com
  */
-@SuppressWarnings("unused")
 public interface IBasePrimaryDao<EO extends BasePrimaryEO> extends IBaseCommonDao<EO> {
 
 }

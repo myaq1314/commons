@@ -25,6 +25,8 @@ public class BasePrimaryTestEO extends BasePrimaryEO {
 
     private static final long serialVersionUID = -4209917368174259422L;
 
+    private Long id;
+
     private String studentName;
 
     private Integer grade;

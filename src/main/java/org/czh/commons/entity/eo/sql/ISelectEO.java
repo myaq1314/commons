@@ -15,18 +15,18 @@ import java.util.List;
  * date : 2021-06-23
  * email 916419307@qq.com
  */
-public interface IBaseSelectEO extends IBaseEO {
+public interface ISelectEO extends IBaseEO {
 
     List<String> getSelectSQLList();
 
     void setSelectSQLList(final List<String> selectSQLList);
 
-    default IBaseSelectEO resetSelect() {
+    default ISelectEO resetSelect() {
         setSelectSQLList(null);
         return this;
     }
 
-    default IBaseSelectEO addSelect(final String... columnNames) {
+    default ISelectEO addSelect(final String... columnNames) {
         EmptyAssert.isNotEmpty(columnNames);
 
         for (String columnName : columnNames) {
@@ -35,7 +35,7 @@ public interface IBaseSelectEO extends IBaseEO {
         return this;
     }
 
-    default IBaseSelectEO addSelect(final IColumnEnum... columnEnums) {
+    default ISelectEO addSelect(final IColumnEnum... columnEnums) {
         EmptyAssert.isNotEmpty(columnEnums);
 
         for (IColumnEnum columnEnum : columnEnums) {
@@ -44,39 +44,39 @@ public interface IBaseSelectEO extends IBaseEO {
         return this;
     }
 
-    default IBaseSelectEO addSelectFunction(final String function, final IColumnEnum aliasColumn) {
+    default ISelectEO addSelectFunction(final String function, final IColumnEnum aliasColumn) {
         return addSelectFunction(function, aliasColumn, aliasColumn);
     }
 
-    default IBaseSelectEO addSelectFunction(final String function,
-                                            final IColumnEnum aliasColumn,
-                                            final Object... functionObjs) {
+    default ISelectEO addSelectFunction(final String function,
+                                        final IColumnEnum aliasColumn,
+                                        final Object... functionObjs) {
         EmptyAssert.isNotNull(aliasColumn);
         return addSelectFunction(function, aliasColumn.getColumn(), functionObjs);
     }
 
-    default IBaseSelectEO addSelectFunction(final String function,
-                                            final String alias,
-                                            final Object... functionObjs) {
+    default ISelectEO addSelectFunction(final String function,
+                                        final String alias,
+                                        final Object... functionObjs) {
         return addSelectSQL(SqlJointUtil.convertSelectFunctionSql(function, alias, functionObjs));
     }
 
-    default IBaseSelectEO addSelectFunction(final String function,
-                                            final IColumnEnum aliasColumn,
-                                            final String separator,
-                                            final Object... functionObjs) {
+    default ISelectEO addSelectFunction(final String function,
+                                        final IColumnEnum aliasColumn,
+                                        final String separator,
+                                        final Object... functionObjs) {
         EmptyAssert.isNotNull(aliasColumn);
         return addSelectFunction(function, aliasColumn.getColumn(), separator, functionObjs);
     }
 
-    default IBaseSelectEO addSelectFunction(final String function,
-                                            final String alias,
-                                            final String separator,
-                                            final Object... functionObjs) {
+    default ISelectEO addSelectFunction(final String function,
+                                        final String alias,
+                                        final String separator,
+                                        final Object... functionObjs) {
         return addSelectSQL(SqlJointUtil.convertSelectFunctionSql(function, alias, separator, functionObjs));
     }
 
-    default IBaseSelectEO addSelectSQL(final String selectSQL) {
+    default ISelectEO addSelectSQL(final String selectSQL) {
         EmptyAssert.isNotBlank(selectSQL);
 
         List<String> selectSQLList = getSelectSQLList();

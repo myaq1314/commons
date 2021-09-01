@@ -1,8 +1,8 @@
 package org.czh.commons.dao.example;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.czh.commons.dao.IBaseQueryDao;
-import org.czh.commons.entity.eo.example.ExampleQueryEO;
+import org.czh.commons.dao.IBaseViewDao;
+import org.czh.commons.entity.eo.example.ExampleViewEO;
 
 /**
  * @author : czh
@@ -11,6 +11,6 @@ import org.czh.commons.entity.eo.example.ExampleQueryEO;
  * email 916419307@qq.com
  */
 @Mapper
-public interface IExampleQueryDao extends IBaseQueryDao<ExampleQueryEO> {
+public interface IExampleViewDao extends IBaseViewDao<ExampleViewEO> {
 
 }
