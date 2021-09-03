@@ -86,7 +86,7 @@ public final class DateUtil {
     }
 
     public static String formatToText(@NotNullTag final LocalDateTime localDateTime) {
-        return formatToText(localDateTime, DateUtil.getLDFormatter());
+        return formatToText(localDateTime, DateUtil.getLDTFormatter());
     }
 
     public static String formatToText(@NotNullTag final LocalTime localTime) {
@@ -126,7 +126,7 @@ public final class DateUtil {
     }
 
     public static LocalDateTime parseToLDTime(String dateText) {
-        return parseToLDTime(dateText, DateUtil.getLDFormatter());
+        return parseToLDTime(dateText, DateUtil.getLDTFormatter());
     }
 
     public static LocalDateTime parseToLDTime(String dateText, String pattern) {

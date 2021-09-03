@@ -24,7 +24,7 @@ public class OverrideFieldTest {
     public void test() {
         List<Field> fields = FieldUtil.queryFieldList(City.class);
         for (Field field : fields) {
-            System.out.println(field.getName());
+            System.out.print(field.getName() + "、");
         }
     }
 

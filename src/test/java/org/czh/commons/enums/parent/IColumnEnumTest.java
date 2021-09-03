@@ -14,10 +14,6 @@ public class IColumnEnumTest {
 
     @Test
     public void test() {
-        System.out.println(ExampleColumnEnum.ID.getColumn());
-        System.out.println(ExampleColumnEnum.ID.getField());
-        System.out.println(ExampleColumnEnum.ID.getType().getSimpleName());
-
         Assert.assertEquals(
                 "getColumn() show equals column field",
                 ExampleColumnEnum.ID.getColumn(),

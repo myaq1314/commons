@@ -1,6 +1,7 @@
 package org.czh.commons.enums.parent;
 
 import org.czh.commons.enums.example.ExampleBaseEnum;
+import org.czh.commons.validate.EqualsAssert;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,14 +15,11 @@ public class IBaseEnumTest {
 
     @Test
     public void test() {
-        System.out.println(ExampleBaseEnum.NONE);
-        System.out.println(ExampleBaseEnum.NONE.getName());
-        System.out.println(ExampleBaseEnum.NONE.name());
-
         Assert.assertEquals(
                 "getName() show equals name()",
                 ExampleBaseEnum.NONE.getName(),
                 ExampleBaseEnum.NONE.name()
         );
+        EqualsAssert.isEquals(ExampleBaseEnum.NONE.getName(), "NONE");
     }
 }

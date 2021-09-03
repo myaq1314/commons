@@ -1,6 +1,7 @@
 package org.czh.commons.enums.parent;
 
 import org.czh.commons.enums.example.ExampleKeyEnum;
+import org.czh.commons.validate.EqualsAssert;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,13 +15,11 @@ public class IKeyEnumTest {
 
     @Test
     public void test() {
-        System.out.println(ExampleKeyEnum.NONE.getKey());
-        System.out.println(ExampleKeyEnum.NONE.key);
-
         Assert.assertEquals(
                 "getKey() show equals key field",
                 ExampleKeyEnum.NONE.getKey(),
                 ExampleKeyEnum.NONE.key
         );
+        EqualsAssert.isEquals(ExampleKeyEnum.NONE.key, "NONE");
     }
 }

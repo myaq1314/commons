@@ -15,7 +15,7 @@ public class CommonExceptionTest {
         try {
             throwNewCommonException();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 

@@ -53,6 +53,5 @@ public class DateValidateTest {
         DateAssert.isEquals("2021-07-05 18:29:10", "2021-07-05 18:29:10", DateUtil.getFormat(), DateUtil.getFormat());
         DateAssert.isEquals("2021-07-05 18:29:10", "2021-07-05 18:29:10", DateUtil.getLDTFormatter(), DateUtil.getLDTFormatter());
         DateAssert.isEquals(DateUtil.getNowDate(), DateUtil.getNowDate());
-        DateAssert.isEquals(DateUtil.getNowLDTime().minus(0, ChronoUnit.MINUTES), DateUtil.getNowLDTime());
     }
 }

@@ -36,6 +36,7 @@ public class FieldUtilTest {
                 "pPri", "pPro", "pDef", "pPub",
                 "pPriSta", "pProSta", "pDefSta", "pPubSta"
         );
+        Collections.sort(fieldNameList);
 
         List<String> targetAllFieldValueList = new ArrayList<>();
         for (String fieldName : fieldNameList) {
@@ -46,6 +47,8 @@ public class FieldUtilTest {
             } catch (RuntimeException ignored) {
             }
         }
+        Collections.sort(targetAllFieldValueList);
+
         List<String> compareAllFieldValueList = new ArrayList<>();
         Collections.addAll(compareAllFieldValueList,
                 "sPriVaAll", "sProVaAll", "sDefVaAll", "sPubVaAll",
@@ -53,6 +56,7 @@ public class FieldUtilTest {
                 "pPriVaAll", "pProVaAll", "pDefVaAll", "pPubVaAll",
                 "pPriStaVaAll", "pProStaVaAll", "pDefStaVaAll", "pPubStaVaAll"
         );
+        Collections.sort(compareAllFieldValueList);
         FlagAssert.isTrue(Objects.equals(targetAllFieldValueList, compareAllFieldValueList));
 
         List<String> targetPubFieldValueList = new ArrayList<>();
@@ -64,8 +68,11 @@ public class FieldUtilTest {
             } catch (RuntimeException ignored) {
             }
         }
+        Collections.sort(targetPubFieldValueList);
+
         List<String> comparePubFieldValueList = new ArrayList<>();
         Collections.addAll(comparePubFieldValueList, "sPubVaPub", "sPubStaVaPub", "pPubVaPub", "pPubStaVaPub");
+        Collections.sort(comparePubFieldValueList);
         FlagAssert.isTrue(Objects.equals(targetPubFieldValueList, comparePubFieldValueList));
 
         List<String> targetOwnFieldValueList = new ArrayList<>();
@@ -77,11 +84,14 @@ public class FieldUtilTest {
             } catch (RuntimeException ignored) {
             }
         }
+        Collections.sort(targetOwnFieldValueList);
+
         List<String> compareOwnFieldValueList = new ArrayList<>();
         Collections.addAll(compareOwnFieldValueList,
                 "sPriVaOwn", "sProVaOwn", "sDefVaOwn", "sPubVaOwn",
                 "sPriStaVaOwn", "sProStaVaOwn", "sDefStaVaOwn", "sPubStaVaOwn"
         );
+        Collections.sort(compareOwnFieldValueList);
         FlagAssert.isTrue(Objects.equals(targetOwnFieldValueList, compareOwnFieldValueList));
     }
 
@@ -98,6 +108,7 @@ public class FieldUtilTest {
                 "pPri", "pPro", "pDef", "pPub",
                 "pPriSta", "pProSta", "pDefSta", "pPubSta"
         );
+        Collections.sort(fieldNameList);
 
         List<String> targetAllStaticFieldValueList = new ArrayList<>();
         for (String fieldName : fieldNameList) {
@@ -106,14 +117,16 @@ public class FieldUtilTest {
                 String fieldValue = FieldUtil.readStaticField(sonClazz, fieldName);
                 targetAllStaticFieldValueList.add(fieldValue);
             } catch (RuntimeException ignored) {
-
             }
         }
+        Collections.sort(targetAllStaticFieldValueList);
+
         List<String> compareAllStaticFieldValueList = new ArrayList<>();
         Collections.addAll(compareAllStaticFieldValueList,
                 "sPriStaStaVaAll", "sProStaStaVaAll", "sDefStaStaVaAll", "sPubStaStaVaAll",
                 "pPriStaStaVaAll", "pProStaStaVaAll", "pDefStaStaVaAll", "pPubStaStaVaAll"
         );
+        Collections.sort(compareAllStaticFieldValueList);
         FlagAssert.isTrue(Objects.equals(targetAllStaticFieldValueList, compareAllStaticFieldValueList));
 
         List<String> targetPubStaticFieldValueList = new ArrayList<>();
@@ -125,8 +138,11 @@ public class FieldUtilTest {
             } catch (RuntimeException ignored) {
             }
         }
+        Collections.sort(targetPubStaticFieldValueList);
+
         List<String> comparePubStaticFieldValueList = new ArrayList<>();
         Collections.addAll(comparePubStaticFieldValueList, "sPubStaStaVaPub", "pPubStaStaVaPub");
+        Collections.sort(comparePubStaticFieldValueList);
         FlagAssert.isTrue(Objects.equals(targetPubStaticFieldValueList, comparePubStaticFieldValueList));
 
         List<String> targetOwnStaticFieldValueList = new ArrayList<>();
@@ -138,10 +154,12 @@ public class FieldUtilTest {
             } catch (RuntimeException ignored) {
             }
         }
+        Collections.sort(targetOwnStaticFieldValueList);
         List<String> compareOwnStaticFieldValueList = new ArrayList<>();
         Collections.addAll(compareOwnStaticFieldValueList,
                 "sPriStaStaVaOwn", "sProStaStaVaOwn", "sDefStaStaVaOwn", "sPubStaStaVaOwn"
         );
+        Collections.sort(compareOwnStaticFieldValueList);
         FlagAssert.isTrue(Objects.equals(targetOwnStaticFieldValueList, compareOwnStaticFieldValueList));
     }
 
@@ -158,6 +176,7 @@ public class FieldUtilTest {
                 "pPri", "pPro", "pDef", "pPub",
                 "pPriSta", "pProSta", "pDefSta", "pPubSta"
         );
+        Collections.sort(fieldNameList);
 
         List<String> targetAllFieldValueList = new ArrayList<>();
         for (String fieldName : fieldNameList) {
@@ -167,6 +186,8 @@ public class FieldUtilTest {
             } catch (RuntimeException ignored) {
             }
         }
+        Collections.sort(targetAllFieldValueList);
+
         List<String> compareAllFieldValueList = new ArrayList<>();
         Collections.addAll(compareAllFieldValueList,
                 "sPriVa", "sProVa", "sDefVa", "sPubVa",
@@ -174,6 +195,7 @@ public class FieldUtilTest {
                 "pPriVa", "pProVa", "pDefVa", "pPubVa",
                 "pPriStaVa", "pProStaVa", "pDefStaVa", "pPubStaVa"
         );
+        Collections.sort(compareAllFieldValueList);
         FlagAssert.isTrue(Objects.equals(targetAllFieldValueList, compareAllFieldValueList));
 
         List<String> targetPubFieldValueList = new ArrayList<>();
@@ -184,8 +206,11 @@ public class FieldUtilTest {
             } catch (RuntimeException ignored) {
             }
         }
+        Collections.sort(targetPubFieldValueList);
+
         List<String> comparePubFieldValueList = new ArrayList<>();
         Collections.addAll(comparePubFieldValueList, "sPubVa", "sPubStaVa", "pPubVa", "pPubStaVa");
+        Collections.sort(comparePubFieldValueList);
         FlagAssert.isTrue(Objects.equals(targetPubFieldValueList, comparePubFieldValueList));
 
         List<String> targetOwnFieldValueList = new ArrayList<>();
@@ -196,11 +221,13 @@ public class FieldUtilTest {
             } catch (RuntimeException ignored) {
             }
         }
+        Collections.sort(targetOwnFieldValueList);
         List<String> compareOwnFieldValueList = new ArrayList<>();
         Collections.addAll(compareOwnFieldValueList,
                 "sPriVa", "sProVa", "sDefVa", "sPubVa",
                 "sPriStaVa", "sProStaVa", "sDefStaVa", "sPubStaVa"
         );
+        Collections.sort(compareOwnFieldValueList);
         FlagAssert.isTrue(Objects.equals(targetOwnFieldValueList, compareOwnFieldValueList));
     }
 
@@ -217,6 +244,7 @@ public class FieldUtilTest {
                 "pPri", "pPro", "pDef", "pPub",
                 "pPriSta", "pProSta", "pDefSta", "pPubSta"
         );
+        Collections.sort(fieldNameList);
 
         List<String> targetAllStaticFieldValueList = new ArrayList<>();
         for (String fieldName : fieldNameList) {
@@ -226,11 +254,14 @@ public class FieldUtilTest {
             } catch (RuntimeException ignored) {
             }
         }
+        Collections.sort(targetAllStaticFieldValueList);
+
         List<String> compareAllStaticFieldValueList = new ArrayList<>();
         Collections.addAll(compareAllStaticFieldValueList,
                 "sPriStaVa", "sProStaVa", "sDefStaVa", "sPubStaVa",
                 "pPriStaVa", "pProStaVa", "pDefStaVa", "pPubStaVa"
         );
+        Collections.sort(compareAllStaticFieldValueList);
         FlagAssert.isTrue(Objects.equals(targetAllStaticFieldValueList, compareAllStaticFieldValueList));
 
         List<String> targetPubStaticFieldValueList = new ArrayList<>();
@@ -241,8 +272,11 @@ public class FieldUtilTest {
             } catch (RuntimeException ignored) {
             }
         }
+        Collections.sort(targetPubStaticFieldValueList);
+
         List<String> comparePubStaticFieldValueList = new ArrayList<>();
         Collections.addAll(comparePubStaticFieldValueList, "sPubStaVa", "pPubStaVa");
+        Collections.sort(comparePubStaticFieldValueList);
         FlagAssert.isTrue(Objects.equals(targetPubStaticFieldValueList, comparePubStaticFieldValueList));
 
         List<String> targetOwnStaticFieldValueList = new ArrayList<>();
@@ -253,10 +287,12 @@ public class FieldUtilTest {
             } catch (RuntimeException ignored) {
             }
         }
+        Collections.sort(targetOwnStaticFieldValueList);
         List<String> compareOwnStaticFieldValueList = new ArrayList<>();
         Collections.addAll(compareOwnStaticFieldValueList,
                 "sPriStaVa", "sProStaVa", "sDefStaVa", "sPubStaVa"
         );
+        Collections.sort(compareOwnStaticFieldValueList);
         FlagAssert.isTrue(Objects.equals(targetOwnStaticFieldValueList, compareOwnStaticFieldValueList));
     }
 
@@ -274,6 +310,7 @@ public class FieldUtilTest {
                 "pPri", "pPro", "pDef", "pPub",
                 "pPriSta", "pProSta", "pDefSta", "pPubSta"
         );
+        Collections.sort(fieldNameList);
 
         List<String> targetAllFieldNameList = new ArrayList<>();
         for (String fieldName : fieldNameList) {
@@ -283,6 +320,8 @@ public class FieldUtilTest {
             } catch (RuntimeException ignored) {
             }
         }
+        Collections.sort(targetAllFieldNameList);
+
         List<String> compareAllFieldNameList = new ArrayList<>();
         Collections.addAll(compareAllFieldNameList,
                 "sPri", "sPro", "sDef", "sPub",
@@ -290,6 +329,7 @@ public class FieldUtilTest {
                 "pPri", "pPro", "pDef", "pPub",
                 "pPriSta", "pProSta", "pDefSta", "pPubSta"
         );
+        Collections.sort(compareAllFieldNameList);
         FlagAssert.isTrue(Objects.equals(targetAllFieldNameList, compareAllFieldNameList));
 
         List<String> targetPubFieldNameList = new ArrayList<>();
@@ -300,8 +340,11 @@ public class FieldUtilTest {
             } catch (RuntimeException ignored) {
             }
         }
+        Collections.sort(targetPubFieldNameList);
+
         List<String> comparePubFieldNameList = new ArrayList<>();
         Collections.addAll(comparePubFieldNameList, "sPub", "sPubSta", "pPub", "pPubSta");
+        Collections.sort(comparePubFieldNameList);
         FlagAssert.isTrue(Objects.equals(targetPubFieldNameList, comparePubFieldNameList));
 
         List<String> targetOwnFieldNameList = new ArrayList<>();
@@ -312,11 +355,14 @@ public class FieldUtilTest {
             } catch (RuntimeException ignored) {
             }
         }
+        Collections.sort(targetOwnFieldNameList);
+
         List<String> compareOwnFieldNameList = new ArrayList<>();
         Collections.addAll(compareOwnFieldNameList,
                 "sPri", "sPro", "sDef", "sPub",
                 "sPriSta", "sProSta", "sDefSta", "sPubSta"
         );
+        Collections.sort(compareOwnFieldNameList);
         FlagAssert.isTrue(Objects.equals(targetOwnFieldNameList, compareOwnFieldNameList));
     }
 
@@ -326,7 +372,9 @@ public class FieldUtilTest {
         Class<?> sonClazz = son.getClass();
 
         List<Field> targetAllFieldList = FieldUtil.queryFromAll(sonClazz);
-        List<String> targetAllFieldNameList = CollectionConvertor.convertToList(targetAllFieldList, Field::getName);
+        List<String> targetAllFieldNameList = CollectionConvertor.convertToList(targetAllFieldList, Field::getName, field -> !"serialVersionUID".equals(field.getName()));
+        Collections.sort(targetAllFieldNameList);
+
         List<String> compareAllFieldNameList = new ArrayList<>();
         Collections.addAll(compareAllFieldNameList,
                 "sPubSta", "sProSta", "sDefSta", "sPriSta",
@@ -334,21 +382,28 @@ public class FieldUtilTest {
                 "pPubSta", "pProSta", "pDefSta", "pPriSta",
                 "pPub", "pPro", "pDef", "pPri"
         );
+        Collections.sort(compareAllFieldNameList);
         FlagAssert.isTrue(Objects.equals(targetAllFieldNameList, compareAllFieldNameList));
 
         List<Field> targetPubFieldList = FieldUtil.queryFromPub(sonClazz);
-        List<String> targetPubFieldNameList = CollectionConvertor.convertToList(targetPubFieldList, Field::getName);
+        List<String> targetPubFieldNameList = CollectionConvertor.convertToList(targetPubFieldList, Field::getName, field -> !"serialVersionUID".equals(field.getName()));
+        Collections.sort(targetPubFieldNameList);
+
         List<String> comparePubFieldNameList = new ArrayList<>();
         Collections.addAll(comparePubFieldNameList, "sPubSta", "sPub", "pPubSta", "pPub");
+        Collections.sort(comparePubFieldNameList);
         FlagAssert.isTrue(Objects.equals(targetPubFieldNameList, comparePubFieldNameList));
 
         List<Field> targetOwnFieldList = FieldUtil.queryFromOwn(sonClazz);
-        List<String> targetOwnFieldNameList = CollectionConvertor.convertToList(targetOwnFieldList, Field::getName);
+        List<String> targetOwnFieldNameList = CollectionConvertor.convertToList(targetOwnFieldList, Field::getName, field -> !"serialVersionUID".equals(field.getName()));
+        Collections.sort(targetOwnFieldNameList);
+
         List<String> compareOwnFieldNameList = new ArrayList<>();
         Collections.addAll(compareOwnFieldNameList,
                 "sPubSta", "sProSta", "sDefSta", "sPriSta",
                 "sPub", "sPro", "sDef", "sPri"
         );
+        Collections.sort(compareOwnFieldNameList);
         FlagAssert.isTrue(Objects.equals(targetOwnFieldNameList, compareOwnFieldNameList));
     }
 
@@ -359,20 +414,28 @@ public class FieldUtilTest {
 
         List<Field> targetAllFieldList = FieldUtil.queryFromAll(sonClazz, field -> EmptyValidate.isNotNull(field.getAnnotation(NotNull.class)));
         List<String> targetAllFieldNameList = CollectionConvertor.convertToList(targetAllFieldList, Field::getName);
+        Collections.sort(targetAllFieldNameList);
+
         List<String> compareAllFieldNameList = new ArrayList<>();
         Collections.addAll(compareAllFieldNameList, "sDefSta", "sDef", "pDefSta", "pDef");
+        Collections.sort(compareAllFieldNameList);
         FlagAssert.isTrue(Objects.equals(targetAllFieldNameList, compareAllFieldNameList));
 
         List<Field> targetPubFieldList = FieldUtil.queryFromPub(sonClazz, field -> EmptyValidate.isNotNull(field.getAnnotation(Pattern.class)));
         List<String> targetPubFieldNameList = CollectionConvertor.convertToList(targetPubFieldList, Field::getName);
+        Collections.sort(targetPubFieldNameList);
         List<String> comparePubFieldNameList = new ArrayList<>();
         Collections.addAll(comparePubFieldNameList, "sPubSta", "sPub", "pPubSta", "pPub");
+        Collections.sort(comparePubFieldNameList);
         FlagAssert.isTrue(Objects.equals(targetPubFieldNameList, comparePubFieldNameList));
 
         List<Field> targetOwnFieldList = FieldUtil.queryFromOwn(sonClazz, field -> EmptyValidate.isNotNull(field.getAnnotation(NotBlank.class)));
         List<String> targetOwnFieldNameList = CollectionConvertor.convertToList(targetOwnFieldList, Field::getName);
+        Collections.sort(targetOwnFieldNameList);
+
         List<String> compareOwnFieldNameList = new ArrayList<>();
         Collections.addAll(compareOwnFieldNameList, "sPriSta", "sPri");
+        Collections.sort(compareOwnFieldNameList);
         FlagAssert.isTrue(Objects.equals(targetOwnFieldNameList, compareOwnFieldNameList));
     }
 }
