@@ -1,7 +1,5 @@
 package org.czh.commons.service;
 
-import org.czh.commons.annotations.tag.NotBlankTag;
-import org.czh.commons.annotations.tag.NotEmptyTag;
 import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.entity.Page;
 import org.czh.commons.entity.eo.BaseViewEO;
@@ -18,33 +16,19 @@ import java.util.Map;
  */
 public interface IBaseViewService<Entity extends BaseViewEO> extends IBaseEOService<Entity> {
 
-    Entity createEntity(@NotBlankTag final String tableName,
-                        @NotNullTag final IColumnEnum columnEnum,
-                        @NotNullTag final Object columnValue);
-
-    Entity createEntity(@NotNullTag final IColumnEnum columnEnum,
-                        @NotNullTag final Object columnValue);
-
-    Entity createEntity(@NotBlankTag final String tableName,
-                        @NotEmptyTag final IColumnEnum[] columnEnums,
-                        @NotEmptyTag final Object[] columnValues);
-
-    Entity createEntity(@NotEmptyTag final IColumnEnum[] columnEnums,
-                        @NotEmptyTag final Object[] columnValues);
-
-    Entity getSureOneEntity(@NotNullTag final Entity condition);
+    Entity getOneEntity(@NotNullTag final IColumnEnum columnEnum, @NotNullTag final Object columnValue);
 
     Entity getOneEntity(@NotNullTag final Entity condition);
 
-    Map<String, Object> getSureOneMap(@NotNullTag final Entity condition);
+    Map<String, Object> getOneMap(@NotNullTag final IColumnEnum columnEnum, @NotNullTag final Object columnValue);
 
     Map<String, Object> getOneMap(@NotNullTag final Entity condition);
 
-    Entity getSureOnlyEntity(@NotNullTag final Entity condition);
+    Entity getOnlyEntity(@NotNullTag final IColumnEnum columnEnum, @NotNullTag final Object columnValue);
 
     Entity getOnlyEntity(@NotNullTag final Entity condition);
 
-    Map<String, Object> getSureOnlyMap(@NotNullTag final Entity condition);
+    Map<String, Object> getOnlyMap(@NotNullTag final IColumnEnum columnEnum, @NotNullTag final Object columnValue);
 
     Map<String, Object> getOnlyMap(@NotNullTag final Entity condition);
 
@@ -56,9 +40,15 @@ public interface IBaseViewService<Entity extends BaseViewEO> extends IBaseEOServ
                                            @NotNullTag final Integer currentPage,
                                            @NotNullTag final Integer pageSize);
 
+    List<Entity> queryEntityList(@NotNullTag final IColumnEnum columnEnum, @NotNullTag final Object columnValue);
+
     List<Entity> queryEntityList(@NotNullTag final Entity condition);
 
+    List<Map<String, Object>> queryMapList(@NotNullTag final IColumnEnum columnEnum, @NotNullTag final Object columnValue);
+
     List<Map<String, Object>> queryMapList(@NotNullTag final Entity condition);
+
+    int getCount(@NotNullTag final IColumnEnum columnEnum, @NotNullTag final Object columnValue);
 
     int getCount(@NotNullTag final Entity condition);
 
