@@ -1,10 +1,12 @@
 /target
+/.gradle
 /.idea
 /.settings
 /.myeclipse
 /out
 /log
 /target/*
+/.*
 
 *.iml
 *.ipr
