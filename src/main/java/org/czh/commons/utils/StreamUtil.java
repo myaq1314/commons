@@ -1,9 +1,7 @@
 package org.czh.commons.utils;
 
+import lombok.extern.slf4j.Slf4j;
 import org.czh.commons.validate.EmptyValidate;
-
-import java.io.Closeable;
-import java.io.IOException;
 
 /**
  * @author : czh
@@ -11,27 +9,27 @@ import java.io.IOException;
  * date : 2021-05-20
  * email 916419307@qq.com
  */
+@Slf4j
 public class StreamUtil {
 
-    @SuppressWarnings("DuplicatedCode")
-    public static void close(Closeable... closeables) {
+    public static void close(AutoCloseable... closeables) {
         if (EmptyValidate.isEmpty(closeables)) {
             return;
         }
 
-        for (Closeable closeable : closeables) {
+        for (AutoCloseable closeable : closeables) {
             try {
                 if (closeable != null) {
                     closeable.close();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (Exception e) {
+                log.error("{} 关闭失败:{}", closeable, e.getCause());
             } finally {
                 if (closeable != null) {
                     try {
                         closeable.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    } catch (Exception e) {
+                        log.error("{} 关闭失败:{}", closeable, e.getCause());
                     }
                 }
             }
