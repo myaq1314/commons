@@ -1,9 +1,5 @@
 package org.czh.commons.utils.encrypt.asymmetric;
 
-import org.czh.commons.annotations.tag.NotBlankTag;
-import org.czh.commons.annotations.tag.NotEmptyTag;
-import org.czh.commons.annotations.tag.NotNullTag;
-import org.czh.commons.annotations.tag.ValueTag;
 import org.czh.commons.constant.EncryptConstant;
 import org.czh.commons.utils.encrypt.symmetric.Base64Util;
 import org.czh.commons.validate.EmptyAssert;
@@ -40,7 +36,7 @@ public final class RSAUtil {
     /*
         生成 公钥
      */
-    public static Map<String, String> createKeyStringMap(@ValueTag(min = 1) int keySize) {
+    public static Map<String, String> createKeyStringMap(int keySize) {
         FlagAssert.isTrue(keySize >= 512 && keySize <= 65536 && keySize % 64 == 0);
 
         Map<String, String> keyStringMap = new HashMap<>(2);
@@ -60,12 +56,12 @@ public final class RSAUtil {
     /*
         公钥 实体 与 字符串 互相转换
      */
-    public static String getKeyString(@NotNullTag Key keyBean) {
+    public static String getKeyString(Key keyBean) {
         EmptyAssert.isNotNull(keyBean);
         return keyBytesToString(keyBean.getEncoded());
     }
 
-    public static PrivateKey getPrivateKey(@NotBlankTag String privateKeyString) {
+    public static PrivateKey getPrivateKey(String privateKeyString) {
         try {
             KeyFactory keyFactory = KeyFactory.getInstance(EncryptConstant.getRSA());
             PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(keyStringToBytes(privateKeyString));
@@ -77,7 +73,7 @@ public final class RSAUtil {
         }
     }
 
-    public static PublicKey getPublicKey(@NotBlankTag String publicKeyString) {
+    public static PublicKey getPublicKey(String publicKeyString) {
         try {
             KeyFactory keyFactory = KeyFactory.getInstance(EncryptConstant.getRSA());
             X509EncodedKeySpec x509KeySpec = new X509EncodedKeySpec(keyStringToBytes(publicKeyString));
@@ -93,19 +89,19 @@ public final class RSAUtil {
         加密
      */
 
-    public static String encodeToString(@NotBlankTag String srcString, @NotNullTag Key keyBean) {
+    public static String encodeToString(String srcString, Key keyBean) {
         return encodeToString(srcStringToBytes(srcString), keyBean);
     }
 
-    public static String encodeToString(@NotEmptyTag byte[] srcBytes, @NotNullTag Key keyBean) {
+    public static String encodeToString(byte[] srcBytes, Key keyBean) {
         return dstBytesToString(encode(srcBytes, keyBean));
     }
 
-    public static byte[] encode(@NotBlankTag String srcString, @NotNullTag Key keyBean) {
+    public static byte[] encode(String srcString, Key keyBean) {
         return encode(srcStringToBytes(srcString), keyBean);
     }
 
-    public static byte[] encode(@NotEmptyTag byte[] srcBytes, @NotNullTag Key keyBean) {
+    public static byte[] encode(byte[] srcBytes, Key keyBean) {
         EmptyAssert.isNotEmpty(srcBytes);
         EmptyAssert.isNotNull(keyBean);
 
@@ -122,19 +118,19 @@ public final class RSAUtil {
         解密
      */
 
-    public static String decodeToString(@NotBlankTag String dstString, @NotNullTag Key keyBean) {
+    public static String decodeToString(String dstString, Key keyBean) {
         return decodeToString(dstStringToBytes(dstString), keyBean);
     }
 
-    public static String decodeToString(@NotEmptyTag byte[] dstBytes, @NotNullTag Key keyBean) {
+    public static String decodeToString(byte[] dstBytes, Key keyBean) {
         return srcBytesToString(decode(dstBytes, keyBean));
     }
 
-    public static byte[] decode(@NotBlankTag String dstString, @NotNullTag Key keyBean) {
+    public static byte[] decode(String dstString, Key keyBean) {
         return decode(dstStringToBytes(dstString), keyBean);
     }
 
-    public static byte[] decode(@NotEmptyTag byte[] dstBytes, @NotNullTag Key keyBean) {
+    public static byte[] decode(byte[] dstBytes, Key keyBean) {
         EmptyAssert.isNotEmpty(dstBytes);
         EmptyAssert.isNotNull(keyBean);
 
@@ -150,30 +146,30 @@ public final class RSAUtil {
     /*
         校验
      */
-    public static boolean verify(@NotBlankTag String srcString,
-                                 @NotBlankTag String dstString,
-                                 @NotNullTag Key keyBean) {
+    public static boolean verify(String srcString,
+                                 String dstString,
+                                 Key keyBean) {
         EmptyAssert.isNotBlank(srcString);
         return Objects.equals(srcString, decodeToString(dstString, keyBean));
     }
 
-    public static boolean verify(@NotBlankTag String srcString,
-                                 @NotEmptyTag byte[] dstBytes,
-                                 @NotNullTag Key keyBean) {
+    public static boolean verify(String srcString,
+                                 byte[] dstBytes,
+                                 Key keyBean) {
         EmptyAssert.isNotBlank(srcString);
         return Objects.equals(srcString, decodeToString(dstBytes, keyBean));
     }
 
-    public static boolean verify(@NotEmptyTag byte[] srcBytes,
-                                 @NotBlankTag String dstString,
-                                 @NotNullTag Key keyBean) {
+    public static boolean verify(byte[] srcBytes,
+                                 String dstString,
+                                 Key keyBean) {
         EmptyAssert.isNotEmpty(srcBytes);
         return Arrays.equals(srcBytes, decode(dstString, keyBean));
     }
 
-    public static boolean verify(@NotEmptyTag byte[] srcBytes,
-                                 @NotEmptyTag byte[] dstBytes,
-                                 @NotNullTag Key keyBean) {
+    public static boolean verify(byte[] srcBytes,
+                                 byte[] dstBytes,
+                                 Key keyBean) {
         EmptyAssert.isNotEmpty(srcBytes);
         return Arrays.equals(srcBytes, decode(dstBytes, keyBean));
     }
@@ -181,32 +177,32 @@ public final class RSAUtil {
     /*
         字节数组 与 字符串 互转
      */
-    private static byte[] keyStringToBytes(@NotBlankTag String keyString) {
+    private static byte[] keyStringToBytes(String keyString) {
         EmptyAssert.isNotBlank(keyString);
         return Base64Util.decode(keyString);
     }
 
-    private static String keyBytesToString(@NotEmptyTag byte[] keyBytes) {
+    private static String keyBytesToString(byte[] keyBytes) {
         EmptyAssert.isNotEmpty(keyBytes);
         return Base64Util.encodeToString(keyBytes);
     }
 
-    private static byte[] srcStringToBytes(@NotBlankTag String srcString) {
+    private static byte[] srcStringToBytes(String srcString) {
         EmptyAssert.isNotBlank(srcString);
         return srcString.getBytes();
     }
 
-    private static String srcBytesToString(@NotEmptyTag byte[] srcBytes) {
+    private static String srcBytesToString(byte[] srcBytes) {
         EmptyAssert.isNotEmpty(srcBytes);
         return new String(srcBytes);
     }
 
-    private static byte[] dstStringToBytes(@NotBlankTag String dstString) {
+    private static byte[] dstStringToBytes(String dstString) {
         EmptyAssert.isNotBlank(dstString);
         return Base64Util.decode(dstString);
     }
 
-    private static String dstBytesToString(@NotEmptyTag byte[] dstBytes) {
+    private static String dstBytesToString(byte[] dstBytes) {
         EmptyAssert.isNotEmpty(dstBytes);
         return Base64Util.encodeToString(dstBytes);
     }

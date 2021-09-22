@@ -1,6 +1,5 @@
 package org.czh.commons.service;
 
-import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.entity.Page;
 import org.czh.commons.entity.eo.BaseViewEO;
 import org.czh.commons.enums.parent.IColumnEnum;
@@ -16,40 +15,40 @@ import java.util.Map;
  */
 public interface IBaseViewService<Entity extends BaseViewEO> extends IBaseEOService<Entity> {
 
-    Entity getOneEntity(@NotNullTag final IColumnEnum columnEnum, @NotNullTag final Object columnValue);
+    Entity getOneEntity(final IColumnEnum columnEnum, final Object columnValue);
 
-    Entity getOneEntity(@NotNullTag final Entity condition);
+    Entity getOneEntity(final Entity condition);
 
-    Map<String, Object> getOneMap(@NotNullTag final IColumnEnum columnEnum, @NotNullTag final Object columnValue);
+    Map<String, Object> getOneMap(final IColumnEnum columnEnum, final Object columnValue);
 
-    Map<String, Object> getOneMap(@NotNullTag final Entity condition);
+    Map<String, Object> getOneMap(final Entity condition);
 
-    Entity getOnlyEntity(@NotNullTag final IColumnEnum columnEnum, @NotNullTag final Object columnValue);
+    Entity getOnlyEntity(final IColumnEnum columnEnum, final Object columnValue);
 
-    Entity getOnlyEntity(@NotNullTag final Entity condition);
+    Entity getOnlyEntity(final Entity condition);
 
-    Map<String, Object> getOnlyMap(@NotNullTag final IColumnEnum columnEnum, @NotNullTag final Object columnValue);
+    Map<String, Object> getOnlyMap(final IColumnEnum columnEnum, final Object columnValue);
 
-    Map<String, Object> getOnlyMap(@NotNullTag final Entity condition);
+    Map<String, Object> getOnlyMap(final Entity condition);
 
-    Page<Entity> queryEntityPage(@NotNullTag final Entity condition,
-                                 @NotNullTag final Integer currentPage,
-                                 @NotNullTag final Integer pageSize);
+    Page<Entity> queryEntityPage(final Entity condition,
+                                 final Integer currentPage,
+                                 final Integer pageSize);
 
-    Page<Map<String, Object>> queryMapPage(@NotNullTag final Entity condition,
-                                           @NotNullTag final Integer currentPage,
-                                           @NotNullTag final Integer pageSize);
+    Page<Map<String, Object>> queryMapPage(final Entity condition,
+                                           final Integer currentPage,
+                                           final Integer pageSize);
 
-    List<Entity> queryEntityList(@NotNullTag final IColumnEnum columnEnum, @NotNullTag final Object columnValue);
+    List<Entity> queryEntityList(final IColumnEnum columnEnum, final Object columnValue);
 
-    List<Entity> queryEntityList(@NotNullTag final Entity condition);
+    List<Entity> queryEntityList(final Entity condition);
 
-    List<Map<String, Object>> queryMapList(@NotNullTag final IColumnEnum columnEnum, @NotNullTag final Object columnValue);
+    List<Map<String, Object>> queryMapList(final IColumnEnum columnEnum, final Object columnValue);
 
-    List<Map<String, Object>> queryMapList(@NotNullTag final Entity condition);
+    List<Map<String, Object>> queryMapList(final Entity condition);
 
-    int getCount(@NotNullTag final IColumnEnum columnEnum, @NotNullTag final Object columnValue);
+    int getCount(final IColumnEnum columnEnum, final Object columnValue);
 
-    int getCount(@NotNullTag final Entity condition);
+    int getCount(final Entity condition);
 
 }

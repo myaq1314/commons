@@ -2,9 +2,6 @@ package org.czh.commons.utils.encrypt.symmetric;
 
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
-import org.czh.commons.annotations.tag.NotBlankTag;
-import org.czh.commons.annotations.tag.NotEmptyTag;
-import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.constant.EncryptConstant;
 import org.czh.commons.validate.EmptyAssert;
 
@@ -32,7 +29,7 @@ public final class AESUtil {
         return getKey(getSecretKey());
     }
 
-    public static String getKey(@NotNullTag SecretKey secretKey) {
+    public static String getKey(SecretKey secretKey) {
         EmptyAssert.isNotNull(secretKey);
         return keyArrayToString(secretKey.getEncoded());
     }
@@ -46,7 +43,7 @@ public final class AESUtil {
         }
     }
 
-    public static SecretKey getSecretKey(@NotBlankTag String key) {
+    public static SecretKey getSecretKey(String key) {
         byte[] keyBytes = keyStringToArray(key);
         return new SecretKeySpec(keyBytes, EncryptConstant.getAES());
     }
@@ -55,19 +52,19 @@ public final class AESUtil {
         加密
      */
 
-    public static String encodeToString(@NotBlankTag String src, @NotNullTag SecretKey secretKey) {
+    public static String encodeToString(String src, SecretKey secretKey) {
         return dstArrayToString(encode(src, secretKey));
     }
 
-    public static String encodeToString(@NotEmptyTag byte[] srcBytes, @NotNullTag SecretKey secretKey) {
+    public static String encodeToString(byte[] srcBytes, SecretKey secretKey) {
         return dstArrayToString(encode(srcBytes, secretKey));
     }
 
-    public static byte[] encode(@NotBlankTag String src, @NotNullTag SecretKey secretKey) {
+    public static byte[] encode(String src, SecretKey secretKey) {
         return encode(srcStringToArray(src), secretKey);
     }
 
-    public static byte[] encode(@NotEmptyTag byte[] srcBytes, @NotNullTag SecretKey secretKey) {
+    public static byte[] encode(byte[] srcBytes, SecretKey secretKey) {
         EmptyAssert.isNotEmpty(srcBytes);
         EmptyAssert.isNotNull(secretKey);
 
@@ -84,19 +81,19 @@ public final class AESUtil {
         解密
      */
 
-    public static String decodeToString(@NotBlankTag String dst, @NotNullTag SecretKey secretKey) {
+    public static String decodeToString(String dst, SecretKey secretKey) {
         return decodeToString(dstStringToArray(dst), secretKey);
     }
 
-    public static String decodeToString(@NotEmptyTag byte[] dstBytes, @NotNullTag SecretKey secretKey) {
+    public static String decodeToString(byte[] dstBytes, SecretKey secretKey) {
         return srcArrayToString(decode(dstBytes, secretKey));
     }
 
-    public static byte[] decode(@NotBlankTag String dst, @NotNullTag SecretKey secretKey) {
+    public static byte[] decode(String dst, SecretKey secretKey) {
         return decode(dstStringToArray(dst), secretKey);
     }
 
-    public static byte[] decode(@NotEmptyTag byte[] dstBytes, @NotNullTag SecretKey secretKey) {
+    public static byte[] decode(byte[] dstBytes, SecretKey secretKey) {
         EmptyAssert.isNotEmpty(dstBytes);
         EmptyAssert.isNotNull(secretKey);
 
@@ -112,30 +109,30 @@ public final class AESUtil {
     /*
         校验
      */
-    public static boolean verify(@NotBlankTag String src,
-                                 @NotBlankTag String dst,
-                                 @NotNullTag SecretKey secretKey) {
+    public static boolean verify(String src,
+                                 String dst,
+                                 SecretKey secretKey) {
         EmptyAssert.isNotBlank(dst);
         return Objects.equals(encodeToString(src, secretKey), dst);
     }
 
-    public static boolean verify(@NotBlankTag String src,
-                                 @NotEmptyTag byte[] dstBytes,
-                                 @NotNullTag SecretKey secretKey) {
+    public static boolean verify(String src,
+                                 byte[] dstBytes,
+                                 SecretKey secretKey) {
         EmptyAssert.isNotEmpty(dstBytes);
         return Arrays.equals(encode(src, secretKey), dstBytes);
     }
 
-    public static boolean verify(@NotEmptyTag byte[] srcBytes,
-                                 @NotBlankTag String dst,
-                                 @NotNullTag SecretKey secretKey) {
+    public static boolean verify(byte[] srcBytes,
+                                 String dst,
+                                 SecretKey secretKey) {
         EmptyAssert.isNotBlank(dst);
         return Objects.equals(encodeToString(srcBytes, secretKey), dst);
     }
 
-    public static boolean verify(@NotEmptyTag byte[] srcBytes,
-                                 @NotEmptyTag byte[] dstBytes,
-                                 @NotNullTag SecretKey secretKey) {
+    public static boolean verify(byte[] srcBytes,
+                                 byte[] dstBytes,
+                                 SecretKey secretKey) {
         EmptyAssert.isNotEmpty(dstBytes);
         return Arrays.equals(encode(srcBytes, secretKey), dstBytes);
     }
@@ -143,27 +140,27 @@ public final class AESUtil {
     /*
         字节数组 与 字符串 互转
      */
-    private static byte[] keyStringToArray(@NotBlankTag String key) {
+    private static byte[] keyStringToArray(String key) {
         EmptyAssert.isNotBlank(key);
         return Base64Util.decode(key);
     }
 
-    private static String keyArrayToString(@NotEmptyTag byte[] keyBytes) {
+    private static String keyArrayToString(byte[] keyBytes) {
         EmptyAssert.isNotEmpty(keyBytes);
         return Base64Util.encodeToString(keyBytes);
     }
 
-    private static byte[] srcStringToArray(@NotBlankTag String src) {
+    private static byte[] srcStringToArray(String src) {
         EmptyAssert.isNotBlank(src);
         return src.getBytes();
     }
 
-    private static String srcArrayToString(@NotEmptyTag byte[] srcBytes) {
+    private static String srcArrayToString(byte[] srcBytes) {
         EmptyAssert.isNotEmpty(srcBytes);
         return new String(srcBytes);
     }
 
-    private static byte[] dstStringToArray(@NotBlankTag String dst) {
+    private static byte[] dstStringToArray(String dst) {
         EmptyAssert.isNotBlank(dst);
         try {
             return Hex.decodeHex(dst);
@@ -172,7 +169,7 @@ public final class AESUtil {
         }
     }
 
-    private static String dstArrayToString(@NotEmptyTag byte[] dstBytes) {
+    private static String dstArrayToString(byte[] dstBytes) {
         EmptyAssert.isNotEmpty(dstBytes);
         return Hex.encodeHexString(dstBytes);
     }

@@ -1,7 +1,5 @@
 package org.czh.commons.validate;
 
-import org.czh.commons.annotations.tag.NotBlankTag;
-
 import java.math.BigDecimal;
 
 /**
@@ -15,7 +13,7 @@ public final class NumValidate {
     /**
      * 判断是否是纯数字
      */
-    public static boolean isPureNumber(@NotBlankTag final String text) {
+    public static boolean isPureNumber(final String text) {
         EmptyAssert.isNotBlank(text);
         return text.matches("^[0-9]*$");
     }

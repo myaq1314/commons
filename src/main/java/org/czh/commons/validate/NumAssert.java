@@ -1,7 +1,5 @@
 package org.czh.commons.validate;
 
-import org.czh.commons.annotations.tag.NotBlankTag;
-
 import java.math.BigDecimal;
 
 /**
@@ -13,11 +11,11 @@ import java.math.BigDecimal;
 @SuppressWarnings("unused")
 public final class NumAssert {
 
-    public static void isPureNumber(@NotBlankTag final String text) {
+    public static void isPureNumber(final String text) {
         isPureNumber(text, "[Assertion failed] - The text must be pure numbers");
     }
 
-    public static void isPureNumber(@NotBlankTag final String text, final String message) {
+    public static void isPureNumber(final String text, final String message) {
         if (!NumValidate.isPureNumber(text)) {
             throw new IllegalStateException(message);
         }

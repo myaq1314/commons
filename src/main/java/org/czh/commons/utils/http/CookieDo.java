@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.czh.commons.annotations.tag.NotBlankTag;
 import org.czh.commons.entity.domain.IBaseDO;
 import org.czh.commons.utils.DateUtil;
 import org.czh.commons.utils.date.CalendarUtil;
@@ -43,7 +42,7 @@ public class CookieDo implements IBaseDO {
 //    private String sameParty;
 //    private String priority;
 
-    public CookieDo(@NotBlankTag String cookieText, @NotBlankTag String domain) {
+    public CookieDo(String cookieText, String domain) {
         EmptyAssert.isNotBlank(cookieText);
         this.cookieText = cookieText;
 

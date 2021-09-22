@@ -1,7 +1,5 @@
 package org.czh.commons.utils.encrypt.symmetric;
 
-import org.czh.commons.annotations.tag.NotBlankTag;
-import org.czh.commons.annotations.tag.NotEmptyTag;
 import org.czh.commons.validate.EmptyAssert;
 
 import java.util.Arrays;
@@ -21,19 +19,19 @@ public final class Base64Util {
         加密
      */
 
-    public static String encodeToString(@NotBlankTag String src) {
+    public static String encodeToString(String src) {
         return encodeToString(srcStringToArray(src));
     }
 
-    public static String encodeToString(@NotEmptyTag byte[] srcBytes) {
+    public static String encodeToString(byte[] srcBytes) {
         return dstArrayToString(encode(srcBytes));
     }
 
-    public static byte[] encode(@NotBlankTag String src) {
+    public static byte[] encode(String src) {
         return encode(srcStringToArray(src));
     }
 
-    public static byte[] encode(@NotEmptyTag byte[] srcBytes) {
+    public static byte[] encode(byte[] srcBytes) {
         EmptyAssert.isNotEmpty(srcBytes);
         return Base64.getEncoder().encode(srcBytes);
     }
@@ -42,19 +40,19 @@ public final class Base64Util {
         解密
      */
 
-    public static String decodeToString(@NotBlankTag String dst) {
+    public static String decodeToString(String dst) {
         return decodeToString(dstStringToArray(dst));
     }
 
-    public static String decodeToString(@NotEmptyTag byte[] dstBytes) {
+    public static String decodeToString(byte[] dstBytes) {
         return srcArrayToString(decode(dstBytes));
     }
 
-    public static byte[] decode(@NotBlankTag String dst) {
+    public static byte[] decode(String dst) {
         return decode(dstStringToArray(dst));
     }
 
-    public static byte[] decode(@NotEmptyTag byte[] dstBytes) {
+    public static byte[] decode(byte[] dstBytes) {
         EmptyAssert.isNotEmpty(dstBytes);
         return Base64.getDecoder().decode(dstBytes);
     }
@@ -63,22 +61,22 @@ public final class Base64Util {
         校验
      */
 
-    public static boolean verify(@NotBlankTag String src, @NotBlankTag String dst) {
+    public static boolean verify(String src, String dst) {
         EmptyAssert.isNotBlank(dst);
         return Objects.equals(encodeToString(src), dst);
     }
 
-    public static boolean verify(@NotBlankTag String src, @NotEmptyTag byte[] dstBytes) {
+    public static boolean verify(String src, byte[] dstBytes) {
         EmptyAssert.isNotEmpty(dstBytes);
         return Arrays.equals(encode(src), dstBytes);
     }
 
-    public static boolean verify(@NotEmptyTag byte[] srcBytes, @NotBlankTag String dst) {
+    public static boolean verify(byte[] srcBytes, String dst) {
         EmptyAssert.isNotBlank(dst);
         return Objects.equals(encodeToString(srcBytes), dst);
     }
 
-    public static boolean verify(@NotEmptyTag byte[] srcBytes, @NotEmptyTag byte[] dstBytes) {
+    public static boolean verify(byte[] srcBytes, byte[] dstBytes) {
         EmptyAssert.allNotEmpty(srcBytes, dstBytes);
         return Arrays.equals(srcBytes, dstBytes);
     }
@@ -86,22 +84,22 @@ public final class Base64Util {
     /*
         字节数组 与 字符串 互转
      */
-    private static String srcArrayToString(@NotEmptyTag byte[] srcBytes) {
+    private static String srcArrayToString(byte[] srcBytes) {
         EmptyAssert.isNotEmpty(srcBytes);
         return new String(srcBytes);
     }
 
-    private static byte[] srcStringToArray(@NotBlankTag String content) {
+    private static byte[] srcStringToArray(String content) {
         EmptyAssert.isNotBlank(content);
         return content.getBytes();
     }
 
-    private static String dstArrayToString(@NotEmptyTag byte[] dstBytes) {
+    private static String dstArrayToString(byte[] dstBytes) {
         EmptyAssert.isNotEmpty(dstBytes);
         return new String(dstBytes);
     }
 
-    private static byte[] dstStringToArray(@NotBlankTag String dst) {
+    private static byte[] dstStringToArray(String dst) {
         EmptyAssert.isNotBlank(dst);
         return dst.getBytes();
     }

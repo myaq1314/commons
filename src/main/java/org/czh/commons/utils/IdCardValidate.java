@@ -1,9 +1,6 @@
 package org.czh.commons.utils;
 
 import lombok.extern.slf4j.Slf4j;
-import org.czh.commons.annotations.tag.LengthTag;
-import org.czh.commons.annotations.tag.NotBlankTag;
-import org.czh.commons.annotations.tag.NotEmptyTag;
 import org.czh.commons.constant.DateConstant;
 import org.czh.commons.utils.date.AgeUtil;
 import org.czh.commons.utils.date.CalendarUtil;
@@ -72,7 +69,7 @@ public final class IdCardValidate {
         return WEIGHTING_ARRAY;
     }
 
-    public static String format(@NotBlankTag String idCard) {
+    public static String format(String idCard) {
         EmptyAssert.isNotBlank(idCard);
         return idCard.trim()
                 .replaceAll(" ", "")
@@ -80,7 +77,7 @@ public final class IdCardValidate {
                 .replaceAll("\t", "");
     }
 
-    public static int getYear(@NotBlankTag String idCard) {
+    public static int getYear(String idCard) {
         idCard = format(idCard);
         FlagAssert.isTrue(isMainlandIdCard(idCard), "目前只支持15位和18位的大陆居民身份证");
 
@@ -94,7 +91,7 @@ public final class IdCardValidate {
         return year;
     }
 
-    public static String getBirthday(@NotBlankTag String idCard) {
+    public static String getBirthday(String idCard) {
         idCard = format(idCard);
         FlagAssert.isTrue(isMainlandIdCard(idCard), "目前只支持15位和18位的大陆居民身份证");
 
@@ -106,11 +103,11 @@ public final class IdCardValidate {
         return idCard.substring(6, 14);
     }
 
-    public static int getAge(@NotBlankTag String idCard) {
+    public static int getAge(String idCard) {
         return AgeUtil.getCurrentAge(getBirthday(idCard));
     }
 
-    public static String getGender(@NotBlankTag String idCard) {
+    public static String getGender(String idCard) {
         idCard = format(idCard);
         FlagAssert.isTrue(isMainlandIdCard(idCard), "目前只支持15位和18位的大陆居民身份证");
 
@@ -127,7 +124,7 @@ public final class IdCardValidate {
         }
     }
 
-    public static boolean isMainlandIdCard(@NotBlankTag String idCard) {
+    public static boolean isMainlandIdCard(String idCard) {
         idCard = format(idCard);
         FlagAssert.isTrue(idCard.length() == 15 || idCard.length() == 18);
 
@@ -138,7 +135,7 @@ public final class IdCardValidate {
     }
 
     // 500222 860214 141
-    public static boolean is15IdCard(@NotBlankTag String idCard) {
+    public static boolean is15IdCard(String idCard) {
         idCard = format(idCard);
         FlagAssert.isTrue(idCard.length() == 15);
 
@@ -165,7 +162,7 @@ public final class IdCardValidate {
     }
 
     // 500222 19860214 1411
-    public static boolean is18IdCard(@NotBlankTag String idCard) {
+    public static boolean is18IdCard(String idCard) {
         idCard = format(idCard);
         FlagAssert.isTrue(idCard.length() == 18);
 
@@ -195,7 +192,7 @@ public final class IdCardValidate {
     // 特殊的大陆15位身份证转换为18位身份证
     // 百岁老人15位身份证转变为18位身份证
     // 类似于 1902年出生的老人，身份证上的出生日期为020101，需要补充为19020101
-    public static String convertCentenarian15To18(@NotBlankTag @LengthTag(min = 15, max = 15) String idCard) {
+    public static String convertCentenarian15To18(String idCard) {
         EmptyAssert.isNotBlank(idCard);
         idCard = format(idCard);
         FlagAssert.isTrue(idCard.length() == 15, "15位身份证号码长度不符合要求");
@@ -208,7 +205,7 @@ public final class IdCardValidate {
     }
 
     // 大陆15位身份证转换为18位身份证
-    public static String convert15To18(@NotBlankTag @LengthTag(min = 15, max = 15) String idCard) {
+    public static String convert15To18(String idCard) {
         EmptyAssert.isNotBlank(idCard);
         idCard = format(idCard);
         FlagAssert.isTrue(idCard.length() == 15, "15位身份证号码长度不符合要求");
@@ -224,7 +221,7 @@ public final class IdCardValidate {
         return idCard17 + getCheckCode(idCard17.toCharArray());
     }
 
-    private static String getCheckCode(@NotEmptyTag @LengthTag(min = 17, max = 17) char[] idCard17Chars) {
+    private static String getCheckCode(char[] idCard17Chars) {
         EmptyAssert.isNotEmpty(idCard17Chars);
         FlagAssert.isTrue(idCard17Chars.length == 17);
 
@@ -252,7 +249,7 @@ public final class IdCardValidate {
         return ZODIAC_ARRAY;
     }
 
-    public static String getZodiacByMainland(@NotBlankTag @LengthTag(min = 15, max = 18) String idCard) {
+    public static String getZodiacByMainland(String idCard) {
         int year = getYear(idCard);
         return getZodiacArray()[(year - 3) % 12];
     }
@@ -281,22 +278,22 @@ public final class IdCardValidate {
         return TERRESTRIAL_ARRAY;
     }
 
-    public static String getHeavenly(@NotBlankTag String idCard) {
+    public static String getHeavenly(String idCard) {
         int year = getYear(idCard);
         return getHeavenlyArray()[(year - 3) % 10];
     }
 
-    public static String getTerrestrial(@NotBlankTag String idCard) {
+    public static String getTerrestrial(String idCard) {
         int year = getYear(idCard);
         return getTerrestrialArray()[(year - 3) % 12];
     }
 
-    public static String getChineseEraById(@NotBlankTag String idCard) {
+    public static String getChineseEraById(String idCard) {
         int year = getYear(idCard);
         return getHeavenlyArray()[(year - 3) % 10] + getTerrestrialArray()[(year - 3) % 12];
     }
 
-    public static String getConstellation(@NotBlankTag String idCard) {
+    public static String getConstellation(String idCard) {
         String birthdayText = getBirthday(idCard);
         Date birthdayDate = DateUtil.parseToDate(birthdayText, DateConstant.DATE_SIMPLE());
         Calendar calendar = CalendarUtil.getCalendar(birthdayDate);

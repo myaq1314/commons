@@ -3,8 +3,6 @@ package org.czh.commons.config.filter;
 import com.alibaba.fastjson.JSONObject;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import org.czh.commons.annotations.tag.NotBlankTag;
-import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.validate.EmptyAssert;
 import org.czh.commons.validate.EmptyValidate;
 
@@ -63,24 +61,24 @@ public class RequestExecutionTimeFilter implements Filter {
         skipMap.clear();
     }
 
-    public static void removeFilter(@NotBlankTag String uri) {
+    public static void removeFilter(String uri) {
         EmptyAssert.isNotBlank(uri);
         filterMap.remove(uri);
     }
 
-    public static void removeSkip(@NotBlankTag String uri) {
+    public static void removeSkip(String uri) {
         EmptyAssert.isNotBlank(uri);
         skipMap.remove(uri);
     }
 
-    public static void addFilter(@NotBlankTag String uri, @NotNullTag BiPredicate<String, String> filter) {
+    public static void addFilter(String uri, BiPredicate<String, String> filter) {
         EmptyAssert.isNotBlank(uri);
         EmptyAssert.isNotNull(filter);
 
         filterMap.put(uri, filter);
     }
 
-    public static void addSkip(@NotBlankTag String uri, @NotNullTag BiPredicate<String, String> skip) {
+    public static void addSkip(String uri, BiPredicate<String, String> skip) {
         EmptyAssert.isNotBlank(uri);
         EmptyAssert.isNotNull(skip);
 

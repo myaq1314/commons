@@ -6,7 +6,6 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 import org.apache.http.entity.StringEntity;
-import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.validate.EmptyAssert;
 import org.czh.commons.validate.EmptyValidate;
 
@@ -21,7 +20,7 @@ import java.util.List;
  */
 public final class RequestParamUtil {
 
-    public static <RequestParam> void setJsonParam(@NotNullTag final HttpEntityEnclosingRequestBase enclosingRequest,
+    public static <RequestParam> void setJsonParam(final HttpEntityEnclosingRequestBase enclosingRequest,
                                                    final RequestParam requestParam) {
         EmptyAssert.isNotNull(enclosingRequest);
 
@@ -38,7 +37,7 @@ public final class RequestParamUtil {
         enclosingRequest.setEntity(entity);
     }
 
-    public static <RequestParam> void setUrlencodedParam(@NotNullTag final HttpEntityEnclosingRequestBase enclosingRequest,
+    public static <RequestParam> void setUrlencodedParam(final HttpEntityEnclosingRequestBase enclosingRequest,
                                                          final RequestParam requestParam) {
         EmptyAssert.isNotNull(enclosingRequest);
         HeaderParamUtil.addHeader(enclosingRequest, "Content-Type", "application/x-www-form-urlencoded;charset=utf-8");

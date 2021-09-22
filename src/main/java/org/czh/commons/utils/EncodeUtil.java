@@ -1,7 +1,5 @@
 package org.czh.commons.utils;
 
-import org.czh.commons.annotations.tag.NotBlankTag;
-import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.constant.EncodeConstant;
 import org.czh.commons.validate.EmptyAssert;
 import org.czh.commons.validate.FileAssert;
@@ -21,12 +19,12 @@ import java.util.stream.IntStream;
  */
 public final class EncodeUtil {
 
-    public static String getFileEncode(@NotBlankTag String filePath) {
+    public static String getFileEncode(String filePath) {
         EmptyAssert.isNotBlank(filePath);
         return getFileEncode(new File(filePath));
     }
 
-    public static String getFileEncode(@NotNullTag File file) {
+    public static String getFileEncode(File file) {
         FileAssert.isReadFile(file);
         BufferedInputStream bis = null;
         try {

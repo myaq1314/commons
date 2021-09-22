@@ -1,7 +1,5 @@
 package org.czh.commons.utils.http;
 
-import org.czh.commons.annotations.tag.NotBlankTag;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,16 +32,16 @@ public final class GetUtil {
         HttpPoolUtil.shutdown();
     }
 
-    public static String doGetText(@NotBlankTag final String url) {
+    public static String doGetText(final String url) {
         return doGetText(url, null);
     }
 
-    public static <UrlParam> String doGetText(@NotBlankTag final String url,
+    public static <UrlParam> String doGetText(final String url,
                                               final UrlParam urlParam) {
         return doGetText(url, urlParam, null);
     }
 
-    public static <UrlParam, HeaderParam> String doGetText(@NotBlankTag final String url,
+    public static <UrlParam, HeaderParam> String doGetText(final String url,
                                                            final UrlParam urlParam,
                                                            final HeaderParam headerParam) {
         return HttpClientUtil.doGetText(url, urlParam, headerParam);

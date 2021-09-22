@@ -1,6 +1,5 @@
 package org.czh.commons.utils;
 
-import org.czh.commons.annotations.tag.NotBlankTag;
 import org.czh.commons.validate.EmptyAssert;
 import org.czh.commons.validate.EmptyValidate;
 import org.czh.commons.validate.EncodeAssert;
@@ -49,7 +48,7 @@ public final class PropertyUtil {
     /**
      * 从上下文中获取参数value
      */
-    public static String getProperty(@NotBlankTag String propertiesKey) {
+    public static String getProperty(String propertiesKey) {
         EmptyAssert.isNotBlank(propertiesKey);
         return propertyMap.get(propertiesKey);
     }

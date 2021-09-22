@@ -1,7 +1,5 @@
 package org.czh.commons.utils.copy;
 
-import org.czh.commons.annotations.tag.NotBlankTag;
-import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.utils.ConstructorUtil;
 import org.czh.commons.utils.FieldUtil;
 import org.czh.commons.utils.convertor.CollectionConvertor;
@@ -33,8 +31,8 @@ public final class CopyUtil {
 
     private static final Map<String, List<FieldMapping>> fieldMappingListMap = new HashMap<>();
 
-    public static <Source, Target> Target copyFrom(@NotNullTag final Source source,
-                                                   @NotNullTag final Class<Target> targetClazz) {
+    public static <Source, Target> Target copyFrom(final Source source,
+                                                   final Class<Target> targetClazz) {
         EmptyAssert.isNotNull(targetClazz);
 
         Target target = ConstructorUtil.newInstance(targetClazz);
@@ -42,12 +40,12 @@ public final class CopyUtil {
         return target;
     }
 
-    public static <Source, Target> void copyFrom(@NotNullTag final Source source, @NotNullTag final Target target) {
+    public static <Source, Target> void copyFrom(final Source source, final Target target) {
         copy(source, target, getFromType());
     }
 
-    public static <Source, Target> Target copyTo(@NotNullTag final Source source,
-                                                 @NotNullTag final Class<Target> targetClazz) {
+    public static <Source, Target> Target copyTo(final Source source,
+                                                 final Class<Target> targetClazz) {
         EmptyAssert.isNotNull(targetClazz);
 
         Target target = ConstructorUtil.newInstance(targetClazz);
@@ -55,16 +53,16 @@ public final class CopyUtil {
         return target;
     }
 
-    public static <Source, Target> void copyTo(@NotNullTag final Source source, @NotNullTag final Target target) {
+    public static <Source, Target> void copyTo(final Source source, final Target target) {
         copy(source, target, getToType());
     }
 
     // type:    TO/FROM
     // TO:      CopyUtil.getToType()
     // FROM:    CopyUtil.getFromType()
-    private static <Source, Target> void copy(@NotNullTag final Source source,
-                                              @NotNullTag final Target target,
-                                              @NotBlankTag String type) {
+    private static <Source, Target> void copy(final Source source,
+                                              final Target target,
+                                              String type) {
         EmptyAssert.allNotNull(source, target);
         EmptyAssert.isNotBlank(type);
 
@@ -108,9 +106,9 @@ public final class CopyUtil {
     // type:    TO/FROM
     // TO:      CopyUtil.getToType()
     // FROM:    CopyUtil.getFromType()
-    private static List<FieldMapping> getFieldMappingList(@NotNullTag final Class<?> sourceClazz,
-                                                          @NotNullTag final Class<?> targetClazz,
-                                                          @NotBlankTag final String type) {
+    private static List<FieldMapping> getFieldMappingList(final Class<?> sourceClazz,
+                                                          final Class<?> targetClazz,
+                                                          final String type) {
         EmptyAssert.allNotNull(sourceClazz, targetClazz);
         EmptyAssert.isNotBlank(type);
 
@@ -133,8 +131,8 @@ public final class CopyUtil {
         return fieldMappingList;
     }
 
-    private static void createFromFieldMapping(@NotNullTag final Class<?> sourceClazz,
-                                               @NotNullTag final Class<?> targetClazz) {
+    private static void createFromFieldMapping(final Class<?> sourceClazz,
+                                               final Class<?> targetClazz) {
         EmptyAssert.allNotNull(sourceClazz, targetClazz);
 
         List<Field> sourceFieldList = FieldUtil.queryFieldList(sourceClazz);
@@ -195,8 +193,8 @@ public final class CopyUtil {
 
     }
 
-    private static void createToFieldMapping(@NotNullTag final Class<?> sourceClazz,
-                                             @NotNullTag final Class<?> targetClazz) {
+    private static void createToFieldMapping(final Class<?> sourceClazz,
+                                             final Class<?> targetClazz) {
         EmptyAssert.allNotNull(sourceClazz, targetClazz);
 
         List<Field> sourceFieldList = FieldUtil.queryFieldList(sourceClazz);
@@ -264,9 +262,9 @@ public final class CopyUtil {
         return "FROM";
     }
 
-    private static String createFieldMappingListMapKey(@NotNullTag final Class<?> sourceClazz,
-                                                       @NotNullTag final Class<?> targetClazz,
-                                                       @NotBlankTag final String type) {
+    private static String createFieldMappingListMapKey(final Class<?> sourceClazz,
+                                                       final Class<?> targetClazz,
+                                                       final String type) {
         EmptyAssert.allNotNull(sourceClazz, targetClazz);
         EmptyAssert.isNotBlank(type);
         return String.format("%s:%s:%s", sourceClazz.getName(), type, targetClazz.getName());

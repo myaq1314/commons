@@ -1,8 +1,5 @@
 package org.czh.commons.utils;
 
-import org.czh.commons.annotations.tag.ChildValueTag;
-import org.czh.commons.annotations.tag.IntervalTag;
-import org.czh.commons.annotations.tag.NotEmptyTag;
 import org.czh.commons.validate.EmptyAssert;
 import org.czh.commons.validate.FlagAssert;
 import org.czh.commons.validate.NumAssert;
@@ -44,7 +41,7 @@ public final class RandomUtil {
      * @param lengths   每部分长度，子元素允许范围大于等于1
      * @return 随机数 十六进制
      */
-    public static String getHexRandomUUID(String separator, @NotEmptyTag @ChildValueTag(min = 1) int... lengths) {
+    public static String getHexRandomUUID(String separator, int... lengths) {
         EmptyAssert.isNotEmpty(lengths);
 
         separator = separator == null ? "" : separator;
@@ -98,7 +95,7 @@ public final class RandomUtil {
      * @param end   结束范围 默认包含
      * @return 十六进制随机数
      */
-    public static String getHexRandom(@IntervalTag(match = "end", min = 1) int start, int end) {
+    public static String getHexRandom(int start, int end) {
         return getHexRandom(start, end, true);
     }
 
@@ -112,7 +109,7 @@ public final class RandomUtil {
      * @param end   结束范围 指定包含
      * @return 十六进制随机数
      */
-    public static String getHexRandom(@IntervalTag(match = "end", min = 1) int start, int end, boolean containEnd) {
+    public static String getHexRandom(int start, int end, boolean containEnd) {
         return Integer.toHexString(getRandom(start, end, containEnd));
     }
 
@@ -126,7 +123,7 @@ public final class RandomUtil {
      * @param end   结束范围 默认包含
      * @return 整数
      */
-    public static int getRandom(@IntervalTag(match = "end", min = 1) int start, int end) {
+    public static int getRandom(int start, int end) {
         return getRandom(start, end, true);
     }
 
@@ -140,7 +137,7 @@ public final class RandomUtil {
      * @param end   结束范围 指定包含
      * @return 整数
      */
-    public static int getRandom(@IntervalTag(match = "end", min = 1) int start, int end, boolean containEnd) {
+    public static int getRandom(int start, int end, boolean containEnd) {
         FlagAssert.isTrue(end - start >= 1, "间隔不能小于1");
 
         int endScope = containEnd ? 1 : 0;

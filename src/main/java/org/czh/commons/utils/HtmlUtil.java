@@ -1,6 +1,5 @@
 package org.czh.commons.utils;
 
-import org.czh.commons.annotations.tag.NotBlankTag;
 import org.czh.commons.validate.EmptyAssert;
 
 import java.util.regex.Pattern;
@@ -31,7 +30,7 @@ public final class HtmlUtil {
      */
     public static final String HTML_SPECIAL_REGEX = "&[a-zA-Z]{1,10};";
 
-    public static String parse(@NotBlankTag String text) {
+    public static String parse(String text) {
         EmptyAssert.isNotBlank(text);
 
         return text.replaceAll("&", "&amp;")
@@ -43,7 +42,7 @@ public final class HtmlUtil {
                 .replaceAll("\n", "<br />");
     }
 
-    public static String format(@NotBlankTag String html) {
+    public static String format(String html) {
         EmptyAssert.isNotBlank(html);
 
         html = Pattern.compile(HTML_SCRIPT_REGEX, Pattern.CASE_INSENSITIVE).matcher(html).replaceAll("");

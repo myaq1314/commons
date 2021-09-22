@@ -1,7 +1,5 @@
 package org.czh.commons.utils.http;
 
-import org.czh.commons.annotations.tag.NotBlankTag;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,42 +32,42 @@ public final class PostUtil {
         HttpPoolUtil.shutdown();
     }
 
-    public static String doPostJson(@NotBlankTag String url) {
+    public static String doPostJson(String url) {
         return doPostJson(url, null);
     }
 
-    public static <RequestParam> String doPostJson(@NotBlankTag String url, RequestParam requestParam) {
+    public static <RequestParam> String doPostJson(String url, RequestParam requestParam) {
         return doPostJson(url, requestParam, null);
     }
 
-    public static <RequestParam, HeaderParam> String doPostJson(@NotBlankTag String url,
+    public static <RequestParam, HeaderParam> String doPostJson(String url,
                                                                 RequestParam requestParam,
                                                                 HeaderParam headerParam) {
         return doPostJson(url, null, requestParam, headerParam);
     }
 
-    public static <UrlParam, RequestParam, HeaderParam> String doPostJson(@NotBlankTag String url,
+    public static <UrlParam, RequestParam, HeaderParam> String doPostJson(String url,
                                                                           UrlParam urlParam,
                                                                           RequestParam requestParam,
                                                                           HeaderParam headerParam) {
         return HttpClientUtil.doJsonText(EnclosingEnum.POST, url, urlParam, requestParam, headerParam);
     }
 
-    public static String doUrlencodedText(@NotBlankTag String url) {
+    public static String doUrlencodedText(String url) {
         return doUrlencodedText(url, null);
     }
 
-    public static <RequestParam> String doUrlencodedText(@NotBlankTag String url, RequestParam requestParam) {
+    public static <RequestParam> String doUrlencodedText(String url, RequestParam requestParam) {
         return doUrlencodedText(url, requestParam, null);
     }
 
-    public static <RequestParam, HeaderParam> String doUrlencodedText(@NotBlankTag String url,
+    public static <RequestParam, HeaderParam> String doUrlencodedText(String url,
                                                                       RequestParam requestParam,
                                                                       HeaderParam headerParam) {
         return doUrlencodedText(url, null, requestParam, headerParam);
     }
 
-    public static <UrlParam, RequestParam, HeaderParam> String doUrlencodedText(@NotBlankTag String url,
+    public static <UrlParam, RequestParam, HeaderParam> String doUrlencodedText(String url,
                                                                                 UrlParam urlParam,
                                                                                 RequestParam requestParam,
                                                                                 HeaderParam headerParam) {

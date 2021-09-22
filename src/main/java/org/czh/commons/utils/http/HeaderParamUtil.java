@@ -7,8 +7,6 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpRequestBase;
-import org.czh.commons.annotations.tag.NotBlankTag;
-import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.entity.IBaseEntity;
 import org.czh.commons.utils.FieldUtil;
 import org.czh.commons.validate.EmptyAssert;
@@ -86,7 +84,7 @@ public final class HeaderParamUtil {
         }
     }
 
-    public static void addHeaderByEntity(@NotNullTag final HttpRequestBase baseRequest,
+    public static void addHeaderByEntity(final HttpRequestBase baseRequest,
                                          final IBaseEntity baseEntity) {
         EmptyAssert.isNotNull(baseRequest);
         if (EmptyValidate.isNull(baseEntity)) {
@@ -106,7 +104,7 @@ public final class HeaderParamUtil {
         });
     }
 
-    public static void addHeaderByMap(@NotNullTag final HttpRequestBase baseRequest, final Map<?, ?> map) {
+    public static void addHeaderByMap(final HttpRequestBase baseRequest, final Map<?, ?> map) {
         EmptyAssert.isNotNull(baseRequest);
         if (EmptyValidate.isEmpty(map)) {
             return;
@@ -121,8 +119,8 @@ public final class HeaderParamUtil {
     }
 
     public static void addHeader(@NotNull final HttpRequestBase baseRequest,
-                                 @NotBlankTag final Object key,
-                                 @NotBlankTag final Object value) {
+                                 final Object key,
+                                 final Object value) {
         EmptyAssert.allNotNull(baseRequest, key, value);
         if (value instanceof Collection<?>) {
             ((Collection<?>) value).forEach(each -> baseRequest.addHeader(key.toString(), each.toString()));

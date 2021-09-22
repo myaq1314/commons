@@ -1,6 +1,5 @@
 package org.czh.commons.utils;
 
-import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.validate.EmptyAssert;
 
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ import java.util.regex.Pattern;
  */
 public final class MatcherUtil {
 
-    public static List<String> match(@NotNullTag String sourceText, @NotNullTag String regx) {
+    public static List<String> match(String sourceText, String regx) {
         EmptyAssert.allNotNull(sourceText, regx);
 
         List<String> resultList = new ArrayList<>();

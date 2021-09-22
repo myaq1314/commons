@@ -1,7 +1,5 @@
 package org.czh.commons.utils.date;
 
-import org.czh.commons.annotations.tag.NotBlankTag;
-import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.constant.DateConstant;
 import org.czh.commons.utils.DateUtil;
 import org.czh.commons.validate.EmptyAssert;
@@ -17,19 +15,19 @@ import java.util.Date;
  */
 public final class AgeUtil {
 
-    public static int getCurrentAge(@NotBlankTag final String birthdayText) {
+    public static int getCurrentAge(final String birthdayText) {
         return getCurrentAge(birthdayText, DateConstant.DATE_STANDARD());
     }
 
-    public static int getCurrentAge(@NotBlankTag final String birthdayText, @NotBlankTag final String pattern) {
+    public static int getCurrentAge(final String birthdayText, final String pattern) {
         return getCurrentAge(DateUtil.parseToDate(birthdayText, pattern));
     }
 
-    public static int getCurrentAge(@NotNullTag final Date birthdayDate) {
+    public static int getCurrentAge(final Date birthdayDate) {
         return getAge(birthdayDate, DateUtil.getNowDate());
     }
 
-    public static int getAge(@NotNullTag final Date startDate, @NotNullTag final Date endDate) {
+    public static int getAge(final Date startDate, final Date endDate) {
         EmptyAssert.allNotNull(startDate, endDate);
 
         Calendar calendar = CalendarUtil.getCalendar(startDate);

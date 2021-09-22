@@ -1,7 +1,5 @@
 package org.czh.commons.utils;
 
-import org.czh.commons.annotations.tag.NotEmptyTag;
-import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.validate.EmptyAssert;
 
 import java.lang.reflect.Constructor;
@@ -19,7 +17,7 @@ public final class ConstructorUtil {
     /**
      * 本方法 只支持 ，公共的无参构造
      */
-    public static <T> T newInstance(@NotNullTag Class<T> clazz) {
+    public static <T> T newInstance(Class<T> clazz) {
         EmptyAssert.isNotNull(clazz);
 
         try {
@@ -32,7 +30,7 @@ public final class ConstructorUtil {
     /**
      * 本方法 支持 私有、受保护、默认、公共 的 有参，有参构造
      */
-    public static <T> T parameterInstance(@NotNullTag Class<T> clazz, @NotEmptyTag Object... initargs) {
+    public static <T> T parameterInstance(Class<T> clazz, Object... initargs) {
         EmptyAssert.isNotNull(clazz);
 
         Class<?>[] parameterTypes = new Class<?>[initargs.length];
@@ -46,7 +44,7 @@ public final class ConstructorUtil {
     /**
      * 本方法 支持 私有、受保护、默认、公共 的 有参，无参构造
      */
-    public static <T> T parameterlessInstance(@NotNullTag Class<T> clazz) {
+    public static <T> T parameterlessInstance(Class<T> clazz) {
         EmptyAssert.isNotNull(clazz);
         return newInstance(newConstructor(clazz));
     }
@@ -61,8 +59,8 @@ public final class ConstructorUtil {
         }
     }
 
-    public static <T> Constructor<T> newConstructor(@NotNullTag Class<T> clazz,
-                                                    @NotEmptyTag Class<?>... parameterTypes) {
+    public static <T> Constructor<T> newConstructor(Class<T> clazz,
+                                                    Class<?>... parameterTypes) {
         EmptyAssert.isNotNull(clazz);
 
         try {

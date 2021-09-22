@@ -1,6 +1,5 @@
 package org.czh.commons.utils;
 
-import org.czh.commons.annotations.tag.NotBlankTag;
 import org.czh.commons.validate.EmptyAssert;
 import org.czh.commons.validate.FlagAssert;
 
@@ -15,7 +14,7 @@ import java.io.IOException;
  */
 public final class FileUtil {
 
-    public static File readFile(@NotBlankTag String path) {
+    public static File readFile(String path) {
         EmptyAssert.isNotBlank(path);
 
         File file = new File(path);
@@ -25,7 +24,7 @@ public final class FileUtil {
         return file;
     }
 
-    public static File writeFileAndCreate(@NotBlankTag String path, boolean create) {
+    public static File writeFileAndCreate(String path, boolean create) {
         EmptyAssert.isNotBlank(path);
 
         File file = new File(path);

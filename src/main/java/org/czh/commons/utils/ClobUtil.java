@@ -1,7 +1,6 @@
 package org.czh.commons.utils;
 
 import lombok.extern.slf4j.Slf4j;
-import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.validate.EmptyAssert;
 
 import java.io.BufferedReader;
@@ -18,7 +17,7 @@ import java.sql.SQLException;
 @Slf4j
 public final class ClobUtil {
 
-    public static String covertToText(@NotNullTag Clob clob) {
+    public static String covertToText(Clob clob) {
         EmptyAssert.isNotNull(clob);
 
         StringBuilder builder = new StringBuilder();

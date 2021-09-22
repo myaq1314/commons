@@ -1,7 +1,5 @@
 package org.czh.commons.utils.convertor;
 
-import org.czh.commons.annotations.tag.NotEmptyTag;
-import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.validate.EmptyAssert;
 import org.czh.commons.validate.EmptyValidate;
 
@@ -39,7 +37,7 @@ public final class MapConvertor {
      * @param <V>    键值对 Value 类型
      * @return 第一个值
      */
-    public static <K, V> Map.Entry<K, V> convertToFirst(@NotEmptyTag final Map<K, V> source) {
+    public static <K, V> Map.Entry<K, V> convertToFirst(final Map<K, V> source) {
         return convertToFirst(source, null);
     }
 
@@ -52,7 +50,7 @@ public final class MapConvertor {
      * @param <V>    键值对 Value 类型
      * @return 第一个值
      */
-    public static <K, V> Map.Entry<K, V> convertToFirst(@NotEmptyTag final Map<K, V> source,
+    public static <K, V> Map.Entry<K, V> convertToFirst(final Map<K, V> source,
                                                         final Predicate<Map.Entry<K, V>> filter) {
         return convertToFirst(source, filter, entry -> entry);
     }
@@ -66,9 +64,9 @@ public final class MapConvertor {
      * @param <V>    键值对 Value 类型
      * @return 第一个值
      */
-    public static <K, V, T> T convertToFirst(@NotEmptyTag final Map<K, V> source,
+    public static <K, V, T> T convertToFirst(final Map<K, V> source,
                                              final Predicate<Map.Entry<K, V>> filter,
-                                             @NotNullTag final Function<Map.Entry<K, V>, T> convertor) {
+                                             final Function<Map.Entry<K, V>, T> convertor) {
         EmptyAssert.isNotEmpty(source);
         EmptyAssert.isNotNull(convertor);
 
@@ -92,7 +90,7 @@ public final class MapConvertor {
      * @return 数组
      */
     @SuppressWarnings("unchecked")
-    public static <K, V> Map.Entry<K, V>[] convertToArray(@NotEmptyTag final Map<K, V> source) {
+    public static <K, V> Map.Entry<K, V>[] convertToArray(final Map<K, V> source) {
         return convertToArray(source, Map.Entry.class, entry -> entry);
     }
 
@@ -107,9 +105,9 @@ public final class MapConvertor {
      * @param <T>         目标数组元素类型
      * @return 数组
      */
-    public static <K, V, T> T[] convertToArray(@NotEmptyTag final Map<K, V> source,
-                                               @NotNullTag final Class<T> targetClazz,
-                                               @NotNullTag final Function<Map.Entry<K, V>, T> convertor) {
+    public static <K, V, T> T[] convertToArray(final Map<K, V> source,
+                                               final Class<T> targetClazz,
+                                               final Function<Map.Entry<K, V>, T> convertor) {
         return convertToArray(source, targetClazz, convertor, null);
     }
 
@@ -126,9 +124,9 @@ public final class MapConvertor {
      * @return 数组
      */
     @SuppressWarnings("unchecked")
-    public static <K, V, T> T[] convertToArray(@NotEmptyTag final Map<K, V> source,
-                                               @NotNullTag final Class<T> targetClazz,
-                                               @NotNullTag final Function<Map.Entry<K, V>, T> convertor,
+    public static <K, V, T> T[] convertToArray(final Map<K, V> source,
+                                               final Class<T> targetClazz,
+                                               final Function<Map.Entry<K, V>, T> convertor,
                                                final Predicate<Map.Entry<K, V>> filter) {
         // 定长时，使用 数组 转 数组
         if (EmptyValidate.isNull(filter)) {
@@ -160,7 +158,7 @@ public final class MapConvertor {
      * @param <V>    键值对 Value 类型
      * @return List集合
      */
-    public static <K, V> List<Map.Entry<K, V>> convertToList(@NotEmptyTag final Map<K, V> source) {
+    public static <K, V> List<Map.Entry<K, V>> convertToList(final Map<K, V> source) {
         return convertToList(source, entry -> entry);
     }
 
@@ -174,8 +172,8 @@ public final class MapConvertor {
      * @param <T>       目标List集合元素类型
      * @return List集合
      */
-    public static <K, V, T> List<T> convertToList(@NotEmptyTag final Map<K, V> source,
-                                                  @NotNullTag final Function<Map.Entry<K, V>, T> convertor) {
+    public static <K, V, T> List<T> convertToList(final Map<K, V> source,
+                                                  final Function<Map.Entry<K, V>, T> convertor) {
         return convertToList(source, convertor, null);
     }
 
@@ -190,8 +188,8 @@ public final class MapConvertor {
      * @param <T>       目标List集合元素类型
      * @return List集合
      */
-    public static <K, V, T> List<T> convertToList(@NotEmptyTag final Map<K, V> source,
-                                                  @NotNullTag final Function<Map.Entry<K, V>, T> convertor,
+    public static <K, V, T> List<T> convertToList(final Map<K, V> source,
+                                                  final Function<Map.Entry<K, V>, T> convertor,
                                                   final Predicate<Map.Entry<K, V>> filter) {
         EmptyAssert.isNotEmpty(source);
         List<T> target = new ArrayList<>(source.size());
@@ -211,7 +209,7 @@ public final class MapConvertor {
      * @param <V>    键值对 Value 类型
      * @return Set集合
      */
-    public static <K, V> Set<Map.Entry<K, V>> convertToSet(@NotEmptyTag final Map<K, V> source) {
+    public static <K, V> Set<Map.Entry<K, V>> convertToSet(final Map<K, V> source) {
         return convertToSet(source, entry -> entry);
     }
 
@@ -225,8 +223,8 @@ public final class MapConvertor {
      * @param <T>       目标Set集合元素类型
      * @return Set集合
      */
-    public static <K, V, T> Set<T> convertToSet(@NotEmptyTag final Map<K, V> source,
-                                                @NotNullTag final Function<Map.Entry<K, V>, T> convertor) {
+    public static <K, V, T> Set<T> convertToSet(final Map<K, V> source,
+                                                final Function<Map.Entry<K, V>, T> convertor) {
         return convertToSet(source, convertor, null);
     }
 
@@ -241,8 +239,8 @@ public final class MapConvertor {
      * @param <T>       目标Set集合元素类型
      * @return Set集合
      */
-    public static <K, V, T> Set<T> convertToSet(@NotEmptyTag final Map<K, V> source,
-                                                @NotNullTag final Function<Map.Entry<K, V>, T> convertor,
+    public static <K, V, T> Set<T> convertToSet(final Map<K, V> source,
+                                                final Function<Map.Entry<K, V>, T> convertor,
                                                 final Predicate<Map.Entry<K, V>> filter) {
         EmptyAssert.isNotEmpty(source);
         Set<T> target = new HashSet<>(source.size());
@@ -262,8 +260,8 @@ public final class MapConvertor {
      * @param <K>    键值对 Key 类型
      * @param <V>    键值对 Value 类型
      */
-    public static <K, V> void convertToCollection(@NotEmptyTag final Map<K, V> source,
-                                                  @NotNullTag final Collection<Map.Entry<K, V>> target) {
+    public static <K, V> void convertToCollection(final Map<K, V> source,
+                                                  final Collection<Map.Entry<K, V>> target) {
         convertToCollection(source, target, entry -> entry);
     }
 
@@ -277,9 +275,9 @@ public final class MapConvertor {
      * @param <V>       键值对 Value 类型
      * @param <T>       目标集合元素类型
      */
-    public static <K, V, T> void convertToCollection(@NotEmptyTag final Map<K, V> source,
-                                                     @NotNullTag final Collection<T> target,
-                                                     @NotNullTag final Function<Map.Entry<K, V>, T> convertor) {
+    public static <K, V, T> void convertToCollection(final Map<K, V> source,
+                                                     final Collection<T> target,
+                                                     final Function<Map.Entry<K, V>, T> convertor) {
         convertToCollection(source, target, convertor, null);
     }
 
@@ -294,9 +292,9 @@ public final class MapConvertor {
      * @param <V>       键值对 Value 类型
      * @param <T>       目标集合元素类型
      */
-    public static <K, V, T> void convertToCollection(@NotEmptyTag final Map<K, V> source,
-                                                     @NotNullTag final Collection<T> target,
-                                                     @NotNullTag final Function<Map.Entry<K, V>, T> convertor,
+    public static <K, V, T> void convertToCollection(final Map<K, V> source,
+                                                     final Collection<T> target,
+                                                     final Function<Map.Entry<K, V>, T> convertor,
                                                      final Predicate<Map.Entry<K, V>> filter) {
         EmptyAssert.isNotEmpty(source);
         EmptyAssert.allNotNull(target, convertor);
@@ -320,7 +318,7 @@ public final class MapConvertor {
      * @param <V>    键值对 Value 类型
      * @return 键值对
      */
-    public static <K, V> Map<K, V> convertToMap(@NotEmptyTag final Map<K, V> source) {
+    public static <K, V> Map<K, V> convertToMap(final Map<K, V> source) {
         return convertToMap(source, Map.Entry::getKey, Map.Entry::getValue);
     }
 
@@ -336,9 +334,9 @@ public final class MapConvertor {
      * @param <TV>   目标键值对value元素类型
      * @return 键值对
      */
-    public static <SK, SV, TK, TV> Map<TK, TV> convertToMap(@NotEmptyTag final Map<SK, SV> source,
-                                                            @NotNullTag final Function<Map.Entry<SK, SV>, TK> key,
-                                                            @NotNullTag final Function<Map.Entry<SK, SV>, TV> value) {
+    public static <SK, SV, TK, TV> Map<TK, TV> convertToMap(final Map<SK, SV> source,
+                                                            final Function<Map.Entry<SK, SV>, TK> key,
+                                                            final Function<Map.Entry<SK, SV>, TV> value) {
         return convertToMap(source, key, value, null);
     }
 
@@ -355,9 +353,9 @@ public final class MapConvertor {
      * @param <TV>   目标键值对value元素类型
      * @return 键值对
      */
-    public static <SK, SV, TK, TV> Map<TK, TV> convertToMap(@NotEmptyTag final Map<SK, SV> source,
-                                                            @NotNullTag final Function<Map.Entry<SK, SV>, TK> key,
-                                                            @NotNullTag final Function<Map.Entry<SK, SV>, TV> value,
+    public static <SK, SV, TK, TV> Map<TK, TV> convertToMap(final Map<SK, SV> source,
+                                                            final Function<Map.Entry<SK, SV>, TK> key,
+                                                            final Function<Map.Entry<SK, SV>, TV> value,
                                                             final Predicate<Map.Entry<SK, SV>> filter) {
         EmptyAssert.isNotEmpty(source);
         Map<TK, TV> target = new HashMap<>(source.size());
@@ -377,8 +375,8 @@ public final class MapConvertor {
      * @param <K>    键值对 Key 类型
      * @param <V>    键值对 Value 类型
      */
-    public static <K, V> void convertToMap(@NotEmptyTag final Map<K, V> source,
-                                           @NotNullTag final Map<K, V> target) {
+    public static <K, V> void convertToMap(final Map<K, V> source,
+                                           final Map<K, V> target) {
         convertToMap(source, target, Map.Entry::getKey, Map.Entry::getValue);
     }
 
@@ -394,10 +392,10 @@ public final class MapConvertor {
      * @param <TK>   目标键值对key元素类型
      * @param <TV>   目标键值对value元素类型
      */
-    public static <SK, SV, TK, TV> void convertToMap(@NotEmptyTag final Map<SK, SV> source,
-                                                     @NotNullTag final Map<TK, TV> target,
-                                                     @NotNullTag final Function<Map.Entry<SK, SV>, TK> key,
-                                                     @NotNullTag final Function<Map.Entry<SK, SV>, TV> value) {
+    public static <SK, SV, TK, TV> void convertToMap(final Map<SK, SV> source,
+                                                     final Map<TK, TV> target,
+                                                     final Function<Map.Entry<SK, SV>, TK> key,
+                                                     final Function<Map.Entry<SK, SV>, TV> value) {
         convertToMap(source, target, key, value, null);
     }
 
@@ -414,10 +412,10 @@ public final class MapConvertor {
      * @param <TK>   目标键值对key元素类型
      * @param <TV>   目标键值对value元素类型
      */
-    public static <SK, SV, TK, TV> void convertToMap(@NotEmptyTag final Map<SK, SV> source,
-                                                     @NotNullTag final Map<TK, TV> target,
-                                                     @NotNullTag final Function<Map.Entry<SK, SV>, TK> key,
-                                                     @NotNullTag final Function<Map.Entry<SK, SV>, TV> value,
+    public static <SK, SV, TK, TV> void convertToMap(final Map<SK, SV> source,
+                                                     final Map<TK, TV> target,
+                                                     final Function<Map.Entry<SK, SV>, TK> key,
+                                                     final Function<Map.Entry<SK, SV>, TV> value,
                                                      final Predicate<Map.Entry<SK, SV>> filter) {
         EmptyAssert.isNotEmpty(source);
         EmptyAssert.allNotNull(target, key, value);

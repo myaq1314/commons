@@ -1,6 +1,5 @@
 package org.czh.commons.utils;
 
-import org.czh.commons.annotations.tag.NotBlankTag;
 import org.czh.commons.validate.EmptyAssert;
 import org.czh.commons.validate.EmptyValidate;
 
@@ -18,11 +17,11 @@ import java.nio.charset.StandardCharsets;
  */
 public final class FileReadUtil {
 
-    public static String readLastLine(@NotBlankTag String path) {
+    public static String readLastLine(String path) {
         return readLastLine(path, StandardCharsets.UTF_8.name());
     }
 
-    public static String readLastLine(@NotBlankTag String path, String charsetName) {
+    public static String readLastLine(String path, String charsetName) {
         byte[] lineBytes = readLastLineBytes(path);
         try {
             if (EmptyValidate.isNotBlank(charsetName)) {
@@ -35,7 +34,7 @@ public final class FileReadUtil {
         }
     }
 
-    public static String matchReadByLast(@NotBlankTag String path, @NotBlankTag String match) {
+    public static String matchReadByLast(String path, String match) {
         EmptyAssert.isNotBlank(match);
 
         File file = FileUtil.readFile(path);
@@ -73,7 +72,7 @@ public final class FileReadUtil {
         }
     }
 
-    public static byte[] readLastLineBytes(@NotBlankTag String path) {
+    public static byte[] readLastLineBytes(String path) {
         File file = FileUtil.readFile(path);
 
         try (RandomAccessFile raFile = new RandomAccessFile(file, "r")) {

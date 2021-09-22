@@ -1,8 +1,6 @@
 package org.czh.commons.dao;
 
 import org.apache.ibatis.annotations.Param;
-import org.czh.commons.annotations.tag.NotEmptyTag;
-import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.entity.eo.BaseCommonEO;
 
 import java.util.List;
@@ -24,7 +22,7 @@ public interface IBaseCommonDao<EO extends BaseCommonEO> extends IBaseViewDao<EO
      * (id, student_name, grade)
      * values (100, 'TOM', 1);
      */
-    int insert(@NotNullTag @Param("entity") EO entity);
+    int insert(@Param("entity") EO entity);
 
     /**
      * 表：student
@@ -37,7 +35,7 @@ public interface IBaseCommonDao<EO extends BaseCommonEO> extends IBaseViewDao<EO
      * on duplicate key
      * update id = values(id), student_name = values(student_name), grade = values(grade);
      */
-    int insertExistUpdate(@NotNullTag @Param("entity") EO entity);
+    int insertExistUpdate(@Param("entity") EO entity);
 
     /**
      * 表：student
@@ -48,8 +46,8 @@ public interface IBaseCommonDao<EO extends BaseCommonEO> extends IBaseViewDao<EO
      * (id, student_name, grade, score)
      * values (101, 'SALE', 1, 20), (102, 'JEKE', 2, 68);
      */
-    int batchInsert(@NotNullTag @Param("condition") EO condition,
-                    @NotEmptyTag @Param("entityList") List<EO> entityList);
+    int batchInsert(@Param("condition") EO condition,
+                    @Param("entityList") List<EO> entityList);
 
     /**
      * 表：student
@@ -62,8 +60,8 @@ public interface IBaseCommonDao<EO extends BaseCommonEO> extends IBaseViewDao<EO
      * on duplicate key
      * update id = values(id), student_name = values(student_name), grade = values(grade), score = values(score);
      */
-    int batchInsertExistUpdate(@NotNullTag @Param("condition") EO condition,
-                               @NotEmptyTag @Param("entityList") List<EO> entityList);
+    int batchInsertExistUpdate(@Param("condition") EO condition,
+                               @Param("entityList") List<EO> entityList);
 
     /**
      * 表：student
@@ -73,7 +71,7 @@ public interface IBaseCommonDao<EO extends BaseCommonEO> extends IBaseViewDao<EO
      * delete table student as a
      * where a.id in (100, 101, 102);
      */
-    int delete(@NotNullTag @Param("condition") EO condition);
+    int delete(@Param("condition") EO condition);
 
     /**
      * 表：student
@@ -84,6 +82,6 @@ public interface IBaseCommonDao<EO extends BaseCommonEO> extends IBaseViewDao<EO
      * set a.grade = 1, a.birthday = now()
      * where a.id in (1, 3, 5, 7, 9) and a.grade > 1;
      */
-    int update(@NotNullTag @Param("condition") EO condition, @NotNullTag @Param("entity") EO entity);
+    int update(@Param("condition") EO condition, @Param("entity") EO entity);
 
 }

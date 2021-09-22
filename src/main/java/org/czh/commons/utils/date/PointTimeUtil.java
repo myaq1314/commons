@@ -1,7 +1,5 @@
 package org.czh.commons.utils.date;
 
-import org.czh.commons.annotations.tag.NotNullTag;
-import org.czh.commons.annotations.tag.ValueTag;
 import org.czh.commons.utils.DateUtil;
 import org.czh.commons.validate.EmptyAssert;
 
@@ -34,13 +32,13 @@ public final class PointTimeUtil {
         return getAddYearPointTime(DateUtil.getNowDate(), addYearNum, startOrEnd);
     }
 
-    public static Date getAddYearPointTime(@NotNullTag final Date date,
+    public static Date getAddYearPointTime(final Date date,
                                            final int addYearNum,
                                            final boolean startOrEnd) {
         return getAddYearPointTime(CalendarUtil.getCalendar(date), addYearNum, startOrEnd);
     }
 
-    public static Date getAddYearPointTime(@NotNullTag final Calendar calendar,
+    public static Date getAddYearPointTime(final Calendar calendar,
                                            final int addYearNum,
                                            final boolean startOrEnd) {
         return getYearPointTime(calendar, CalendarUtil.getYear(calendar) + addYearNum, startOrEnd);
@@ -50,7 +48,7 @@ public final class PointTimeUtil {
         return getYearPointTime(CalendarUtil.getCalendar(), year, startOrEnd);
     }
 
-    public static Date getYearPointTime(@NotNullTag final Calendar calendar, final int year, final boolean startOrEnd) {
+    public static Date getYearPointTime(final Calendar calendar, final int year, final boolean startOrEnd) {
         EmptyAssert.isNotNull(calendar);
 
         calendar.clear();
@@ -81,13 +79,13 @@ public final class PointTimeUtil {
         return getAddQuarterPointTime(DateUtil.getNowDate(), addMonthNum, startOrEnd);
     }
 
-    public static Date getAddQuarterPointTime(@NotNullTag final Date date,
+    public static Date getAddQuarterPointTime(final Date date,
                                               final int addMonthNum,
                                               final boolean startOrEnd) {
         return getAddQuarterPointTime(CalendarUtil.getCalendar(date), addMonthNum, startOrEnd);
     }
 
-    public static Date getAddQuarterPointTime(@NotNullTag final Calendar calendar,
+    public static Date getAddQuarterPointTime(final Calendar calendar,
                                               final int addMonthNum,
                                               final boolean startOrEnd) {
         return getQuarterPointTime(
@@ -102,7 +100,7 @@ public final class PointTimeUtil {
         return getMonthPointTime(CalendarUtil.getCalendar(), year, month, startOrEnd);
     }
 
-    public static Date getQuarterPointTime(@NotNullTag final Calendar calendar,
+    public static Date getQuarterPointTime(final Calendar calendar,
                                            final int year,
                                            final int month,
                                            final boolean startOrEnd) {
@@ -138,13 +136,13 @@ public final class PointTimeUtil {
         return getAddMonthPointTime(DateUtil.getNowDate(), addMonthNum, startOrEnd);
     }
 
-    public static Date getAddMonthPointTime(@NotNullTag final Date date,
+    public static Date getAddMonthPointTime(final Date date,
                                             final int addMonthNum,
                                             final boolean startOrEnd) {
         return getAddMonthPointTime(CalendarUtil.getCalendar(date), addMonthNum, startOrEnd);
     }
 
-    public static Date getAddMonthPointTime(@NotNullTag final Calendar calendar,
+    public static Date getAddMonthPointTime(final Calendar calendar,
                                             final int addMonthNum,
                                             final boolean startOrEnd) {
         return getMonthPointTime(
@@ -159,7 +157,7 @@ public final class PointTimeUtil {
         return getMonthPointTime(CalendarUtil.getCalendar(), year, month, startOrEnd);
     }
 
-    public static Date getMonthPointTime(@NotNullTag final Calendar calendar,
+    public static Date getMonthPointTime(final Calendar calendar,
                                          final int year,
                                          final int month,
                                          final boolean startOrEnd) {
@@ -216,21 +214,21 @@ public final class PointTimeUtil {
      * System.out.println(DateUtil.formatToText(getAddWeekPointTime(date, Calendar.WEDNESDAY, 1, false))); // 2021-07-06 23:59:59 下周二
      * System.out.println();
      */
-    public static Date getAddWeekPointTime(@ValueTag(min = 1, max = 7) final int firstOfWeek,
+    public static Date getAddWeekPointTime(final int firstOfWeek,
                                            final int addDayNum,
                                            final boolean startOrEnd) {
         return getAddWeekPointTime(DateUtil.getNowDate(), firstOfWeek, addDayNum, startOrEnd);
     }
 
-    public static Date getAddWeekPointTime(@NotNullTag final Date date,
-                                           @ValueTag(min = 1, max = 7) final int firstOfWeek,
+    public static Date getAddWeekPointTime(final Date date,
+                                           final int firstOfWeek,
                                            final int addDayNum,
                                            final boolean startOrEnd) {
         return getAddWeekPointTime(CalendarUtil.getCalendar(date), firstOfWeek, addDayNum, startOrEnd);
     }
 
-    public static Date getAddWeekPointTime(@NotNullTag final Calendar calendar,
-                                           @ValueTag(min = 1, max = 7) final int firstOfWeek,
+    public static Date getAddWeekPointTime(final Calendar calendar,
+                                           final int firstOfWeek,
                                            final int addDayNum,
                                            final boolean startOrEnd) {
         int year = CalendarUtil.getYear(calendar);
@@ -242,16 +240,16 @@ public final class PointTimeUtil {
     public static Date getWeekPointTime(final int year,
                                         final int month,
                                         final int dayOfMonth,
-                                        @ValueTag(min = 1, max = 7) final int firstOfWeek,
+                                        final int firstOfWeek,
                                         final boolean startOrEnd) {
         return getWeekPointTime(CalendarUtil.getCalendar(), year, month, dayOfMonth, firstOfWeek, startOrEnd);
     }
 
-    public static Date getWeekPointTime(@NotNullTag final Calendar calendar,
+    public static Date getWeekPointTime(final Calendar calendar,
                                         final int year,
                                         final int month,
                                         final int dayOfMonth,
-                                        @ValueTag(min = 1, max = 7) final int firstOfWeek,
+                                        final int firstOfWeek,
                                         final boolean startOrEnd) {
         EmptyAssert.isNotNull(calendar);
 
@@ -292,11 +290,11 @@ public final class PointTimeUtil {
         return getAddDayPointTime(DateUtil.getNowDate(), addDayNum, startOrEnd);
     }
 
-    public static Date getAddDayPointTime(@NotNullTag final Date date, final int addDayNum, final boolean startOrEnd) {
+    public static Date getAddDayPointTime(final Date date, final int addDayNum, final boolean startOrEnd) {
         return getAddDayPointTime(CalendarUtil.getCalendar(date), addDayNum, startOrEnd);
     }
 
-    public static Date getAddDayPointTime(@NotNullTag final Calendar calendar,
+    public static Date getAddDayPointTime(final Calendar calendar,
                                           final int addDayNum,
                                           final boolean startOrEnd) {
         int year = CalendarUtil.getYear(calendar);
@@ -312,7 +310,7 @@ public final class PointTimeUtil {
         return getDayPointTime(CalendarUtil.getCalendar(), year, month, dayOfMonth, startOrEnd);
     }
 
-    public static Date getDayPointTime(@NotNullTag Calendar calendar,
+    public static Date getDayPointTime(Calendar calendar,
                                        final int year,
                                        final int month,
                                        final int dayOfMonth,
@@ -349,13 +347,13 @@ public final class PointTimeUtil {
         return getAddHourPointTime(DateUtil.getNowDate(), addHourNum, startOrEnd);
     }
 
-    public static Date getAddHourPointTime(@NotNullTag final Date date,
+    public static Date getAddHourPointTime(final Date date,
                                            final int addHourNum,
                                            final boolean startOrEnd) {
         return getAddHourPointTime(CalendarUtil.getCalendar(date), addHourNum, startOrEnd);
     }
 
-    public static Date getAddHourPointTime(@NotNullTag final Calendar calendar,
+    public static Date getAddHourPointTime(final Calendar calendar,
                                            final int addHourNum,
                                            final boolean startOrEnd) {
         calendar.clear(Calendar.MINUTE);
@@ -407,13 +405,13 @@ public final class PointTimeUtil {
         return getAddMinutePointTime(DateUtil.getNowDate(), addMinuteNum, startOrEnd);
     }
 
-    public static Date getAddMinutePointTime(@NotNullTag final Date date,
+    public static Date getAddMinutePointTime(final Date date,
                                              final int addMinuteNum,
                                              final boolean startOrEnd) {
         return getAddMinutePointTime(CalendarUtil.getCalendar(date), addMinuteNum, startOrEnd);
     }
 
-    public static Date getAddMinutePointTime(@NotNullTag final Calendar calendar,
+    public static Date getAddMinutePointTime(final Calendar calendar,
                                              final int addMinuteNum,
                                              final boolean startOrEnd) {
         calendar.clear(Calendar.SECOND);

@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.util.EntityUtils;
-import org.czh.commons.annotations.tag.NotBlankTag;
 import org.czh.commons.entity.IBaseEntity;
 import org.czh.commons.validate.EmptyAssert;
 import org.czh.commons.validate.EmptyValidate;
@@ -44,11 +43,11 @@ public final class UrlParamUtil {
         System.out.println(getUrlByParam("www.baidu.com?aaa=123", map));
     }
 
-    public static <UrlParam> String getUrlByParam(@NotBlankTag final String url, final UrlParam urlParam) {
+    public static <UrlParam> String getUrlByParam(final String url, final UrlParam urlParam) {
         return getUrlByPairList(url, NameValuePairUtil.getListByParam(urlParam));
     }
 
-    private static String getUrlByPairList(@NotBlankTag final String url, List<NameValuePair> pairList) {
+    private static String getUrlByPairList(final String url, List<NameValuePair> pairList) {
         EmptyAssert.isNotNull(url);
         if (EmptyValidate.isEmpty(pairList)) {
             return url;

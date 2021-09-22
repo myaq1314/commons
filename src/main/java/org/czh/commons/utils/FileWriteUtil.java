@@ -1,7 +1,5 @@
 package org.czh.commons.utils;
 
-import org.czh.commons.annotations.tag.NotBlankTag;
-import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.validate.EmptyAssert;
 import org.czh.commons.validate.EmptyValidate;
 
@@ -16,7 +14,7 @@ import java.io.IOException;
  */
 public final class FileWriteUtil {
 
-    public static void write(@NotBlankTag String path, boolean append, String context) {
+    public static void write(String path, boolean append, String context) {
         if (EmptyValidate.isNull(context)) {
             return;
         }
@@ -29,7 +27,7 @@ public final class FileWriteUtil {
         }
     }
 
-    public static void write(@NotNullTag FileWriter fw, String context) throws IOException {
+    public static void write(FileWriter fw, String context) throws IOException {
         if (EmptyValidate.isNull(context)) {
             return;
         }

@@ -1,7 +1,5 @@
 package org.czh.commons.utils;
 
-import org.czh.commons.annotations.tag.NotBlankTag;
-import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.validate.EmptyAssert;
 
 import java.text.DateFormat;
@@ -32,7 +30,7 @@ public final class DateUtil {
         return getFormat("yyyy-MM-dd HH:mm:ss");
     }
 
-    public static DateFormat getFormat(@NotBlankTag final String pattern) {
+    public static DateFormat getFormat(final String pattern) {
         EmptyAssert.isNotBlank(pattern, "日期格式文本无效");
 
         try {
@@ -54,7 +52,7 @@ public final class DateUtil {
         return getFormatter("HH:mm:ss");
     }
 
-    public static DateTimeFormatter getFormatter(@NotBlankTag final String pattern) {
+    public static DateTimeFormatter getFormatter(final String pattern) {
         EmptyAssert.isNotBlank(pattern, "日期格式文本无效");
 
         try {
@@ -68,37 +66,37 @@ public final class DateUtil {
       -----------------------------dates format to text-------------------------------
      */
 
-    public static String formatToText(@NotNullTag final Date date) {
+    public static String formatToText(final Date date) {
         return formatToText(date, DateUtil.getFormat());
     }
 
-    public static String formatToText(@NotNullTag final Date date, @NotBlankTag final String pattern) {
+    public static String formatToText(final Date date, final String pattern) {
         return formatToText(date, DateUtil.getFormat(pattern));
     }
 
-    public static String formatToText(@NotNullTag final Date date, @NotNullTag final DateFormat format) {
+    public static String formatToText(final Date date, final DateFormat format) {
         EmptyAssert.allNotNull(date, format);
         return format.format(date);
     }
 
-    public static String formatToText(@NotNullTag final LocalDate localDate) {
+    public static String formatToText(final LocalDate localDate) {
         return formatToText(localDate, DateUtil.getLDFormatter());
     }
 
-    public static String formatToText(@NotNullTag final LocalDateTime localDateTime) {
+    public static String formatToText(final LocalDateTime localDateTime) {
         return formatToText(localDateTime, DateUtil.getLDTFormatter());
     }
 
-    public static String formatToText(@NotNullTag final LocalTime localTime) {
+    public static String formatToText(final LocalTime localTime) {
         return formatToText(localTime, DateUtil.getLTFormatter());
     }
 
-    public static String formatToText(@NotNullTag final TemporalAccessor date, @NotBlankTag final String pattern) {
+    public static String formatToText(final TemporalAccessor date, final String pattern) {
         return formatToText(date, DateUtil.getFormatter(pattern));
     }
 
-    public static String formatToText(@NotNullTag final TemporalAccessor date,
-                                      @NotNullTag final DateTimeFormatter formatter) {
+    public static String formatToText(final TemporalAccessor date,
+                                      final DateTimeFormatter formatter) {
         EmptyAssert.allNotNull(date, formatter);
         return formatter.format(date);
     }
@@ -106,15 +104,15 @@ public final class DateUtil {
     /*
       -----------------------------text parse to dates-------------------------------
      */
-    public static Date parseToDate(@NotBlankTag final String dateText) {
+    public static Date parseToDate(final String dateText) {
         return parseToDate(dateText, DateUtil.getFormat());
     }
 
-    public static Date parseToDate(@NotBlankTag final String dateText, @NotBlankTag final String pattern) {
+    public static Date parseToDate(final String dateText, final String pattern) {
         return parseToDate(dateText, DateUtil.getFormat(pattern));
     }
 
-    public static Date parseToDate(@NotBlankTag final String dateText, @NotNullTag final DateFormat formatter) {
+    public static Date parseToDate(final String dateText, final DateFormat formatter) {
         EmptyAssert.isNotBlank(dateText);
         EmptyAssert.isNotNull(formatter);
 
@@ -186,14 +184,14 @@ public final class DateUtil {
       -----------------------------dates compare-------------------------------
      */
 
-    public static int compare(@NotBlankTag final String sourceString,
-                              @NotBlankTag final String targetString) {
+    public static int compare(final String sourceString,
+                              final String targetString) {
         return compare(sourceString, targetString, DateUtil.getFormat());
     }
 
-    public static int compare(@NotBlankTag final String sourceString,
-                              @NotBlankTag final String targetString,
-                              @NotBlankTag final String pattern) {
+    public static int compare(final String sourceString,
+                              final String targetString,
+                              final String pattern) {
         return compare(
                 sourceString,
                 targetString,
@@ -201,10 +199,10 @@ public final class DateUtil {
         );
     }
 
-    public static int compare(@NotBlankTag final String sourceString,
-                              @NotBlankTag final String targetString,
-                              @NotBlankTag final String sourcePattern,
-                              @NotBlankTag final String targetPattern) {
+    public static int compare(final String sourceString,
+                              final String targetString,
+                              final String sourcePattern,
+                              final String targetPattern) {
         return compare(
                 sourceString,
                 targetString,
@@ -213,44 +211,44 @@ public final class DateUtil {
         );
     }
 
-    public static int compare(@NotBlankTag final String sourceString,
-                              @NotBlankTag final String targetString,
-                              @NotNullTag final DateFormat format) {
+    public static int compare(final String sourceString,
+                              final String targetString,
+                              final DateFormat format) {
         return compare(sourceString, targetString, format, format);
     }
 
-    public static int compare(@NotBlankTag final String sourceString,
-                              @NotBlankTag final String targetString,
-                              @NotNullTag final DateTimeFormatter formatter) {
+    public static int compare(final String sourceString,
+                              final String targetString,
+                              final DateTimeFormatter formatter) {
         return compare(sourceString, targetString, formatter, formatter);
     }
 
-    public static int compare(@NotBlankTag final String sourceString,
-                              @NotBlankTag final String targetString,
-                              @NotNullTag final DateFormat sourceFormat,
-                              @NotNullTag final DateFormat targetFormat) {
+    public static int compare(final String sourceString,
+                              final String targetString,
+                              final DateFormat sourceFormat,
+                              final DateFormat targetFormat) {
         Date sourceDate = parseToDate(sourceString, sourceFormat);
         Date targetDate = parseToDate(targetString, targetFormat);
         return compare(sourceDate, targetDate);
     }
 
-    public static int compare(@NotBlankTag final String sourceString,
-                              @NotBlankTag final String targetString,
-                              @NotNullTag final DateTimeFormatter sourceFormatter,
-                              @NotNullTag final DateTimeFormatter targetFormatter) {
+    public static int compare(final String sourceString,
+                              final String targetString,
+                              final DateTimeFormatter sourceFormatter,
+                              final DateTimeFormatter targetFormatter) {
         LocalDateTime sourceDate = parseToLDTime(sourceString, sourceFormatter);
         LocalDateTime targetDate = parseToLDTime(targetString, targetFormatter);
         return compare(sourceDate, targetDate);
     }
 
-    public static int compare(@NotNullTag final Date sourceDate,
-                              @NotNullTag final Date targetDate) {
+    public static int compare(final Date sourceDate,
+                              final Date targetDate) {
         EmptyAssert.allNotNull(sourceDate, targetDate);
         return sourceDate.compareTo(targetDate);
     }
 
-    public static int compare(@NotNullTag final LocalDateTime sourceDate,
-                              @NotNullTag final LocalDateTime targetDate) {
+    public static int compare(final LocalDateTime sourceDate,
+                              final LocalDateTime targetDate) {
         EmptyAssert.allNotNull(sourceDate, targetDate);
         return sourceDate.compareTo(targetDate);
     }
@@ -279,11 +277,11 @@ public final class DateUtil {
         return getNowText(getFormat());
     }
 
-    public static String getNowText(@NotBlankTag final String pattern) {
+    public static String getNowText(final String pattern) {
         return getNowText(getFormat(pattern));
     }
 
-    public static String getNowText(@NotNullTag final DateFormat format) {
+    public static String getNowText(final DateFormat format) {
         return formatToText(getNowDate(), format);
     }
 }

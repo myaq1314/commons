@@ -1,8 +1,5 @@
 package org.czh.commons.utils.convertor;
 
-import org.czh.commons.annotations.tag.NotBlankTag;
-import org.czh.commons.annotations.tag.NotEmptyTag;
-import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.entity.IBaseEntity;
 import org.czh.commons.utils.FieldUtil;
 import org.czh.commons.validate.EmptyAssert;
@@ -32,12 +29,12 @@ public final class EntityConvertor {
     /*
       -----------------------------bean convert to url-------------------------------
      */
-    public static <S> String convertToUrl(@NotNullTag final S source, @NotBlankTag final String connector) {
+    public static <S> String convertToUrl(final S source, final String connector) {
         return convertToUrl(source, connector, null);
     }
 
-    public static <S> String convertToUrl(@NotNullTag final S source,
-                                          @NotBlankTag final String connector,
+    public static <S> String convertToUrl(final S source,
+                                          final String connector,
                                           final Predicate<Field> filter) {
         EmptyAssert.allNotNull(source, connector);
         List<Field> fieldList = FieldUtil.queryFieldList(source.getClass());
@@ -59,8 +56,8 @@ public final class EntityConvertor {
     /*
       -----------------------------bean convert to other bean-------------------------------
      */
-    public static <S, T> T convertToBean(@NotNullTag final S source,
-                                         @NotNullTag final Class<T> targetClazz) {
+    public static <S, T> T convertToBean(final S source,
+                                         final Class<T> targetClazz) {
         EmptyAssert.isNotNull(targetClazz);
 
         T target = BeanUtils.instantiateClass(targetClazz);
@@ -68,8 +65,8 @@ public final class EntityConvertor {
         return target;
     }
 
-    public static <S, T> T convertToBean(@NotNullTag final S source,
-                                         @NotNullTag final Function<S, T> convertor) {
+    public static <S, T> T convertToBean(final S source,
+                                         final Function<S, T> convertor) {
         EmptyAssert.allNotNull(source, convertor);
 
         T target = convertor.apply(source);
@@ -77,8 +74,8 @@ public final class EntityConvertor {
         return target;
     }
 
-    public static <S, T> void convertToBean(@NotNullTag final S source,
-                                            @NotNullTag final T target) {
+    public static <S, T> void convertToBean(final S source,
+                                            final T target) {
         EmptyAssert.allNotNull(source, target);
         BeanUtils.copyProperties(source, target);
     }
@@ -86,8 +83,8 @@ public final class EntityConvertor {
     /*
       -----------------------------bean collection convert to other bean list-------------------------------
      */
-    public static <S, T> List<T> convertToBeanList(@NotEmptyTag final Collection<S> sourceCollection,
-                                                   @NotNullTag final Class<T> targetClazz) {
+    public static <S, T> List<T> convertToBeanList(final Collection<S> sourceCollection,
+                                                   final Class<T> targetClazz) {
         EmptyAssert.isNotEmpty(sourceCollection);
 
         List<T> targetList = new ArrayList<>(sourceCollection.size());
@@ -97,8 +94,8 @@ public final class EntityConvertor {
         return targetList;
     }
 
-    public static <S, T> List<T> convertToBeanList(@NotNullTag final Collection<S> sourceCollection,
-                                                   @NotNullTag final Function<S, T> convertor) {
+    public static <S, T> List<T> convertToBeanList(final Collection<S> sourceCollection,
+                                                   final Function<S, T> convertor) {
         EmptyAssert.isNotEmpty(sourceCollection);
 
         List<T> targetList = new ArrayList<>(sourceCollection.size());
@@ -108,8 +105,8 @@ public final class EntityConvertor {
         return targetList;
     }
 
-    public static <S, T> Set<T> convertToBeanSet(@NotEmptyTag final Collection<S> sourceCollection,
-                                                 @NotNullTag final Class<T> targetClazz) {
+    public static <S, T> Set<T> convertToBeanSet(final Collection<S> sourceCollection,
+                                                 final Class<T> targetClazz) {
         EmptyAssert.isNotEmpty(sourceCollection);
 
         Set<T> targetSet = new HashSet<>(sourceCollection.size());
@@ -119,8 +116,8 @@ public final class EntityConvertor {
         return targetSet;
     }
 
-    public static <S, T> Set<T> convertToBeanSet(@NotNullTag final Collection<S> sourceCollection,
-                                                 @NotNullTag final Function<S, T> convertor) {
+    public static <S, T> Set<T> convertToBeanSet(final Collection<S> sourceCollection,
+                                                 final Function<S, T> convertor) {
         EmptyAssert.isNotEmpty(sourceCollection);
 
         Set<T> targetSet = new HashSet<>(sourceCollection.size());
@@ -134,7 +131,7 @@ public final class EntityConvertor {
       -----------------------------bean convert to new map-------------------------------
      */
 
-    public static <S extends IBaseEntity> Map<String, Object> convertToMap(@NotNullTag final S source) {
+    public static <S extends IBaseEntity> Map<String, Object> convertToMap(final S source) {
         Map<String, Object> target = new HashMap<>();
         convertToMap(source, target);
         return target;
@@ -143,8 +140,8 @@ public final class EntityConvertor {
     /*
       -----------------------------bean convert to map-------------------------------
      */
-    public static <S extends IBaseEntity> void convertToMap(@NotNullTag final S source,
-                                                            @NotNullTag final Map<String, Object> target) {
+    public static <S extends IBaseEntity> void convertToMap(final S source,
+                                                            final Map<String, Object> target) {
         EmptyAssert.allNotNull(source, target);
 
         Class<?> clazz = source.getClass();

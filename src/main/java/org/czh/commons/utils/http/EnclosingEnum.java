@@ -5,8 +5,6 @@ import lombok.Getter;
 import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
-import org.czh.commons.annotations.tag.NotBlankTag;
-import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.enums.parent.IKeyEnum;
 import org.czh.commons.utils.ConstructorUtil;
 import org.czh.commons.validate.EmptyAssert;
@@ -30,8 +28,8 @@ public enum EnclosingEnum implements IKeyEnum<Class<? extends HttpEntityEnclosin
 
     public final Class<? extends HttpEntityEnclosingRequestBase> key;
 
-    public static HttpEntityEnclosingRequestBase getEnclosingRequest(@NotNullTag final EnclosingEnum enclosingEnum,
-                                                                     @NotBlankTag final String url) {
+    public static HttpEntityEnclosingRequestBase getEnclosingRequest(final EnclosingEnum enclosingEnum,
+                                                                     final String url) {
         EmptyAssert.isNotNull(enclosingEnum);
         EmptyAssert.isNotBlank(url);
         return ConstructorUtil.newInstance(ConstructorUtil.newConstructor(enclosingEnum.key, String.class), url);

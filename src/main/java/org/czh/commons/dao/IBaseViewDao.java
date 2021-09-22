@@ -1,7 +1,6 @@
 package org.czh.commons.dao;
 
 import org.apache.ibatis.annotations.Param;
-import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.entity.eo.BaseViewEO;
 
 import java.util.List;
@@ -21,7 +20,7 @@ public interface IBaseViewDao<EO extends BaseViewEO> extends IBaseDao<EO> {
      * id primary key, student_name unique key
      * select distinct max(a.score) as score, grade from student as a where a.grade <= 3 and a.score > 60 group by a.grade having count(1) > 2 order by a.grade limit 0, 3;
      */
-    List<EO> queryEOList(@NotNullTag @Param("condition") EO condition);
+    List<EO> queryEOList(@Param("condition") EO condition);
 
     /**
      * 表：student
@@ -29,6 +28,6 @@ public interface IBaseViewDao<EO extends BaseViewEO> extends IBaseDao<EO> {
      * id primary key, student_name unique key
      * select distinct max(a.score) as score, grade, count(1) as count from student as a where a.grade <= 3 and a.score > 60 group by a.grade having count(1) > 2 order by a.grade limit 0, 3;
      */
-    List<Map<String, Object>> queryMapList(@NotNullTag @Param("condition") EO condition);
+    List<Map<String, Object>> queryMapList(@Param("condition") EO condition);
 
 }

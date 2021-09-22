@@ -1,10 +1,6 @@
 package org.czh.commons.utils.encrypt.irreversible;
 
 import org.apache.commons.codec.binary.Hex;
-import org.czh.commons.annotations.tag.NotBlankTag;
-import org.czh.commons.annotations.tag.NotEmptyTag;
-import org.czh.commons.annotations.tag.NotNullTag;
-import org.czh.commons.annotations.tag.ValueTag;
 import org.czh.commons.constant.EncryptConstant;
 import org.czh.commons.utils.RandomUtil;
 import org.czh.commons.validate.EmptyAssert;
@@ -25,7 +21,7 @@ public final class SHAUtil {
     /*
         盐
      */
-    public static String getSalt(@ValueTag(min = 1) int length) {
+    public static String getSalt(int length) {
         return RandomUtil.getHexRandom(length);
     }
 
@@ -33,15 +29,15 @@ public final class SHAUtil {
         加密
      */
 
-    public static String encode(@NotBlankTag String src) {
+    public static String encode(String src) {
         return encode(EncryptConstant.SHAType.SHA_1, src);
     }
 
-    public static String encode(@NotNullTag EncryptConstant.SHAType shaType, @NotBlankTag String src) {
+    public static String encode(EncryptConstant.SHAType shaType, String src) {
         return encode(shaType, src, null);
     }
 
-    public static String encode(@NotNullTag EncryptConstant.SHAType shaType, @NotBlankTag String src, String salt) {
+    public static String encode(EncryptConstant.SHAType shaType, String src, String salt) {
         try {
             MessageDigest shaMd = MessageDigest.getInstance(shaType.key);
             return dstArrayToString(shaMd.digest(srcStringToArray(src, salt)));
@@ -54,19 +50,19 @@ public final class SHAUtil {
         校验
      */
 
-    public static boolean verify(@NotBlankTag String src, @NotBlankTag String dst) {
+    public static boolean verify(String src, String dst) {
         return verify(EncryptConstant.SHAType.SHA_1, src, dst);
     }
 
-    public static boolean verify(@NotNullTag EncryptConstant.SHAType shaType,
-                                 @NotBlankTag String src,
-                                 @NotBlankTag String dst) {
+    public static boolean verify(EncryptConstant.SHAType shaType,
+                                 String src,
+                                 String dst) {
         return verify(shaType, src, dst, null);
     }
 
-    public static boolean verify(@NotNullTag EncryptConstant.SHAType shaType,
-                                 @NotBlankTag String src,
-                                 @NotBlankTag String dst,
+    public static boolean verify(EncryptConstant.SHAType shaType,
+                                 String src,
+                                 String dst,
                                  String salt) {
         EmptyAssert.isNotBlank(dst);
         return Objects.equals(encode(shaType, src, salt), dst);
@@ -75,12 +71,12 @@ public final class SHAUtil {
     /*
         字节数组 与 字符串 互转
      */
-    public static byte[] srcStringToArray(@NotBlankTag String src, String salt) {
+    public static byte[] srcStringToArray(String src, String salt) {
         EmptyAssert.isNotBlank(src);
         return salt == null ? src.getBytes() : (src + salt).getBytes();
     }
 
-    public static String dstArrayToString(@NotEmptyTag byte[] dstBytes) {
+    public static String dstArrayToString(byte[] dstBytes) {
         EmptyAssert.isNotEmpty(dstBytes);
         return Hex.encodeHexString(dstBytes);
     }

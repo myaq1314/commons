@@ -1,6 +1,5 @@
 package org.czh.commons.service.impl;
 
-import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.dao.IBaseViewDao;
 import org.czh.commons.entity.Page;
 import org.czh.commons.entity.PageHelper;
@@ -25,7 +24,7 @@ public abstract class BaseViewServiceImpl<Dao extends IBaseViewDao<Entity>, Enti
         extends BaseEOServiceImpl<Dao, Entity>
         implements IBaseViewService<Entity> {
 
-    private Entity createEntity(@NotNullTag final IColumnEnum columnEnum, @NotNullTag final Object columnValue) {
+    private Entity createEntity(final IColumnEnum columnEnum, final Object columnValue) {
         EmptyAssert.allNotNull(columnEnum, columnValue);
 
         Entity entity = this.newInstance();
@@ -34,12 +33,12 @@ public abstract class BaseViewServiceImpl<Dao extends IBaseViewDao<Entity>, Enti
     }
 
     @Override
-    public Entity getOneEntity(@NotNullTag IColumnEnum columnEnum, @NotNullTag Object columnValue) {
+    public Entity getOneEntity(IColumnEnum columnEnum, Object columnValue) {
         return getOneEntity(this.createEntity(columnEnum, columnValue));
     }
 
     @Override
-    public Entity getOneEntity(@NotNullTag final Entity condition) {
+    public Entity getOneEntity(final Entity condition) {
         EmptyAssert.isNotNull(condition);
 
         condition.setLimit(1, 1);
@@ -51,12 +50,12 @@ public abstract class BaseViewServiceImpl<Dao extends IBaseViewDao<Entity>, Enti
     }
 
     @Override
-    public Map<String, Object> getOneMap(@NotNullTag IColumnEnum columnEnum, @NotNullTag Object columnValue) {
+    public Map<String, Object> getOneMap(IColumnEnum columnEnum, Object columnValue) {
         return getOneMap(this.createEntity(columnEnum, columnValue));
     }
 
     @Override
-    public Map<String, Object> getOneMap(@NotNullTag final Entity condition) {
+    public Map<String, Object> getOneMap(final Entity condition) {
         EmptyAssert.isNotNull(condition);
 
         condition.setLimit(1, 1);
@@ -68,12 +67,12 @@ public abstract class BaseViewServiceImpl<Dao extends IBaseViewDao<Entity>, Enti
     }
 
     @Override
-    public Entity getOnlyEntity(@NotNullTag IColumnEnum columnEnum, @NotNullTag Object columnValue) {
+    public Entity getOnlyEntity(IColumnEnum columnEnum, Object columnValue) {
         return getOnlyEntity(this.createEntity(columnEnum, columnValue));
     }
 
     @Override
-    public Entity getOnlyEntity(@NotNullTag final Entity condition) {
+    public Entity getOnlyEntity(final Entity condition) {
         EmptyAssert.isNotNull(condition);
 
         condition.setLimit(1, 2);
@@ -87,12 +86,12 @@ public abstract class BaseViewServiceImpl<Dao extends IBaseViewDao<Entity>, Enti
     }
 
     @Override
-    public Map<String, Object> getOnlyMap(@NotNullTag IColumnEnum columnEnum, @NotNullTag Object columnValue) {
+    public Map<String, Object> getOnlyMap(IColumnEnum columnEnum, Object columnValue) {
         return getOnlyMap(this.createEntity(columnEnum, columnValue));
     }
 
     @Override
-    public Map<String, Object> getOnlyMap(@NotNullTag final Entity condition) {
+    public Map<String, Object> getOnlyMap(final Entity condition) {
         EmptyAssert.isNotNull(condition);
 
         condition.setLimit(1, 2);
@@ -106,9 +105,9 @@ public abstract class BaseViewServiceImpl<Dao extends IBaseViewDao<Entity>, Enti
     }
 
     @Override
-    public Page<Entity> queryEntityPage(@NotNullTag final Entity condition,
-                                        @NotNullTag final Integer currentPage,
-                                        @NotNullTag final Integer pageSize) {
+    public Page<Entity> queryEntityPage(final Entity condition,
+                                        final Integer currentPage,
+                                        final Integer pageSize) {
         EmptyAssert.isNotNull(condition);
 
         PageHelper.enablePage(currentPage, pageSize);
@@ -116,9 +115,9 @@ public abstract class BaseViewServiceImpl<Dao extends IBaseViewDao<Entity>, Enti
     }
 
     @Override
-    public Page<Map<String, Object>> queryMapPage(@NotNullTag final Entity condition,
-                                                  @NotNullTag final Integer currentPage,
-                                                  @NotNullTag final Integer pageSize) {
+    public Page<Map<String, Object>> queryMapPage(final Entity condition,
+                                                  final Integer currentPage,
+                                                  final Integer pageSize) {
         EmptyAssert.isNotNull(condition);
 
         PageHelper.enablePage(currentPage, pageSize);
@@ -126,34 +125,34 @@ public abstract class BaseViewServiceImpl<Dao extends IBaseViewDao<Entity>, Enti
     }
 
     @Override
-    public List<Entity> queryEntityList(@NotNullTag IColumnEnum columnEnum, @NotNullTag Object columnValue) {
+    public List<Entity> queryEntityList(IColumnEnum columnEnum, Object columnValue) {
         return queryEntityList(this.createEntity(columnEnum, columnValue));
     }
 
     @Override
-    public List<Entity> queryEntityList(@NotNullTag final Entity condition) {
+    public List<Entity> queryEntityList(final Entity condition) {
         EmptyAssert.isNotNull(condition);
         return this.baseDao.queryEOList(condition);
     }
 
     @Override
-    public List<Map<String, Object>> queryMapList(@NotNullTag IColumnEnum columnEnum, @NotNullTag Object columnValue) {
+    public List<Map<String, Object>> queryMapList(IColumnEnum columnEnum, Object columnValue) {
         return queryMapList(this.createEntity(columnEnum, columnValue));
     }
 
     @Override
-    public List<Map<String, Object>> queryMapList(@NotNullTag final Entity condition) {
+    public List<Map<String, Object>> queryMapList(final Entity condition) {
         EmptyAssert.isNotNull(condition);
         return this.baseDao.queryMapList(condition);
     }
 
     @Override
-    public int getCount(@NotNullTag final IColumnEnum columnEnum, @NotNullTag final Object columnValue) {
+    public int getCount(final IColumnEnum columnEnum, final Object columnValue) {
         return getCount(this.createEntity(columnEnum, columnValue));
     }
 
     @Override
-    public int getCount(@NotNullTag final Entity condition) {
+    public int getCount(final Entity condition) {
         EmptyAssert.isNotNull(condition);
 
         condition.resetSelect()

@@ -9,8 +9,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.util.EntityUtils;
-import org.czh.commons.annotations.tag.NotBlankTag;
-import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.validate.EmptyAssert;
 import org.czh.commons.validate.EmptyValidate;
 
@@ -31,23 +29,23 @@ public final class HttpClientUtil {
       -----------------------------get request-------------------------------
      */
 
-    public static <UrlParam, HeaderParam> String doGetText(@NotBlankTag final String url,
+    public static <UrlParam, HeaderParam> String doGetText(final String url,
                                                            final UrlParam urlParam) {
         return doGetText(url, urlParam, null);
     }
 
-    public static <UrlParam, HeaderParam> String doGetText(@NotBlankTag final String url,
+    public static <UrlParam, HeaderParam> String doGetText(final String url,
                                                            final UrlParam urlParam,
                                                            final HeaderParam headerParam) {
         return invokeText(doGetResp(url, urlParam, headerParam));
     }
 
-    public static <UrlParam, HeaderParam> CloseableHttpResponse doGetResp(@NotBlankTag String url,
+    public static <UrlParam, HeaderParam> CloseableHttpResponse doGetResp(String url,
                                                                           final UrlParam urlParam) {
         return doGetResp(url, urlParam, null);
     }
 
-    public static <UrlParam, HeaderParam> CloseableHttpResponse doGetResp(@NotBlankTag String url,
+    public static <UrlParam, HeaderParam> CloseableHttpResponse doGetResp(String url,
                                                                           final UrlParam urlParam,
                                                                           final HeaderParam headerParam) {
         String tmpUrl = UrlParamUtil.getUrlByParam(url, urlParam);
@@ -61,13 +59,13 @@ public final class HttpClientUtil {
      */
 
     public static <RequestParam> String doUrlencodedText(@NotNull final EnclosingEnum enclosingEnum,
-                                                         @NotBlankTag final String url,
+                                                         final String url,
                                                          RequestParam requestParam) {
         return doUrlencodedText(enclosingEnum, url, null, requestParam, null);
     }
 
     public static <UrlParam, RequestParam, HeaderParam> String doUrlencodedText(@NotNull final EnclosingEnum enclosingEnum,
-                                                                                @NotBlankTag final String url,
+                                                                                final String url,
                                                                                 UrlParam urlParam,
                                                                                 RequestParam requestParam,
                                                                                 HeaderParam headerParam) {
@@ -75,13 +73,13 @@ public final class HttpClientUtil {
     }
 
     public static <RequestParam> CloseableHttpResponse doUrlencodedResp(@NotNull final EnclosingEnum enclosingEnum,
-                                                                        @NotBlankTag final String url,
+                                                                        final String url,
                                                                         RequestParam requestParam) {
         return doUrlencodedResp(enclosingEnum, url, null, requestParam, null);
     }
 
     public static <UrlParam, RequestParam, HeaderParam> CloseableHttpResponse doUrlencodedResp(@NotNull final EnclosingEnum enclosingEnum,
-                                                                                               @NotBlankTag final String url,
+                                                                                               final String url,
                                                                                                UrlParam urlParam,
                                                                                                RequestParam requestParam,
                                                                                                HeaderParam headerParam) {
@@ -96,28 +94,28 @@ public final class HttpClientUtil {
       -----------------------------post/put/delete json request-------------------------------
      */
 
-    public static <UrlParam, RequestParam, HeaderParam> String doJsonText(@NotNullTag final EnclosingEnum enclosingEnum,
-                                                                          @NotBlankTag String url,
+    public static <UrlParam, RequestParam, HeaderParam> String doJsonText(final EnclosingEnum enclosingEnum,
+                                                                          String url,
                                                                           RequestParam requestParam) {
         return doJsonText(enclosingEnum, url, null, requestParam, null);
     }
 
-    public static <UrlParam, RequestParam, HeaderParam> String doJsonText(@NotNullTag final EnclosingEnum enclosingEnum,
-                                                                          @NotBlankTag String url,
+    public static <UrlParam, RequestParam, HeaderParam> String doJsonText(final EnclosingEnum enclosingEnum,
+                                                                          String url,
                                                                           UrlParam urlParam,
                                                                           RequestParam requestParam,
                                                                           HeaderParam headerParam) {
         return invokeText(doJsonResp(enclosingEnum, url, urlParam, requestParam, headerParam));
     }
 
-    public static <UrlParam, RequestParam, HeaderParam> CloseableHttpResponse doJsonResp(@NotNullTag final EnclosingEnum enclosingEnum,
-                                                                                         @NotBlankTag String url,
+    public static <UrlParam, RequestParam, HeaderParam> CloseableHttpResponse doJsonResp(final EnclosingEnum enclosingEnum,
+                                                                                         String url,
                                                                                          RequestParam requestParam) {
         return doJsonResp(enclosingEnum, url, null, requestParam, null);
     }
 
-    public static <UrlParam, RequestParam, HeaderParam> CloseableHttpResponse doJsonResp(@NotNullTag final EnclosingEnum enclosingEnum,
-                                                                                         @NotBlankTag String url,
+    public static <UrlParam, RequestParam, HeaderParam> CloseableHttpResponse doJsonResp(final EnclosingEnum enclosingEnum,
+                                                                                         String url,
                                                                                          UrlParam urlParam,
                                                                                          RequestParam requestParam,
                                                                                          HeaderParam headerParam) {
@@ -155,7 +153,7 @@ public final class HttpClientUtil {
         }
     }
 
-    public static String invokeText(@NotNullTag final CloseableHttpResponse response) {
+    public static String invokeText(final CloseableHttpResponse response) {
         EmptyAssert.isNotNull(response);
 
         HttpEntity entity = null;

@@ -1,8 +1,5 @@
 package org.czh.commons.utils;
 
-import org.czh.commons.annotations.tag.NotBlankTag;
-import org.czh.commons.annotations.tag.NotNullTag;
-import org.czh.commons.annotations.tag.ValueTag;
 import org.czh.commons.enums.parent.IBaseEnum;
 import org.czh.commons.validate.EmptyAssert;
 import org.czh.commons.validate.EmptyValidate;
@@ -21,12 +18,12 @@ import java.math.RoundingMode;
 @SuppressWarnings("unused")
 public final class DecimalUtil {
 
-    public static BigDecimal parse(@NotNullTag final Double doubleNum) {
+    public static BigDecimal parse(final Double doubleNum) {
         EmptyAssert.isNotNull(doubleNum);
         return new BigDecimal(String.valueOf(doubleNum));
     }
 
-    public static BigDecimal parse(@NotBlankTag String decimalText) {
+    public static BigDecimal parse(String decimalText) {
         EmptyAssert.isNotBlank(decimalText);
 
         decimalText = decimalText.replaceAll(",", "");
@@ -46,27 +43,27 @@ public final class DecimalUtil {
         return new BigDecimal(decimalText);
     }
 
-    public static String trim(@NotNullTag BigDecimal decimal) {
+    public static String trim(BigDecimal decimal) {
         EmptyAssert.isNotNull(decimal);
         return decimal.stripTrailingZeros().toPlainString();
     }
 
-    public static String trim(@NotBlankTag String decimalText) {
+    public static String trim(String decimalText) {
         EmptyAssert.isNotBlank(decimalText);
         return trim(parse(decimalText));
     }
 
-    public static BigDecimal format(@NotNullTag BigDecimal decimal,
-                                    @ValueTag(min = 0) int length,
-                                    @NotNullTag RoundingMode roundingMode) {
+    public static BigDecimal format(BigDecimal decimal,
+                                    int length,
+                                    RoundingMode roundingMode) {
         EmptyAssert.allNotNull(decimal, roundingMode);
         NumAssert.isMin(length, 0);
         return decimal.setScale(length, roundingMode);
     }
 
-    public static BigDecimal calculate(@NotNullTag final BigDecimal one,
-                                       @NotNullTag final TypeDict typeDict,
-                                       @NotNullTag final BigDecimal two) {
+    public static BigDecimal calculate(final BigDecimal one,
+                                       final TypeDict typeDict,
+                                       final BigDecimal two) {
         EmptyAssert.allNotNull(one, typeDict, two);
         switch (typeDict) {
             case ADD:

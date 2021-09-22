@@ -1,6 +1,5 @@
 package org.czh.commons.utils.convertor;
 
-import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.entity.IBaseTreeEntity;
 import org.czh.commons.entity.resp.ConcreteTreeRespVO;
 import org.czh.commons.validate.EmptyAssert;
@@ -39,8 +38,8 @@ public final class TreeConvertor {
      * @return 树结构
      */
     public static <S extends IBaseTreeEntity<S>, K> List<S> convertToTree(final Collection<S> source,
-                                                                          @NotNullTag final Function<S, K> currentTagConvertor,
-                                                                          @NotNullTag final Function<S, K> parentTagConvertor,
+                                                                          final Function<S, K> currentTagConvertor,
+                                                                          final Function<S, K> parentTagConvertor,
                                                                           final K parentTag) {
         return convertToTree(source, s -> s, currentTagConvertor, parentTagConvertor, parentTag);
     }
@@ -59,9 +58,9 @@ public final class TreeConvertor {
      * @return 树结构
      */
     public static <S, T extends IBaseTreeEntity<T>, K> List<T> convertToTree(final Collection<S> source,
-                                                                             @NotNullTag final Function<S, T> convertor,
-                                                                             @NotNullTag final Function<S, K> currentTagConvertor,
-                                                                             @NotNullTag final Function<S, K> parentTagConvertor,
+                                                                             final Function<S, T> convertor,
+                                                                             final Function<S, K> currentTagConvertor,
+                                                                             final Function<S, K> parentTagConvertor,
                                                                              final K parentTag) {
         return convertToTree(source, convertor, currentTagConvertor, parentTagConvertor, null, parentTag);
     }
@@ -81,9 +80,9 @@ public final class TreeConvertor {
      * @return 树结构
      */
     public static <S, T extends IBaseTreeEntity<T>, K> List<T> convertToTree(final Collection<S> source,
-                                                                             @NotNullTag final Function<S, T> convertor,
-                                                                             @NotNullTag final Function<S, K> currentTagConvertor,
-                                                                             @NotNullTag final Function<S, K> parentTagConvertor,
+                                                                             final Function<S, T> convertor,
+                                                                             final Function<S, K> currentTagConvertor,
+                                                                             final Function<S, K> parentTagConvertor,
                                                                              final Predicate<S> filter,
                                                                              final K parentTag) {
 

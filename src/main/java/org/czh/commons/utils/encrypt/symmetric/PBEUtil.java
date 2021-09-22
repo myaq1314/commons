@@ -1,8 +1,5 @@
 package org.czh.commons.utils.encrypt.symmetric;
 
-import org.czh.commons.annotations.tag.NotBlankTag;
-import org.czh.commons.annotations.tag.NotEmptyTag;
-import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.constant.EncryptConstant;
 import org.czh.commons.utils.RandomUtil;
 import org.czh.commons.validate.EmptyAssert;
@@ -34,7 +31,7 @@ public final class PBEUtil {
         return getSaltString(getSaltArray());
     }
 
-    public static String getSaltString(@NotEmptyTag byte[] saltBytes) {
+    public static String getSaltString(byte[] saltBytes) {
         return saltArrayToString(saltBytes);
     }
 
@@ -45,7 +42,7 @@ public final class PBEUtil {
         return salt.getBytes();
     }
 
-    public static byte[] getSaltArray(@NotBlankTag String saltString) {
+    public static byte[] getSaltArray(String saltString) {
         return saltStringToArray(saltString);
     }
 
@@ -53,11 +50,11 @@ public final class PBEUtil {
         return getAlgParamSpec(getSaltArray());
     }
 
-    public static AlgorithmParameterSpec getAlgParamSpec(@NotBlankTag String saltString) {
+    public static AlgorithmParameterSpec getAlgParamSpec(String saltString) {
         return getAlgParamSpec(getSaltArray(saltString));
     }
 
-    public static AlgorithmParameterSpec getAlgParamSpec(@NotEmptyTag byte[] saltBytes) {
+    public static AlgorithmParameterSpec getAlgParamSpec(byte[] saltBytes) {
         EmptyAssert.isNotEmpty(saltBytes);
         return new PBEParameterSpec(saltBytes, 100);
     }
@@ -66,7 +63,7 @@ public final class PBEUtil {
         使用口令，获取 密钥
      */
 
-    public static SecretKey getSecretKey(@NotBlankTag String password) {
+    public static SecretKey getSecretKey(String password) {
         EmptyAssert.isNotBlank(password);
 
         try {
@@ -84,27 +81,27 @@ public final class PBEUtil {
         加密
      */
 
-    public static String encodeToString(@NotBlankTag String src,
-                                        @NotNullTag SecretKey secretKey,
-                                        @NotNullTag AlgorithmParameterSpec algParamSpec) {
+    public static String encodeToString(String src,
+                                        SecretKey secretKey,
+                                        AlgorithmParameterSpec algParamSpec) {
         return dstArrayToString(encode(src, secretKey, algParamSpec));
     }
 
-    public static String encodeToString(@NotEmptyTag byte[] srcBytes,
-                                        @NotNullTag SecretKey secretKey,
-                                        @NotNullTag AlgorithmParameterSpec algParamSpec) {
+    public static String encodeToString(byte[] srcBytes,
+                                        SecretKey secretKey,
+                                        AlgorithmParameterSpec algParamSpec) {
         return dstArrayToString(encode(srcBytes, secretKey, algParamSpec));
     }
 
-    public static byte[] encode(@NotBlankTag String src,
-                                @NotNullTag SecretKey secretKey,
-                                @NotNullTag AlgorithmParameterSpec algParamSpec) {
+    public static byte[] encode(String src,
+                                SecretKey secretKey,
+                                AlgorithmParameterSpec algParamSpec) {
         return encode(srcStringToArray(src), secretKey, algParamSpec);
     }
 
-    public static byte[] encode(@NotEmptyTag byte[] srcBytes,
-                                @NotNullTag SecretKey key,
-                                @NotNullTag AlgorithmParameterSpec algParamSpec) {
+    public static byte[] encode(byte[] srcBytes,
+                                SecretKey key,
+                                AlgorithmParameterSpec algParamSpec) {
         EmptyAssert.isNotEmpty(srcBytes);
         EmptyAssert.isNotNull(key);
         EmptyAssert.isNotNull(algParamSpec);
@@ -122,27 +119,27 @@ public final class PBEUtil {
         解密
      */
 
-    public static String decodeToString(@NotBlankTag String dst,
-                                        @NotNullTag SecretKey secretKey,
-                                        @NotNullTag AlgorithmParameterSpec algParamSpec) {
+    public static String decodeToString(String dst,
+                                        SecretKey secretKey,
+                                        AlgorithmParameterSpec algParamSpec) {
         return decodeToString(dstStringToArray(dst), secretKey, algParamSpec);
     }
 
-    public static String decodeToString(@NotEmptyTag byte[] dstBytes,
-                                        @NotNullTag SecretKey secretKey,
-                                        @NotNullTag AlgorithmParameterSpec algParamSpec) {
+    public static String decodeToString(byte[] dstBytes,
+                                        SecretKey secretKey,
+                                        AlgorithmParameterSpec algParamSpec) {
         return srcArrayToString(decode(dstBytes, secretKey, algParamSpec));
     }
 
-    public static byte[] decode(@NotBlankTag String dst,
-                                @NotNullTag SecretKey secretKey,
-                                @NotNullTag AlgorithmParameterSpec algParamSpec) {
+    public static byte[] decode(String dst,
+                                SecretKey secretKey,
+                                AlgorithmParameterSpec algParamSpec) {
         return decode(dstStringToArray(dst), secretKey, algParamSpec);
     }
 
-    public static byte[] decode(@NotEmptyTag byte[] dstBytes,
-                                @NotNullTag SecretKey key,
-                                @NotNullTag AlgorithmParameterSpec algParamSpec) {
+    public static byte[] decode(byte[] dstBytes,
+                                SecretKey key,
+                                AlgorithmParameterSpec algParamSpec) {
         EmptyAssert.isNotEmpty(dstBytes);
         EmptyAssert.isNotNull(key);
         EmptyAssert.isNotNull(algParamSpec);
@@ -159,34 +156,34 @@ public final class PBEUtil {
     /*
         校验
      */
-    public static boolean verify(@NotBlankTag String src,
-                                 @NotBlankTag String dst,
-                                 @NotNullTag SecretKey secretKey,
-                                 @NotNullTag AlgorithmParameterSpec algParamSpec) {
+    public static boolean verify(String src,
+                                 String dst,
+                                 SecretKey secretKey,
+                                 AlgorithmParameterSpec algParamSpec) {
         EmptyAssert.isNotBlank(dst);
         return Objects.equals(encodeToString(src, secretKey, algParamSpec), dst);
     }
 
-    public static boolean verify(@NotBlankTag String src,
-                                 @NotEmptyTag byte[] dstBytes,
-                                 @NotNullTag SecretKey secretKey,
-                                 @NotNullTag AlgorithmParameterSpec algParamSpec) {
+    public static boolean verify(String src,
+                                 byte[] dstBytes,
+                                 SecretKey secretKey,
+                                 AlgorithmParameterSpec algParamSpec) {
         EmptyAssert.isNotEmpty(dstBytes);
         return Arrays.equals(encode(src, secretKey, algParamSpec), dstBytes);
     }
 
-    public static boolean verify(@NotEmptyTag byte[] srcBytes,
-                                 @NotBlankTag String dst,
-                                 @NotNullTag SecretKey secretKey,
-                                 @NotNullTag AlgorithmParameterSpec algParamSpec) {
+    public static boolean verify(byte[] srcBytes,
+                                 String dst,
+                                 SecretKey secretKey,
+                                 AlgorithmParameterSpec algParamSpec) {
         EmptyAssert.isNotBlank(dst);
         return Objects.equals(encodeToString(srcBytes, secretKey, algParamSpec), dst);
     }
 
-    public static boolean verify(@NotEmptyTag byte[] srcBytes,
-                                 @NotEmptyTag byte[] dstBytes,
-                                 @NotNullTag SecretKey secretKey,
-                                 @NotNullTag AlgorithmParameterSpec algParamSpec) {
+    public static boolean verify(byte[] srcBytes,
+                                 byte[] dstBytes,
+                                 SecretKey secretKey,
+                                 AlgorithmParameterSpec algParamSpec) {
         EmptyAssert.isNotEmpty(dstBytes);
         return Arrays.equals(encode(srcBytes, secretKey, algParamSpec), dstBytes);
     }
@@ -195,32 +192,32 @@ public final class PBEUtil {
         字节数组 与 字符串 互转
      */
 
-    public static byte[] saltStringToArray(@NotBlankTag String salt) {
+    public static byte[] saltStringToArray(String salt) {
         EmptyAssert.isNotBlank(salt);
         return Base64Util.decode(salt);
     }
 
-    public static String saltArrayToString(@NotEmptyTag byte[] saltBytes) {
+    public static String saltArrayToString(byte[] saltBytes) {
         EmptyAssert.isNotEmpty(saltBytes);
         return Base64Util.encodeToString(saltBytes);
     }
 
-    private static byte[] srcStringToArray(@NotBlankTag String src) {
+    private static byte[] srcStringToArray(String src) {
         EmptyAssert.isNotBlank(src);
         return src.getBytes();
     }
 
-    private static String srcArrayToString(@NotEmptyTag byte[] srcBytes) {
+    private static String srcArrayToString(byte[] srcBytes) {
         EmptyAssert.isNotEmpty(srcBytes);
         return new String(srcBytes);
     }
 
-    private static byte[] dstStringToArray(@NotBlankTag String dst) {
+    private static byte[] dstStringToArray(String dst) {
         EmptyAssert.isNotBlank(dst);
         return Base64Util.decode(dst);
     }
 
-    private static String dstArrayToString(@NotEmptyTag byte[] dstBytes) {
+    private static String dstArrayToString(byte[] dstBytes) {
         EmptyAssert.isNotEmpty(dstBytes);
         return Base64Util.encodeToString(dstBytes);
     }

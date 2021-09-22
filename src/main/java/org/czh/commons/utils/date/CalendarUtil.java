@@ -1,7 +1,5 @@
 package org.czh.commons.utils.date;
 
-import org.czh.commons.annotations.tag.NotNullTag;
-import org.czh.commons.annotations.tag.ValueTag;
 import org.czh.commons.utils.DateUtil;
 import org.czh.commons.validate.EmptyAssert;
 import org.czh.commons.validate.FlagAssert;
@@ -26,7 +24,7 @@ public final class CalendarUtil {
         return Calendar.getInstance();
     }
 
-    public static Calendar getCalendar(@NotNullTag final Date date) {
+    public static Calendar getCalendar(final Date date) {
         EmptyAssert.isNotNull(date);
 
         Calendar calendar = getCalendar();
@@ -51,11 +49,11 @@ public final class CalendarUtil {
         return getYear(DateUtil.getNowDate());
     }
 
-    public static int getYear(@NotNullTag final Date date) {
+    public static int getYear(final Date date) {
         return getYear(getCalendar(date));
     }
 
-    public static int getYear(@NotNullTag final Calendar calendar) {
+    public static int getYear(final Calendar calendar) {
         return getDateField(calendar, Calendar.YEAR);
     }
 
@@ -71,11 +69,11 @@ public final class CalendarUtil {
         return getMonth(DateUtil.getNowDate());
     }
 
-    public static int getMonth(@NotNullTag final Date date) {
+    public static int getMonth(final Date date) {
         return getMonth(getCalendar(date));
     }
 
-    public static int getMonth(@NotNullTag final Calendar calendar) {
+    public static int getMonth(final Calendar calendar) {
         return getDateField(calendar, Calendar.MONTH) + 1;
     }
 
@@ -91,11 +89,11 @@ public final class CalendarUtil {
         return getDayOfMonth(DateUtil.getNowDate());
     }
 
-    public static int getDayOfMonth(@NotNullTag final Date date) {
+    public static int getDayOfMonth(final Date date) {
         return getDayOfMonth(getCalendar(date));
     }
 
-    public static int getDayOfMonth(@NotNullTag final Calendar calendar) {
+    public static int getDayOfMonth(final Calendar calendar) {
         return getDateField(calendar, Calendar.DATE);
     }
 
@@ -111,11 +109,11 @@ public final class CalendarUtil {
         return getDayOfWeek(DateUtil.getNowDate());
     }
 
-    public static int getDayOfWeek(@NotNullTag final Date date) {
+    public static int getDayOfWeek(final Date date) {
         return getDayOfWeek(getCalendar(date));
     }
 
-    public static int getDayOfWeek(@NotNullTag final Calendar calendar) {
+    public static int getDayOfWeek(final Calendar calendar) {
         return getDateField(calendar, Calendar.DAY_OF_WEEK);
     }
 
@@ -131,11 +129,11 @@ public final class CalendarUtil {
         return getHourOfDay(DateUtil.getNowDate());
     }
 
-    public static int getHourOfDay(@NotNullTag final Date date) {
+    public static int getHourOfDay(final Date date) {
         return getHourOfDay(getCalendar(date));
     }
 
-    public static int getHourOfDay(@NotNullTag final Calendar calendar) {
+    public static int getHourOfDay(final Calendar calendar) {
         return getDateField(calendar, Calendar.HOUR_OF_DAY);
     }
 
@@ -151,11 +149,11 @@ public final class CalendarUtil {
         return getMinute(DateUtil.getNowDate());
     }
 
-    public static int getMinute(@NotNullTag final Date date) {
+    public static int getMinute(final Date date) {
         return getMinute(getCalendar(date));
     }
 
-    public static int getMinute(@NotNullTag final Calendar calendar) {
+    public static int getMinute(final Calendar calendar) {
         return getDateField(calendar, Calendar.MINUTE);
     }
 
@@ -171,11 +169,11 @@ public final class CalendarUtil {
         return getSecond(DateUtil.getNowDate());
     }
 
-    public static int getSecond(@NotNullTag final Date date) {
+    public static int getSecond(final Date date) {
         return getSecond(getCalendar(date));
     }
 
-    public static int getSecond(@NotNullTag final Calendar calendar) {
+    public static int getSecond(final Calendar calendar) {
         return getDateField(calendar, Calendar.SECOND);
     }
 
@@ -183,15 +181,15 @@ public final class CalendarUtil {
       -----------------------------get date field-------------------------------
      */
 
-    public static int getCurrentDateField(@ValueTag(min = 1, max = 14) int field) {
+    public static int getCurrentDateField(int field) {
         return getDateField(DateUtil.getNowDate(), field);
     }
 
-    public static int getDateField(@NotNullTag final Date date, @ValueTag(min = 1, max = 14) int field) {
+    public static int getDateField(final Date date, int field) {
         return getDateField(getCalendar(date), field);
     }
 
-    public static int getDateField(@NotNullTag final Calendar calendar, @ValueTag(min = 1, max = 14) int field) {
+    public static int getDateField(final Calendar calendar, int field) {
         EmptyAssert.isNotNull(calendar);
         FlagAssert.isTrue(field >= 0 && field <= 17);
         return calendar.get(field);
@@ -212,11 +210,11 @@ public final class CalendarUtil {
         return getAddYearDate(DateUtil.getNowDate(), addYearNum);
     }
 
-    public static Date getAddYearDate(@NotNullTag final Date date, int addYearNum) {
+    public static Date getAddYearDate(final Date date, int addYearNum) {
         return getAddYearDate(getCalendar(date), addYearNum);
     }
 
-    public static Date getAddYearDate(@NotNullTag final Calendar calendar, final int addYearNum) {
+    public static Date getAddYearDate(final Calendar calendar, final int addYearNum) {
         return getAddDate(calendar, Calendar.YEAR, addYearNum);
     }
 
@@ -235,11 +233,11 @@ public final class CalendarUtil {
         return getAddMonthDate(DateUtil.getNowDate(), addMonthNum);
     }
 
-    public static Date getAddMonthDate(@NotNullTag final Date date, final int addMonthNum) {
+    public static Date getAddMonthDate(final Date date, final int addMonthNum) {
         return getAddMonthDate(getCalendar(date), addMonthNum);
     }
 
-    public static Date getAddMonthDate(@NotNullTag final Calendar calendar, final int addMonthNum) {
+    public static Date getAddMonthDate(final Calendar calendar, final int addMonthNum) {
         return getAddDate(calendar, Calendar.MONTH, addMonthNum);
     }
 
@@ -258,11 +256,11 @@ public final class CalendarUtil {
         return getAddWeekDate(DateUtil.getNowDate(), addWeekNum);
     }
 
-    public static Date getAddWeekDate(@NotNullTag final Date date, final int addWeekNum) {
+    public static Date getAddWeekDate(final Date date, final int addWeekNum) {
         return getAddWeekDate(getCalendar(date), addWeekNum);
     }
 
-    public static Date getAddWeekDate(@NotNullTag final Calendar calendar, final int addWeekNum) {
+    public static Date getAddWeekDate(final Calendar calendar, final int addWeekNum) {
         return getAddDate(calendar, Calendar.DATE, addWeekNum * 7);
     }
 
@@ -281,11 +279,11 @@ public final class CalendarUtil {
         return getAddDayDate(DateUtil.getNowDate(), addDayNum);
     }
 
-    public static Date getAddDayDate(@NotNullTag final Date date, final int addDayNum) {
+    public static Date getAddDayDate(final Date date, final int addDayNum) {
         return getAddDayDate(getCalendar(date), addDayNum);
     }
 
-    public static Date getAddDayDate(@NotNullTag final Calendar calendar, final int addDayNum) {
+    public static Date getAddDayDate(final Calendar calendar, final int addDayNum) {
         return getAddDate(calendar, Calendar.DATE, addDayNum);
     }
 
@@ -304,11 +302,11 @@ public final class CalendarUtil {
         return getAddHourDate(DateUtil.getNowDate(), addHourNum);
     }
 
-    public static Date getAddHourDate(@NotNullTag final Date date, final int addHourNum) {
+    public static Date getAddHourDate(final Date date, final int addHourNum) {
         return getAddHourDate(getCalendar(date), addHourNum);
     }
 
-    public static Date getAddHourDate(@NotNullTag final Calendar calendar, final int addHourNum) {
+    public static Date getAddHourDate(final Calendar calendar, final int addHourNum) {
         return getAddDate(calendar, Calendar.HOUR, addHourNum);
     }
 
@@ -327,11 +325,11 @@ public final class CalendarUtil {
         return getAddMinuteDate(DateUtil.getNowDate(), addMinuteNum);
     }
 
-    public static Date getAddMinuteDate(@NotNullTag final Date date, final int addMinuteNum) {
+    public static Date getAddMinuteDate(final Date date, final int addMinuteNum) {
         return getAddMinuteDate(getCalendar(date), addMinuteNum);
     }
 
-    public static Date getAddMinuteDate(@NotNullTag final Calendar calendar, final int addMinuteNum) {
+    public static Date getAddMinuteDate(final Calendar calendar, final int addMinuteNum) {
         return getAddDate(calendar, Calendar.MINUTE, addMinuteNum);
     }
 
@@ -350,11 +348,11 @@ public final class CalendarUtil {
         return getAddSecondDate(DateUtil.getNowDate(), addSecondNum);
     }
 
-    public static Date getAddSecondDate(@NotNullTag final Date date, final int addSecondNum) {
+    public static Date getAddSecondDate(final Date date, final int addSecondNum) {
         return getAddSecondDate(getCalendar(date), addSecondNum);
     }
 
-    public static Date getAddSecondDate(@NotNullTag final Calendar calendar, final int addSecondNum) {
+    public static Date getAddSecondDate(final Calendar calendar, final int addSecondNum) {
         return getAddDate(calendar, Calendar.SECOND, addSecondNum);
     }
 
@@ -362,18 +360,18 @@ public final class CalendarUtil {
       -----------------------------get before/after date now datetime-------------------------------
      */
 
-    public static Date getAddDate(@ValueTag(min = 1, max = 14) final int field, final int addNum) {
+    public static Date getAddDate(final int field, final int addNum) {
         return getAddDate(DateUtil.getNowDate(), field, addNum);
     }
 
-    public static Date getAddDate(@NotNullTag final Date date,
-                                  @ValueTag(min = 1, max = 14) final int field,
+    public static Date getAddDate(final Date date,
+                                  final int field,
                                   final int addNum) {
         return getAddDate(getCalendar(date), field, addNum);
     }
 
-    public static Date getAddDate(@NotNullTag final Calendar calendar,
-                                  @ValueTag(min = 1, max = 14) final int field,
+    public static Date getAddDate(final Calendar calendar,
+                                  final int field,
                                   final int addNum) {
         EmptyAssert.isNotNull(calendar);
         FlagAssert.isTrue(field >= 0 && field <= 17);

@@ -1,7 +1,5 @@
 package org.czh.commons.service.impl;
 
-import org.czh.commons.annotations.tag.NotEmptyTag;
-import org.czh.commons.annotations.tag.NotNullTag;
 import org.czh.commons.dao.IBasePrimaryDao;
 import org.czh.commons.entity.eo.BasePrimaryEO;
 import org.czh.commons.enums.sql.CircleDict;
@@ -24,13 +22,13 @@ public abstract class BasePrimaryServiceImpl<Dao extends IBasePrimaryDao<Entity>
         implements IBasePrimaryService<Entity> {
 
     @Override
-    public Entity getById(@NotNullTag final Object id) {
+    public Entity getById(final Object id) {
         return getById(null, id);
     }
 
     @Override
     @SuppressWarnings("DuplicatedCode")
-    public Entity getById(final String tableName, @NotNullTag final Object id) {
+    public Entity getById(final String tableName, final Object id) {
         EmptyAssert.isNotNull(id);
         Field idField = FieldUtil.getField(this.clazz, "id");
         EqualsAssert.isEquals(idField.getType(), id.getClass());
@@ -42,7 +40,7 @@ public abstract class BasePrimaryServiceImpl<Dao extends IBasePrimaryDao<Entity>
     }
 
     @Override
-    public int updateById(@NotNullTag final Entity entity) {
+    public int updateById(final Entity entity) {
         EmptyAssert.isNotNull(entity);
         Object id = FieldUtil.readField(entity, "id");
         EmptyAssert.isNotNull(id);
@@ -54,12 +52,12 @@ public abstract class BasePrimaryServiceImpl<Dao extends IBasePrimaryDao<Entity>
     }
 
     @Override
-    public int batchUpdateById(@NotEmptyTag final List<Entity> entityList) {
+    public int batchUpdateById(final List<Entity> entityList) {
         return batchUpdateById(null, entityList);
     }
 
     @Override
-    public int batchUpdateById(final String tableName, @NotEmptyTag final List<Entity> entityList) {
+    public int batchUpdateById(final String tableName, final List<Entity> entityList) {
         EmptyAssert.isNotEmpty(entityList);
 
         int count = 0;
@@ -71,13 +69,13 @@ public abstract class BasePrimaryServiceImpl<Dao extends IBasePrimaryDao<Entity>
     }
 
     @Override
-    public int deleteById(@NotNullTag final Object id) {
+    public int deleteById(final Object id) {
         return deleteById(null, id);
     }
 
     @Override
     @SuppressWarnings("DuplicatedCode")
-    public int deleteById(final String tableName, @NotNullTag final Object id) {
+    public int deleteById(final String tableName, final Object id) {
         EmptyAssert.isNotNull(id);
         Field idField = FieldUtil.getField(this.clazz, "id");
         EqualsAssert.isEquals(idField.getType(), id.getClass());
@@ -89,12 +87,12 @@ public abstract class BasePrimaryServiceImpl<Dao extends IBasePrimaryDao<Entity>
     }
 
     @Override
-    public List<Entity> queryListByIdList(@NotEmptyTag final List<Object> idList) {
+    public List<Entity> queryListByIdList(final List<Object> idList) {
         return queryListByIdList(null, idList);
     }
 
     @Override
-    public List<Entity> queryListByIdList(final String tableName, @NotEmptyTag final List<Object> idList) {
+    public List<Entity> queryListByIdList(final String tableName, final List<Object> idList) {
         EmptyAssert.isNotEmpty(idList);
 
         Entity condition = newInstance();
