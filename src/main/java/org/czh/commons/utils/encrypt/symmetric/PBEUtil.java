@@ -41,7 +41,7 @@ public final class PBEUtil {
     public static byte[] getSaltArray() {
 //        SecureRandom random = new SecureRandom();
 //        return random.generateSeed(8);
-        String salt = RandomUtil.getHexRandomByArray(null, 4, 4);
+        String salt = RandomUtil.getHexRandomUUID(null, 4, 4);
         return salt.getBytes();
     }
 

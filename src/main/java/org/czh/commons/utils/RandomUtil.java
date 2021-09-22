@@ -3,9 +3,9 @@ package org.czh.commons.utils;
 import org.czh.commons.annotations.tag.ChildValueTag;
 import org.czh.commons.annotations.tag.IntervalTag;
 import org.czh.commons.annotations.tag.NotEmptyTag;
-import org.czh.commons.annotations.tag.ValueTag;
 import org.czh.commons.validate.EmptyAssert;
 import org.czh.commons.validate.FlagAssert;
+import org.czh.commons.validate.NumAssert;
 
 import java.util.Random;
 
@@ -30,10 +30,10 @@ public final class RandomUtil {
         String hexRandom = getHexRandom(1000, 300000, true);
         System.out.println(hexRandom); // 17ef5
 
-        String hexRandomByCircle = getHexRandomByCircle("-", 32);
+        String hexRandomByCircle = getHexRandom(32);
         System.out.println(hexRandomByCircle); // cb714f9-20071b9-3321301-6bb75d5-8cfb
 
-        String hexRandomByArray = getHexRandomByArray("-", 7, 7, 7, 7, 4);
+        String hexRandomByArray = getHexRandomUUID("-", 7, 7, 7, 7, 4);
         System.out.println(hexRandomByArray); // cb40e30-56a7af1-34e9d4d-4ecbba4-3f67
     }
 
@@ -44,66 +44,48 @@ public final class RandomUtil {
      * @param lengths   每部分长度，子元素允许范围大于等于1
      * @return 随机数 十六进制
      */
-    public static String getHexRandomByArray(String separator,
-                                             @NotEmptyTag @ChildValueTag(min = 1) int... lengths) {
+    public static String getHexRandomUUID(String separator, @NotEmptyTag @ChildValueTag(min = 1) int... lengths) {
         EmptyAssert.isNotEmpty(lengths);
 
         separator = separator == null ? "" : separator;
         StringBuilder builder = new StringBuilder();
         for (int length : lengths) {
-            builder.append(getHexRandomByCircle(null, length));
+            builder.append(getHexRandom(length));
             builder.append(separator);
         }
         return builder.substring(0, builder.length() - separator.length());
     }
 
     /**
-     * 生成 指定 长度 的随机数
-     *
-     * @param separator 间隔符
-     * @param length    总长度（不包含间隔符）允许范围大于等于1
-     * @return 指定长度的随机数
-     */
-    public static String getHexRandomByCircle(String separator,
-                                              @ValueTag(min = 1) int length) {
-        FlagAssert.isTrue(length >= 1);
-
-        int temp = length;
-        separator = separator == null ? "" : separator;
-        StringBuilder builder = new StringBuilder();
-        while (temp > 0) {
-            if (temp <= 7) {
-                builder.append(getOnceHexRandom(temp));
-                break;
-            }
-            builder.append(getOnceHexRandom(7));
-            builder.append(separator);
-            temp -= 7;
-        }
-        return builder.toString();
-    }
-
-    /**
      * 单次 获取 十六进制 随机数
      * length 长度，默认为 1 到 7之间，多了，就超出了 十六进制 数字长度
      *
-     * @param length 单次长度，允许范围 1 - 7
+     * @param length 长度
      * @return 单次随机数
      */
-    private static String getOnceHexRandom(@ValueTag(min = 1, max = 7) int length) {
-        FlagAssert.isTrue(length >= 1 && length <= 7);
+    public static String getHexRandom(int length) {
+        NumAssert.isPositiveInt(length);
 
-        int min = 0;
-        int max;
-        StringBuilder builder = new StringBuilder("1");
-        for (int i = 0; i < length; i++) {
-            builder.append("0");
-            if (i == length - 2) {
-                min = Integer.parseInt(builder.toString(), 16);
+        StringBuilder resultBuilder = new StringBuilder();
+        while (length != 0) {
+            StringBuilder minBuilder = new StringBuilder("1");
+            StringBuilder maxBuilder = new StringBuilder("f");
+            if (length >= 7) {
+                minBuilder.append("000000");
+                maxBuilder.append("ffffff");
+                length -= 7;
+            } else {
+                for (int i = 1; i < length; i++) {
+                    minBuilder.append("0");
+                    maxBuilder.append("f");
+                }
+                length = 0;
             }
+            int min = Integer.parseInt(minBuilder.toString(), 16);
+            int max = Integer.parseInt(maxBuilder.toString(), 16);
+            resultBuilder.append(getHexRandom(min, max, true));
         }
-        max = Integer.parseInt(builder.toString(), 16);
-        return getHexRandom(min, max);
+        return resultBuilder.toString();
     }
 
     /**

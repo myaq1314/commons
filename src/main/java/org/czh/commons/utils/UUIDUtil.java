@@ -46,7 +46,7 @@ public final class UUIDUtil {
      * eg: 83225586-b596-4944-b86e-d04cfb2a3219
      */
     public static String getOwnPrimevalUUID() {
-        return RandomUtil.getHexRandomByArray("-", 8, 4, 4, 4, 12);
+        return RandomUtil.getHexRandomUUID("-", 8, 4, 4, 4, 12);
     }
 
     /**
@@ -54,6 +54,6 @@ public final class UUIDUtil {
      * eg: 23f69d123e384264bdcd375d54230adf
      */
     public static String getOwnTrimUUID() {
-        return RandomUtil.getHexRandomByArray(null, 8, 4, 4, 4, 12);
+        return RandomUtil.getHexRandomUUID(null, 8, 4, 4, 4, 12);
     }
 }

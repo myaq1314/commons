@@ -26,7 +26,7 @@ public final class SHAUtil {
         盐
      */
     public static String getSalt(@ValueTag(min = 1) int length) {
-        return RandomUtil.getHexRandomByCircle(null, length);
+        return RandomUtil.getHexRandom(length);
     }
 
     /*
