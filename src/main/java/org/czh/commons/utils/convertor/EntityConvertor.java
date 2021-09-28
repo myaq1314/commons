@@ -4,16 +4,11 @@ import org.czh.commons.entity.IBaseEntity;
 import org.czh.commons.utils.FieldUtil;
 import org.czh.commons.validate.EmptyAssert;
 import org.czh.commons.validate.EmptyValidate;
-import org.springframework.beans.BeanUtils;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -54,86 +49,30 @@ public final class EntityConvertor {
     }
 
     /*
-      -----------------------------bean convert to other bean-------------------------------
-     */
-    public static <S, T> T convertToBean(final S source,
-                                         final Class<T> targetClazz) {
-        EmptyAssert.isNotNull(targetClazz);
-
-        T target = BeanUtils.instantiateClass(targetClazz);
-        convertToBean(source, target);
-        return target;
-    }
-
-    public static <S, T> T convertToBean(final S source,
-                                         final Function<S, T> convertor) {
-        EmptyAssert.allNotNull(source, convertor);
-
-        T target = convertor.apply(source);
-        convertToBean(source, target);
-        return target;
-    }
-
-    public static <S, T> void convertToBean(final S source,
-                                            final T target) {
-        EmptyAssert.allNotNull(source, target);
-        BeanUtils.copyProperties(source, target);
-    }
-
-    /*
-      -----------------------------bean collection convert to other bean list-------------------------------
-     */
-    public static <S, T> List<T> convertToBeanList(final Collection<S> sourceCollection,
-                                                   final Class<T> targetClazz) {
-        EmptyAssert.isNotEmpty(sourceCollection);
-
-        List<T> targetList = new ArrayList<>(sourceCollection.size());
-        for (S source : sourceCollection) {
-            targetList.add(convertToBean(source, targetClazz));
-        }
-        return targetList;
-    }
-
-    public static <S, T> List<T> convertToBeanList(final Collection<S> sourceCollection,
-                                                   final Function<S, T> convertor) {
-        EmptyAssert.isNotEmpty(sourceCollection);
-
-        List<T> targetList = new ArrayList<>(sourceCollection.size());
-        for (S source : sourceCollection) {
-            targetList.add(convertToBean(source, convertor));
-        }
-        return targetList;
-    }
-
-    public static <S, T> Set<T> convertToBeanSet(final Collection<S> sourceCollection,
-                                                 final Class<T> targetClazz) {
-        EmptyAssert.isNotEmpty(sourceCollection);
-
-        Set<T> targetSet = new HashSet<>(sourceCollection.size());
-        for (S source : sourceCollection) {
-            targetSet.add(convertToBean(source, targetClazz));
-        }
-        return targetSet;
-    }
-
-    public static <S, T> Set<T> convertToBeanSet(final Collection<S> sourceCollection,
-                                                 final Function<S, T> convertor) {
-        EmptyAssert.isNotEmpty(sourceCollection);
-
-        Set<T> targetSet = new HashSet<>(sourceCollection.size());
-        for (S source : sourceCollection) {
-            targetSet.add(convertToBean(source, convertor));
-        }
-        return targetSet;
-    }
-
-    /*
       -----------------------------bean convert to new map-------------------------------
      */
 
     public static <S extends IBaseEntity> Map<String, Object> convertToMap(final S source) {
-        Map<String, Object> target = new HashMap<>();
-        convertToMap(source, target);
+        return convertToMap(source, Field::getName);
+    }
+
+    public static <S extends IBaseEntity, Key> Map<Key, Object> convertToMap(final S source,
+                                                                             final Function<Field, Key> keyFunction) {
+        return convertToMap(source, keyFunction, field -> FieldUtil.readField(source, field));
+    }
+
+    public static <S extends IBaseEntity, Key, Value> Map<Key, Value> convertToMap(final S source,
+                                                                                   final Function<Field, Key> keyFunction,
+                                                                                   final Function<Field, Value> valueFunction) {
+        return convertToMap(source, keyFunction, valueFunction, null);
+    }
+
+    public static <S extends IBaseEntity, Key, Value> Map<Key, Value> convertToMap(final S source,
+                                                                                   final Function<Field, Key> keyFunction,
+                                                                                   final Function<Field, Value> valueFunction,
+                                                                                   final Predicate<Field> filter) {
+        Map<Key, Value> target = new HashMap<>();
+        convertToMap(source, target, keyFunction, valueFunction, filter);
         return target;
     }
 
@@ -142,14 +81,37 @@ public final class EntityConvertor {
      */
     public static <S extends IBaseEntity> void convertToMap(final S source,
                                                             final Map<String, Object> target) {
-        EmptyAssert.allNotNull(source, target);
+        convertToMap(source, target, Field::getName);
+    }
 
-        Class<?> clazz = source.getClass();
-        List<Field> fieldList = FieldUtil.queryFieldList(clazz);
+    public static <S extends IBaseEntity, Key> void convertToMap(final S source,
+                                                                 final Map<Key, Object> target,
+                                                                 final Function<Field, Key> keyFunction) {
+        convertToMap(source, target, keyFunction, field -> FieldUtil.readField(source, field));
+    }
+
+    public static <S extends IBaseEntity, Key, Value> void convertToMap(final S source,
+                                                                        final Map<Key, Value> target,
+                                                                        final Function<Field, Key> keyFunction,
+                                                                        final Function<Field, Value> valueFunction) {
+        convertToMap(source, target, keyFunction, valueFunction, null);
+    }
+
+    public static <S extends IBaseEntity, Key, Value> void convertToMap(final S source,
+                                                                        final Map<Key, Value> target,
+                                                                        final Function<Field, Key> keyFunction,
+                                                                        final Function<Field, Value> valueFunction,
+                                                                        final Predicate<Field> filter) {
+        EmptyAssert.allNotNull(source, target, keyFunction, valueFunction);
+
+        List<Field> fieldList = FieldUtil.queryFieldList(source.getClass(), field -> !field.getName().equals("serialVersionUID"));
         if (EmptyValidate.isEmpty(fieldList)) {
             return;
         }
-
-        fieldList.forEach(field -> target.put(field.getName(), FieldUtil.readField(source, field)));
+        for (Field field : fieldList) {
+            if (EmptyValidate.isNull(filter) || filter.test(field)) {
+                target.put(keyFunction.apply(field), valueFunction.apply(field));
+            }
+        }
     }
 }

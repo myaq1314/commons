@@ -8,6 +8,7 @@ import java.io.File;
  * date : 2021/8/28
  * email 916419307@qq.com
  */
+@SuppressWarnings("unused")
 public final class FileValidate {
 
     public static File isExistsFile(final String filePath) {

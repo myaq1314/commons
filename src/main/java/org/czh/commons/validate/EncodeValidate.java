@@ -11,6 +11,7 @@ import java.io.File;
  * date : 2021/8/27
  * email 916419307@qq.com
  */
+@SuppressWarnings("unused")
 public final class EncodeValidate {
 
     public static boolean isUtf8(final String filePath) {

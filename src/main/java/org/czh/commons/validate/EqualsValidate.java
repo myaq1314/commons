@@ -9,6 +9,7 @@ import java.util.Objects;
  * date : 2021-05-02
  * email 916419307@qq.com
  */
+@SuppressWarnings("unused")
 public final class EqualsValidate {
 
     public static <T> boolean notEquals(final T target, final T compare) {

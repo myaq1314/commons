@@ -8,6 +8,7 @@ import java.math.BigDecimal;
  * date : 2021-04-28
  * email 916419307@qq.com
  */
+@SuppressWarnings("unused")
 public final class NumValidate {
 
     /**

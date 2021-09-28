@@ -6,6 +6,7 @@ package org.czh.commons.validate;
  * date : 2021-06-26
  * email 916419307@qq.com
  */
+@SuppressWarnings("unused")
 public final class FlagValidate {
 
     public static boolean isTrue(final Boolean flag) {
