@@ -57,8 +57,9 @@ public class BaseViewEOTest {
         }
 
         builder.append(" from ");
-        if (EmptyValidate.isNotBlank(baseQueryTestEO.getTableName())) {
-            builder.append(baseQueryTestEO.getTableName());
+        String tableNameSql;
+        if (EmptyValidate.isNotBlank(tableNameSql = baseQueryTestEO.getTableNameSQL())) {
+            builder.append(tableNameSql);
         } else {
             builder.append(" student ");
         }

@@ -34,7 +34,7 @@ public abstract class BasePrimaryServiceImpl<Dao extends IBasePrimaryDao<Entity>
         EqualsAssert.isEquals(idField.getType(), id.getClass());
 
         Entity condition = newInstance();
-        condition.setTableName(tableName);
+        condition.setTableNameSQL(tableName);
         FieldUtil.writeField(condition, idField, id);
         return this.getOnlyEntity(condition);
     }
@@ -46,7 +46,7 @@ public abstract class BasePrimaryServiceImpl<Dao extends IBasePrimaryDao<Entity>
         EmptyAssert.isNotNull(id);
 
         Entity condition = newInstance();
-        condition.setTableName(entity.getTableName());
+        condition.setTableNameSQL(entity.getTableNameSQL());
         FieldUtil.writeField(condition, "id", id);
         return this.update(condition, entity);
     }
@@ -62,7 +62,7 @@ public abstract class BasePrimaryServiceImpl<Dao extends IBasePrimaryDao<Entity>
 
         int count = 0;
         for (Entity entity : entityList) {
-            entity.setTableName(tableName);
+            entity.setTableNameSQL(tableName);
             count += this.updateById(entity);
         }
         return count;
@@ -81,7 +81,7 @@ public abstract class BasePrimaryServiceImpl<Dao extends IBasePrimaryDao<Entity>
         EqualsAssert.isEquals(idField.getType(), id.getClass());
 
         Entity condition = newInstance();
-        condition.setTableName(tableName);
+        condition.setTableNameSQL(tableName);
         FieldUtil.writeField(condition, idField, id);
         return this.delete(condition);
     }
@@ -96,7 +96,7 @@ public abstract class BasePrimaryServiceImpl<Dao extends IBasePrimaryDao<Entity>
         EmptyAssert.isNotEmpty(idList);
 
         Entity condition = newInstance();
-        condition.setTableName(tableName);
+        condition.setTableNameSQL(tableName);
         condition.addWhereCircle("id", CircleDict.IN, idList);
         return this.queryEntityList(condition);
     }

@@ -25,7 +25,7 @@ public abstract class BaseCommonEO extends BaseViewEO
 
     private static final long serialVersionUID = -2976191070162397245L;
 
-    protected List<InsertEO> insertEOLList;
+    protected List<InsertEO> insertSQLEOLList;
     protected List<String> updateSQLList;
 
 }

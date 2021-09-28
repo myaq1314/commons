@@ -29,11 +29,11 @@ public class IBaseInsertTestEO {
         builder.append(" insert into student ");
         StringBuilder fieldBuilder = new StringBuilder();
         StringBuilder valueBuilder = new StringBuilder();
-        for (int i = 0; i < studentTestEO.getInsertEOLList().size(); i++) {
-            InsertEO insertEO = studentTestEO.getInsertEOLList().get(i);
+        for (int i = 0; i < studentTestEO.getInsertSQLEOLList().size(); i++) {
+            InsertEO insertEO = studentTestEO.getInsertSQLEOLList().get(i);
             fieldBuilder.append(insertEO.getColumnName());
             valueBuilder.append(insertEO.getColumnValue());
-            if (i != studentTestEO.getInsertEOLList().size() - 1) {
+            if (i != studentTestEO.getInsertSQLEOLList().size() - 1) {
                 fieldBuilder.append(" , ");
                 valueBuilder.append(" , ");
             }

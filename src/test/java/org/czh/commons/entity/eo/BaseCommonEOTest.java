@@ -40,11 +40,11 @@ public class BaseCommonEOTest {
         builder.append(" insert into student ");
         StringBuilder fieldBuilder = new StringBuilder();
         StringBuilder valueBuilder = new StringBuilder();
-        for (int i = 0; i < entity.getInsertEOLList().size(); i++) {
-            InsertEO insertEO = entity.getInsertEOLList().get(i);
+        for (int i = 0; i < entity.getInsertSQLEOLList().size(); i++) {
+            InsertEO insertEO = entity.getInsertSQLEOLList().get(i);
             fieldBuilder.append(insertEO.getColumnName());
             valueBuilder.append(insertEO.getColumnValue());
-            if (i != entity.getInsertEOLList().size() - 1) {
+            if (i != entity.getInsertSQLEOLList().size() - 1) {
                 fieldBuilder.append(" , ");
                 valueBuilder.append(" , ");
             }

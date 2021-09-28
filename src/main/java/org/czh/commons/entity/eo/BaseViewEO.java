@@ -29,7 +29,7 @@ public abstract class BaseViewEO
 
     private static final long serialVersionUID = -2418646692491059691L;
 
-    protected String tableName;
+    protected String tableNameSQL;
 
     protected boolean distinctSQL;
 
@@ -39,9 +39,9 @@ public abstract class BaseViewEO
 
     protected List<String> groupSQLList;
 
-    protected List<String> orderSQLList;
-
     protected List<String> havingSQLList;
+
+    protected List<String> orderSQLList;
 
     protected String limitSQL;
 

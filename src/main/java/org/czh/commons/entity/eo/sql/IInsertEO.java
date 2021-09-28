@@ -17,12 +17,12 @@ import java.util.List;
  */
 public interface IInsertEO extends IBaseEO {
 
-    List<InsertEO> getInsertEOLList();
+    List<InsertEO> getInsertSQLEOLList();
 
-    void setInsertEOLList(final List<InsertEO> insertEOLList);
+    void setInsertSQLEOLList(List<InsertEO> insertSQLEOLList);
 
     default IInsertEO resetInsert() {
-        setInsertEOLList(null);
+        setInsertSQLEOLList(null);
         return this;
     }
 
@@ -54,13 +54,13 @@ public interface IInsertEO extends IBaseEO {
     default IInsertEO addInsertEO(final InsertEO insertEO) {
         EmptyAssert.isNotNull(insertEO);
 
-        List<InsertEO> insertEOLList = getInsertEOLList();
-        if (EmptyValidate.isNull(insertEOLList)) {
-            insertEOLList = new ArrayList<>();
-            setInsertEOLList(insertEOLList);
+        List<InsertEO> insertSQLEOLList = getInsertSQLEOLList();
+        if (EmptyValidate.isNull(insertSQLEOLList)) {
+            insertSQLEOLList = new ArrayList<>();
+            setInsertSQLEOLList(insertSQLEOLList);
         }
-        if (!insertEOLList.contains(insertEO)) {
-            insertEOLList.add(insertEO);
+        if (!insertSQLEOLList.contains(insertEO)) {
+            insertSQLEOLList.add(insertEO);
         }
         return this;
     }
