@@ -32,6 +32,7 @@ public final class TableUtil {
      *                    tableNameSQL属性，设置动态表名；优先级较高；类似 tb_example_2021
      *                    <code>@Table</code>标记在类上的注解，设置原始表名；优先级低；类似 tb_example
      * @return 表名的完整SQL：`tb_example_2021`
+     * @see org.czh.commons.entity.eo.BaseViewEO.tableNameSQL
      * @see org.czh.commons.utils.sql.annotations.Table
      */
     public static <EO extends BaseViewEO> String split(EO conditionEO) {
@@ -46,6 +47,7 @@ public final class TableUtil {
      *                    tableNameSQL属性，设置动态表名；优先级较高；类似 tb_example_2021
      *                    <code>@Table</code>标记在类上的注解，设置原始表名；优先级低；类似 tb_example
      * @return 表名的完整SQL：`tb_example_2021` AS a
+     * @see org.czh.commons.entity.eo.BaseViewEO.tableNameSQL
      * @see org.czh.commons.utils.sql.annotations.Table
      */
     public static <EO extends BaseViewEO> String splitDefaultAlias(EO conditionEO) {
@@ -61,6 +63,7 @@ public final class TableUtil {
      *                    <code>@Table</code>标记在类上的注解，设置原始表名；优先级低；类似 tb_example
      * @param tableAlias  指定表别名，类似 abc
      * @return 表名的完整SQL：`tb_example_2021` AS abc
+     * @see org.czh.commons.entity.eo.BaseViewEO.tableNameSQL
      * @see org.czh.commons.utils.sql.annotations.Table
      */
     public static <EO extends BaseViewEO> String splitAlias(EO conditionEO, String tableAlias) {
@@ -85,7 +88,7 @@ public final class TableUtil {
      *
      * @param conditionMap Map格式，tableNameSQL Key，设置表名；类似 tb_example
      * @return 表名的完整SQL：`tb_example`
-     * @see org.czh.commons.enums.sql.SpecialKey 特殊Key值
+     * @see org.czh.commons.enums.sql.SpecialKey.tableNameSQL 特殊Key值
      */
     public static String split(Map<String, Object> conditionMap) {
         return splitAlias(conditionMap, SqlConstant.NO_TABLE_ALIAS);
@@ -97,7 +100,7 @@ public final class TableUtil {
      *
      * @param conditionMap Map格式，tableNameSQL Key，设置表名；类似 tb_example
      * @return 表名的完整SQL：`tb_example` AS a
-     * @see org.czh.commons.enums.sql.SpecialKey 特殊Key值
+     * @see org.czh.commons.enums.sql.SpecialKey.tableNameSQL 特殊Key值
      */
     public static String splitDefaultAlias(Map<String, Object> conditionMap) {
         return splitAlias(conditionMap, SqlConstant.DEFAULT_TABLE_ALIAS);
@@ -110,17 +113,17 @@ public final class TableUtil {
      * @param conditionMap Map格式，tableNameSQL Key，设置表名；类似 tb_example
      * @param tableAlias   指定表别名，类似 abc
      * @return 表名的完整SQL：`tb_example` AS abc
-     * @see org.czh.commons.enums.sql.SpecialKey 特殊Key值
+     * @see org.czh.commons.enums.sql.SpecialKey.tableNameSQL 特殊Key值
      */
     public static String splitAlias(Map<String, Object> conditionMap, String tableAlias) {
         EmptyAssert.isNotEmpty(conditionMap);
         FlagAssert.isTrue(
-                conditionMap.containsKey(SpecialKey.tableNameSql.name()),
-                "要拼接表名SQL，conditionMap键值对 必须包含 tableNameSql Key"
+                conditionMap.containsKey(SpecialKey.tableNameSQL.name()),
+                "要拼接表名SQL，conditionMap键值对 必须包含 tableNameSQL Key"
         );
 
         String tableName = MapConvertor
-                .convertToFirstValue(conditionMap, SpecialKey.tableNameSql.name(), o -> (String) o);
+                .convertToFirstValue(conditionMap, SpecialKey.tableNameSQL.name(), o -> (String) o);
         return splitAlias(tableName, tableAlias);
     }
 
@@ -182,6 +185,7 @@ public final class TableUtil {
      *                    tableNameSQL属性，设置动态表名；优先级较高；类似 tb_example_2021
      *                    <code>@Table</code>标记在类上的注解，设置原始表名；优先级低；类似 tb_example
      * @param builder     可变的字符序列，追加结果：表名的完整SQL：`tb_example_2021`
+     * @see org.czh.commons.entity.eo.BaseViewEO.tableNameSQL
      * @see org.czh.commons.utils.sql.annotations.Table
      */
     public static <EO extends BaseViewEO> void append(EO conditionEO, StringBuilder builder) {
@@ -196,6 +200,7 @@ public final class TableUtil {
      *                    tableNameSQL属性，设置动态表名；优先级较高；类似 tb_example_2021
      *                    <code>@Table</code>标记在类上的注解，设置原始表名；优先级低；类似 tb_example
      * @param builder     可变的字符序列，追加结果：表名的完整SQL：`tb_example_2021` AS a
+     * @see org.czh.commons.entity.eo.BaseViewEO.tableNameSQL
      * @see org.czh.commons.utils.sql.annotations.Table
      */
     public static <EO extends BaseViewEO> void appendDefaultAlias(EO conditionEO, StringBuilder builder) {
@@ -211,6 +216,7 @@ public final class TableUtil {
      *                    <code>@Table</code>标记在类上的注解，设置原始表名；优先级低；类似 tb_example
      * @param tableAlias  指定表别名，类似 abc
      * @param builder     可变的字符序列，追加结果：表名的完整SQL：`tb_example_2021` AS abc
+     * @see org.czh.commons.entity.eo.BaseViewEO.tableNameSQL
      * @see org.czh.commons.utils.sql.annotations.Table
      */
     public static <EO extends BaseViewEO> void appendAlias(EO conditionEO, String tableAlias, StringBuilder builder) {
@@ -235,7 +241,7 @@ public final class TableUtil {
      *
      * @param conditionMap Map格式，tableNameSQL Key，设置表名；类似 tb_example
      * @param builder      可变的字符序列，追加结果：表名的完整SQL：`tb_example`
-     * @see org.czh.commons.enums.sql.SpecialKey 特殊Key值
+     * @see org.czh.commons.enums.sql.SpecialKey.tableNameSQL 特殊Key值
      */
     public static void append(Map<String, Object> conditionMap, StringBuilder builder) {
         appendAlias(conditionMap, SqlConstant.NO_TABLE_ALIAS, builder);
@@ -247,7 +253,7 @@ public final class TableUtil {
      *
      * @param conditionMap Map格式，tableNameSQL Key，设置表名；类似 tb_example
      * @param builder      可变的字符序列，追加结果：表名的完整SQL：`tb_example` AS a
-     * @see org.czh.commons.enums.sql.SpecialKey 特殊Key值
+     * @see org.czh.commons.enums.sql.SpecialKey.tableNameSQL 特殊Key值
      */
     public static void appendDefaultAlias(Map<String, Object> conditionMap, StringBuilder builder) {
         appendAlias(conditionMap, SqlConstant.DEFAULT_TABLE_ALIAS, builder);
@@ -260,17 +266,17 @@ public final class TableUtil {
      * @param conditionMap Map格式，tableNameSQL Key，设置表名；类似 tb_example
      * @param tableAlias   指定表别名，类似 abc
      * @param builder      可变的字符序列，追加结果：表名的完整SQL：`tb_example` AS abc
-     * @see org.czh.commons.enums.sql.SpecialKey 特殊Key值
+     * @see org.czh.commons.enums.sql.SpecialKey.tableNameSQL 特殊Key值
      */
     public static void appendAlias(Map<String, Object> conditionMap, String tableAlias, StringBuilder builder) {
         EmptyAssert.isNotEmpty(conditionMap);
         FlagAssert.isTrue(
-                conditionMap.containsKey(SpecialKey.tableNameSql.name()),
-                "要拼接表名SQL，conditionMap键值对必须包含tableNameSql Key"
+                conditionMap.containsKey(SpecialKey.tableNameSQL.name()),
+                "要拼接表名SQL，conditionMap键值对必须包含tableNameSQL Key"
         );
 
         String tableName = MapConvertor
-                .convertToFirstValue(conditionMap, SpecialKey.tableNameSql.name(), o -> (String) o);
+                .convertToFirstValue(conditionMap, SpecialKey.tableNameSQL.name(), o -> (String) o);
         appendAlias(tableName, tableAlias, builder);
     }
 

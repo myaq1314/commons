@@ -90,7 +90,7 @@ public final class TableUtilTest {
         String compareAliasSQL = " `tb_example` AS abc ";
 
         Map<String, Object> conditionMap = new HashMap<>();
-        conditionMap.put(SpecialKey.tableNameSql.name(), "tb_example");
+        conditionMap.put(SpecialKey.tableNameSQL.name(), "tb_example");
         String tableNameSQL = TableUtil.split(conditionMap);
         EqualsAssert.isEquals(compareSQL, tableNameSQL);
 

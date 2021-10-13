@@ -61,4 +61,5 @@ public final class SqlConstant {
      */
     public static final String RIGHT_PARENTHESES = ")";
 
+    public static final String DISTINCT_SQL = " DISTINCT ";
 }
