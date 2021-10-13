@@ -46,12 +46,12 @@ public final class ColumnUtil {
      * 使用 指定表别名调用
      *
      * @param columnEnum 字典格式字段，类似 name
-     * @param alias      表别名，类似 abc
+     * @param tableAlias 表别名，类似 abc
      * @return 字段的完整SQL：abc.`name`
      */
-    public static String splitAlias(IColumnEnum columnEnum, String alias) {
+    public static String splitAlias(IColumnEnum columnEnum, String tableAlias) {
         EmptyAssert.isNotNull(columnEnum);
-        return splitAlias(columnEnum.getColumn(), alias);
+        return splitAlias(columnEnum.getColumn(), tableAlias);
     }
 
     /*
@@ -84,13 +84,13 @@ public final class ColumnUtil {
      * 拼装 列名 SQL(字典格式 列名入参)
      * 使用 指定表别名调用
      *
-     * @param columnEO 实体格式字段，类似 name
-     * @param alias    表别名，类似 abc
+     * @param columnEO   实体格式字段，类似 name
+     * @param tableAlias 表别名，类似 abc
      * @return 字段的完整SQL：abc.`name`
      */
-    public static String splitAlias(ColumnEO columnEO, String alias) {
+    public static String splitAlias(ColumnEO columnEO, String tableAlias) {
         EmptyAssert.isNotNull(columnEO);
-        return splitAlias(columnEO.getColumn(), alias);
+        return splitAlias(columnEO.getColumn(), tableAlias);
     }
 
     /*
@@ -124,18 +124,18 @@ public final class ColumnUtil {
      * 使用 指定表别名调用
      *
      * @param columnName 字符串格式字段，类似 name
-     * @param alias      表别名，类似 abc
+     * @param tableAlias 表别名，类似 abc
      * @return 字段的完整SQL：abc.`name`
      */
-    public static String splitAlias(String columnName, String alias) {
+    public static String splitAlias(String columnName, String tableAlias) {
         EmptyAssert.isNotBlank(columnName);
 
-        if (EmptyValidate.isBlank(alias)) {
+        if (EmptyValidate.isBlank(tableAlias)) {
             // 完整SQL：无别名：   `name`
             return " `" + columnName + "` ";
         } else {
             // 完整SQL：有别名：   a.`name`
-            return " " + alias + ".`" + columnName + "` ";
+            return " " + tableAlias + ".`" + columnName + "` ";
         }
     }
 
@@ -170,12 +170,12 @@ public final class ColumnUtil {
      * 使用 指定表别名调用
      *
      * @param columnEnum 字典格式字段，类似 name
-     * @param alias      表别名，类似 abc
+     * @param tableAlias 表别名，类似 abc
      * @param builder    可变的字符序列，追加结果：字段的完整SQL：abc.`name`
      */
-    public static void appendAlias(IColumnEnum columnEnum, String alias, StringBuilder builder) {
+    public static void appendAlias(IColumnEnum columnEnum, String tableAlias, StringBuilder builder) {
         EmptyAssert.isNotNull(columnEnum);
-        appendAlias(columnEnum.getColumn(), alias, builder);
+        appendAlias(columnEnum.getColumn(), tableAlias, builder);
     }
 
     /*
@@ -208,13 +208,13 @@ public final class ColumnUtil {
      * 追加 列名 SQL(实体格式 列名入参)
      * 使用 指定表别名调用
      *
-     * @param columnEO 实体格式字段，类似 name
-     * @param alias    表别名，类似 abc
-     * @param builder  可变的字符序列，追加结果：字段的完整SQL：abc.`name`
+     * @param columnEO   实体格式字段，类似 name
+     * @param tableAlias 表别名，类似 abc
+     * @param builder    可变的字符序列，追加结果：字段的完整SQL：abc.`name`
      */
-    public static void appendAlias(ColumnEO columnEO, String alias, StringBuilder builder) {
+    public static void appendAlias(ColumnEO columnEO, String tableAlias, StringBuilder builder) {
         EmptyAssert.isNotNull(columnEO);
-        appendAlias(columnEO.getColumn(), alias, builder);
+        appendAlias(columnEO.getColumn(), tableAlias, builder);
     }
 
     /*
@@ -248,18 +248,18 @@ public final class ColumnUtil {
      * 使用 指定表别名调用
      *
      * @param columnName 字符串格式字段，类似 name
-     * @param alias      表别名，类似 abc
+     * @param tableAlias 表别名，类似 abc
      * @param builder    可变的字符序列，追加结果：字段的完整SQL：abc.`name`
      */
-    public static void appendAlias(String columnName, String alias, StringBuilder builder) {
+    public static void appendAlias(String columnName, String tableAlias, StringBuilder builder) {
         EmptyAssert.isNotBlank(columnName);
         EmptyAssert.isNotNull(builder);
 
         // 完整SQL：有别名：   a.`name`
         // 完整SQL：无别名：   `name`
         builder.append(" ");
-        if (EmptyValidate.isNotBlank(alias)) {
-            builder.append(alias).append(".");
+        if (EmptyValidate.isNotBlank(tableAlias)) {
+            builder.append(tableAlias).append(".");
         }
         builder.append("`").append(columnName).append("` ");
     }
