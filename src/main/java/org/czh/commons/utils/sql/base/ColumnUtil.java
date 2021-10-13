@@ -46,7 +46,7 @@ public final class ColumnUtil {
      * 使用 指定表别名调用
      *
      * @param columnEnum 字典格式字段，类似 name
-     * @param tableAlias 表别名，类似 abc
+     * @param tableAlias 指定表别名，类似 abc
      * @return 字段的完整SQL：abc.`name`
      */
     public static String splitAlias(IColumnEnum columnEnum, String tableAlias) {
@@ -85,7 +85,7 @@ public final class ColumnUtil {
      * 使用 指定表别名调用
      *
      * @param columnEO   实体格式字段，类似 name
-     * @param tableAlias 表别名，类似 abc
+     * @param tableAlias 指定表别名，类似 abc
      * @return 字段的完整SQL：abc.`name`
      */
     public static String splitAlias(ColumnEO columnEO, String tableAlias) {
@@ -124,7 +124,7 @@ public final class ColumnUtil {
      * 使用 指定表别名调用
      *
      * @param columnName 字符串格式字段，类似 name
-     * @param tableAlias 表别名，类似 abc
+     * @param tableAlias 指定表别名，类似 abc
      * @return 字段的完整SQL：abc.`name`
      */
     public static String splitAlias(String columnName, String tableAlias) {
@@ -170,7 +170,7 @@ public final class ColumnUtil {
      * 使用 指定表别名调用
      *
      * @param columnEnum 字典格式字段，类似 name
-     * @param tableAlias 表别名，类似 abc
+     * @param tableAlias 指定表别名，类似 abc
      * @param builder    可变的字符序列，追加结果：字段的完整SQL：abc.`name`
      */
     public static void appendAlias(IColumnEnum columnEnum, String tableAlias, StringBuilder builder) {
@@ -209,7 +209,7 @@ public final class ColumnUtil {
      * 使用 指定表别名调用
      *
      * @param columnEO   实体格式字段，类似 name
-     * @param tableAlias 表别名，类似 abc
+     * @param tableAlias 指定表别名，类似 abc
      * @param builder    可变的字符序列，追加结果：字段的完整SQL：abc.`name`
      */
     public static void appendAlias(ColumnEO columnEO, String tableAlias, StringBuilder builder) {
@@ -248,7 +248,7 @@ public final class ColumnUtil {
      * 使用 指定表别名调用
      *
      * @param columnName 字符串格式字段，类似 name
-     * @param tableAlias 表别名，类似 abc
+     * @param tableAlias 指定表别名，类似 abc
      * @param builder    可变的字符序列，追加结果：字段的完整SQL：abc.`name`
      */
     public static void appendAlias(String columnName, String tableAlias, StringBuilder builder) {
