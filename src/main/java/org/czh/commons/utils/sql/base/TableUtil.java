@@ -163,7 +163,7 @@ public final class TableUtil {
 
         if (EmptyValidate.isNotBlank(tableAlias)) {
             // 完整SQL：有别名：   `tb_example_mysql_info` AS a
-            return " `" + tableName + "` AS " + tableAlias + " ";
+            return " `" + tableName + "` AS `" + tableAlias + "` ";
         } else {
             // 完整SQL：无别名：   `tb_example_mysql_info`
             return " `" + tableName + "` ";
@@ -316,7 +316,7 @@ public final class TableUtil {
         // 完整SQL：无别名：   `tb_example_mysql_info`
         builder.append(" `").append(tableName).append("` ");
         if (EmptyValidate.isNotBlank(tableAlias)) {
-            builder.append("AS ").append(tableAlias).append(" ");
+            builder.append("AS `").append(tableAlias).append("` ");
         }
     }
 }

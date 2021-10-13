@@ -135,7 +135,7 @@ public final class ColumnUtil {
             return " `" + columnName + "` ";
         } else {
             // 完整SQL：有别名：   a.`name`
-            return " " + tableAlias + ".`" + columnName + "` ";
+            return " `" + tableAlias + "`.`" + columnName + "` ";
         }
     }
 
@@ -259,7 +259,7 @@ public final class ColumnUtil {
         // 完整SQL：无别名：   `name`
         builder.append(" ");
         if (EmptyValidate.isNotBlank(tableAlias)) {
-            builder.append(tableAlias).append(".");
+            builder.append("`").append(tableAlias).append("`.");
         }
         builder.append("`").append(columnName).append("` ");
     }
