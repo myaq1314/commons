@@ -21,6 +21,7 @@ public final class ColumnUtil {
 
     /**
      * 拼装 列名 SQL(字典格式 列名入参)
+     * 不使用 表名别名 调用
      *
      * @param columnEnum 字典格式字段，类似 name
      * @return 字段的完整SQL：`name`
@@ -31,7 +32,7 @@ public final class ColumnUtil {
 
     /**
      * 拼装 列名 SQL(字典格式 列名入参)
-     * 默认表名别名为 a
+     * 使用 默认表名别名调用，默认表名别名为 a
      *
      * @param columnEnum 字典格式字段，类似 name
      * @return 字段的完整SQL：a.`name`
@@ -42,6 +43,7 @@ public final class ColumnUtil {
 
     /**
      * 拼装 列名 SQL(字典格式 列名入参)
+     * 使用 指定表名别名调用
      *
      * @param columnEnum 字典格式字段，类似 name
      * @param alias      表名别名，类似 abc
@@ -58,6 +60,7 @@ public final class ColumnUtil {
 
     /**
      * 拼装 列名 SQL(实体格式 列名入参)
+     * 不使用 表名别名 调用
      *
      * @param columnEO 实体格式字段，类似 name
      * @return 字段的完整SQL：`name`
@@ -68,7 +71,7 @@ public final class ColumnUtil {
 
     /**
      * 拼装 列名 SQL(实体格式 列名入参)
-     * 默认表名别名为 a
+     * 使用 默认表名别名调用，默认表名别名为 a
      *
      * @param columnEO 实体格式字段，类似 name
      * @return 字段的完整SQL：a.`name`
@@ -79,6 +82,7 @@ public final class ColumnUtil {
 
     /**
      * 拼装 列名 SQL(字典格式 列名入参)
+     * 使用 指定表名别名调用
      *
      * @param columnEO 实体格式字段，类似 name
      * @param alias    表名别名，类似 abc
@@ -95,6 +99,7 @@ public final class ColumnUtil {
 
     /**
      * 拼装 列名 SQL(字符串格式 列名入参)
+     * 不使用 表名别名 调用
      *
      * @param columnName 字符串格式字段，类似 name
      * @return 字段的完整SQL：`name`
@@ -105,7 +110,7 @@ public final class ColumnUtil {
 
     /**
      * 拼装 列名 SQL(实体格式 列名入参)
-     * 默认表名别名为 a
+     * 使用 默认表名别名调用，默认表名别名为 a
      *
      * @param columnName 字符串格式字段，类似 name
      * @return 字段的完整SQL：a.`name`
@@ -116,6 +121,7 @@ public final class ColumnUtil {
 
     /**
      * 拼装 列名 SQL(字典格式 列名入参)
+     * 使用 指定表名别名调用
      *
      * @param columnName 字符串格式字段，类似 name
      * @param alias      表名别名，类似 abc
@@ -139,6 +145,7 @@ public final class ColumnUtil {
 
     /**
      * 追加 列名 SQL(字典格式 列名入参)
+     * 不使用 表名别名 调用
      *
      * @param columnEnum 字典格式字段，类似 name
      * @param builder    可变的字符序列，追加结果：字段的完整SQL：`name`
@@ -149,7 +156,7 @@ public final class ColumnUtil {
 
     /**
      * 追加 列名 SQL(字典格式 列名入参)
-     * 默认表名别名为 a
+     * 使用 默认表名别名调用，默认表名别名为 a
      *
      * @param columnEnum 字典格式字段，类似 name
      * @param builder    可变的字符序列，追加结果：字段的完整SQL：a.`name`
@@ -160,6 +167,7 @@ public final class ColumnUtil {
 
     /**
      * 追加 列名 SQL(字典格式 列名入参)
+     * 使用 指定表名别名调用
      *
      * @param columnEnum 字典格式字段，类似 name
      * @param alias      表名别名，类似 abc
@@ -176,6 +184,7 @@ public final class ColumnUtil {
 
     /**
      * 追加 列名 SQL(实体格式 列名入参)
+     * 不使用 表名别名 调用
      *
      * @param columnEO 实体格式字段，类似 name
      * @param builder  可变的字符序列，追加结果：字段的完整SQL：`name`
@@ -186,7 +195,7 @@ public final class ColumnUtil {
 
     /**
      * 追加 列名 SQL(实体格式 列名入参)
-     * 默认表名别名为 a
+     * 使用 默认表名别名调用，默认表名别名为 a
      *
      * @param columnEO 实体格式字段，类似 name
      * @param builder  可变的字符序列，追加结果：字段的完整SQL：a.`name`
@@ -197,6 +206,7 @@ public final class ColumnUtil {
 
     /**
      * 追加 列名 SQL(实体格式 列名入参)
+     * 使用 指定表名别名调用
      *
      * @param columnEO 实体格式字段，类似 name
      * @param alias    表名别名，类似 abc
@@ -213,6 +223,7 @@ public final class ColumnUtil {
 
     /**
      * 追加 列名 SQL(字符串格式 列名入参)
+     * 不使用 表名别名 调用
      *
      * @param columnName 字符串格式字段，类似 name
      * @param builder    可变的字符序列，追加结果：字段的完整SQL：`name`
@@ -223,7 +234,7 @@ public final class ColumnUtil {
 
     /**
      * 追加 列名 SQL(字符串格式 列名入参)
-     * 默认表名别名为 a
+     * 使用 默认表名别名调用，默认表名别名为 a
      *
      * @param columnName 字符串格式字段，类似 name
      * @param builder    可变的字符序列，追加结果：字段的完整SQL：a.`name`
@@ -234,6 +245,7 @@ public final class ColumnUtil {
 
     /**
      * 追加 列名 SQL(字符串格式 列名入参)
+     * 使用 指定表名别名调用
      *
      * @param columnName 字符串格式字段，类似 name
      * @param alias      表名别名，类似 abc
