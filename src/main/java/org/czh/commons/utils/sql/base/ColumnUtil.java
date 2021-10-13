@@ -21,7 +21,7 @@ public final class ColumnUtil {
 
     /**
      * 拼装 列名 SQL(字典格式 列名入参)
-     * 不使用 表名别名 调用
+     * 不使用 表别名 调用
      *
      * @param columnEnum 字典格式字段，类似 name
      * @return 字段的完整SQL：`name`
@@ -32,7 +32,7 @@ public final class ColumnUtil {
 
     /**
      * 拼装 列名 SQL(字典格式 列名入参)
-     * 使用 默认表名别名调用，默认表名别名为 a
+     * 使用 默认表别名调用，默认表别名为 a
      *
      * @param columnEnum 字典格式字段，类似 name
      * @return 字段的完整SQL：a.`name`
@@ -43,10 +43,10 @@ public final class ColumnUtil {
 
     /**
      * 拼装 列名 SQL(字典格式 列名入参)
-     * 使用 指定表名别名调用
+     * 使用 指定表别名调用
      *
      * @param columnEnum 字典格式字段，类似 name
-     * @param alias      表名别名，类似 abc
+     * @param alias      表别名，类似 abc
      * @return 字段的完整SQL：abc.`name`
      */
     public static String splitAlias(IColumnEnum columnEnum, String alias) {
@@ -60,7 +60,7 @@ public final class ColumnUtil {
 
     /**
      * 拼装 列名 SQL(实体格式 列名入参)
-     * 不使用 表名别名 调用
+     * 不使用 表别名 调用
      *
      * @param columnEO 实体格式字段，类似 name
      * @return 字段的完整SQL：`name`
@@ -71,7 +71,7 @@ public final class ColumnUtil {
 
     /**
      * 拼装 列名 SQL(实体格式 列名入参)
-     * 使用 默认表名别名调用，默认表名别名为 a
+     * 使用 默认表别名调用，默认表别名为 a
      *
      * @param columnEO 实体格式字段，类似 name
      * @return 字段的完整SQL：a.`name`
@@ -82,10 +82,10 @@ public final class ColumnUtil {
 
     /**
      * 拼装 列名 SQL(字典格式 列名入参)
-     * 使用 指定表名别名调用
+     * 使用 指定表别名调用
      *
      * @param columnEO 实体格式字段，类似 name
-     * @param alias    表名别名，类似 abc
+     * @param alias    表别名，类似 abc
      * @return 字段的完整SQL：abc.`name`
      */
     public static String splitAlias(ColumnEO columnEO, String alias) {
@@ -99,7 +99,7 @@ public final class ColumnUtil {
 
     /**
      * 拼装 列名 SQL(字符串格式 列名入参)
-     * 不使用 表名别名 调用
+     * 不使用 表别名 调用
      *
      * @param columnName 字符串格式字段，类似 name
      * @return 字段的完整SQL：`name`
@@ -110,7 +110,7 @@ public final class ColumnUtil {
 
     /**
      * 拼装 列名 SQL(实体格式 列名入参)
-     * 使用 默认表名别名调用，默认表名别名为 a
+     * 使用 默认表别名调用，默认表别名为 a
      *
      * @param columnName 字符串格式字段，类似 name
      * @return 字段的完整SQL：a.`name`
@@ -121,10 +121,10 @@ public final class ColumnUtil {
 
     /**
      * 拼装 列名 SQL(字典格式 列名入参)
-     * 使用 指定表名别名调用
+     * 使用 指定表别名调用
      *
      * @param columnName 字符串格式字段，类似 name
-     * @param alias      表名别名，类似 abc
+     * @param alias      表别名，类似 abc
      * @return 字段的完整SQL：abc.`name`
      */
     public static String splitAlias(String columnName, String alias) {
@@ -145,7 +145,7 @@ public final class ColumnUtil {
 
     /**
      * 追加 列名 SQL(字典格式 列名入参)
-     * 不使用 表名别名 调用
+     * 不使用 表别名 调用
      *
      * @param columnEnum 字典格式字段，类似 name
      * @param builder    可变的字符序列，追加结果：字段的完整SQL：`name`
@@ -156,7 +156,7 @@ public final class ColumnUtil {
 
     /**
      * 追加 列名 SQL(字典格式 列名入参)
-     * 使用 默认表名别名调用，默认表名别名为 a
+     * 使用 默认表别名调用，默认表别名为 a
      *
      * @param columnEnum 字典格式字段，类似 name
      * @param builder    可变的字符序列，追加结果：字段的完整SQL：a.`name`
@@ -167,10 +167,10 @@ public final class ColumnUtil {
 
     /**
      * 追加 列名 SQL(字典格式 列名入参)
-     * 使用 指定表名别名调用
+     * 使用 指定表别名调用
      *
      * @param columnEnum 字典格式字段，类似 name
-     * @param alias      表名别名，类似 abc
+     * @param alias      表别名，类似 abc
      * @param builder    可变的字符序列，追加结果：字段的完整SQL：abc.`name`
      */
     public static void appendAlias(IColumnEnum columnEnum, String alias, StringBuilder builder) {
@@ -184,7 +184,7 @@ public final class ColumnUtil {
 
     /**
      * 追加 列名 SQL(实体格式 列名入参)
-     * 不使用 表名别名 调用
+     * 不使用 表别名 调用
      *
      * @param columnEO 实体格式字段，类似 name
      * @param builder  可变的字符序列，追加结果：字段的完整SQL：`name`
@@ -195,7 +195,7 @@ public final class ColumnUtil {
 
     /**
      * 追加 列名 SQL(实体格式 列名入参)
-     * 使用 默认表名别名调用，默认表名别名为 a
+     * 使用 默认表别名调用，默认表别名为 a
      *
      * @param columnEO 实体格式字段，类似 name
      * @param builder  可变的字符序列，追加结果：字段的完整SQL：a.`name`
@@ -206,10 +206,10 @@ public final class ColumnUtil {
 
     /**
      * 追加 列名 SQL(实体格式 列名入参)
-     * 使用 指定表名别名调用
+     * 使用 指定表别名调用
      *
      * @param columnEO 实体格式字段，类似 name
-     * @param alias    表名别名，类似 abc
+     * @param alias    表别名，类似 abc
      * @param builder  可变的字符序列，追加结果：字段的完整SQL：abc.`name`
      */
     public static void appendAlias(ColumnEO columnEO, String alias, StringBuilder builder) {
@@ -223,7 +223,7 @@ public final class ColumnUtil {
 
     /**
      * 追加 列名 SQL(字符串格式 列名入参)
-     * 不使用 表名别名 调用
+     * 不使用 表别名 调用
      *
      * @param columnName 字符串格式字段，类似 name
      * @param builder    可变的字符序列，追加结果：字段的完整SQL：`name`
@@ -234,7 +234,7 @@ public final class ColumnUtil {
 
     /**
      * 追加 列名 SQL(字符串格式 列名入参)
-     * 使用 默认表名别名调用，默认表名别名为 a
+     * 使用 默认表别名调用，默认表别名为 a
      *
      * @param columnName 字符串格式字段，类似 name
      * @param builder    可变的字符序列，追加结果：字段的完整SQL：a.`name`
@@ -245,10 +245,10 @@ public final class ColumnUtil {
 
     /**
      * 追加 列名 SQL(字符串格式 列名入参)
-     * 使用 指定表名别名调用
+     * 使用 指定表别名调用
      *
      * @param columnName 字符串格式字段，类似 name
-     * @param alias      表名别名，类似 abc
+     * @param alias      表别名，类似 abc
      * @param builder    可变的字符序列，追加结果：字段的完整SQL：abc.`name`
      */
     public static void appendAlias(String columnName, String alias, StringBuilder builder) {
