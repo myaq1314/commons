@@ -1,8 +1,8 @@
 package org.czh.commons.utils.sql.base;
 
 import org.czh.commons.utils.sql.constant.SqlConstant;
-import org.czh.commons.validate.EmptyAssert;
-import org.czh.commons.validate.EmptyValidate;
+import org.czh.commons_core.asserts.EmptyAssert;
+import org.czh.commons_core.validate.EmptyValidate;
 
 /**
  * @author : czh

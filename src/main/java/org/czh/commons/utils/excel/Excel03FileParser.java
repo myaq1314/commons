@@ -17,7 +17,7 @@ import org.apache.poi.hssf.record.Record;
 import org.apache.poi.hssf.record.RowRecord;
 import org.apache.poi.hssf.record.SSTRecord;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
-import org.czh.commons.validate.EmptyValidate;
+import org.czh.commons_core.validate.EmptyValidate;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -130,7 +130,8 @@ public final class Excel03FileParser extends AbstractExcelFileParser implements 
                 colNum = rowrec.getLastCol();
 
                 log.debug("第{}行记录开始, first column at {}， last column at {}", rowrec.getRowNumber(),
-                        rowrec.getFirstCol(), rowrec.getLastCol());
+                          rowrec.getFirstCol(), rowrec.getLastCol()
+                );
                 break;
             // SSTRecords store a array of unique strings used in Excel.
             case SSTRecord.sid:

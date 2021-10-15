@@ -4,9 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-import org.czh.commons.entity.IBaseEntity;
-import org.czh.commons.utils.FieldUtil;
-import org.czh.commons.validate.EmptyValidate;
+import org.czh.commons_core.parent.entity.IBaseEntity;
+import org.czh.commons_core.utils.FieldUtil;
+import org.czh.commons_core.validate.EmptyValidate;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

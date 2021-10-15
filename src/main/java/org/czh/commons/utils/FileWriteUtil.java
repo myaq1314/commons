@@ -1,7 +1,7 @@
 package org.czh.commons.utils;
 
-import org.czh.commons.validate.EmptyAssert;
-import org.czh.commons.validate.EmptyValidate;
+import org.czh.commons_core.asserts.EmptyAssert;
+import org.czh.commons_core.validate.EmptyValidate;
 
 import java.io.FileWriter;
 import java.io.IOException;

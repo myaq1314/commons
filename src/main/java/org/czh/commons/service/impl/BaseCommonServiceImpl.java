@@ -3,7 +3,7 @@ package org.czh.commons.service.impl;
 import org.czh.commons.dao.IBaseCommonDao;
 import org.czh.commons.entity.eo.BaseCommonEO;
 import org.czh.commons.service.IBaseCommonService;
-import org.czh.commons.validate.EmptyAssert;
+import org.czh.commons_core.asserts.EmptyAssert;
 
 import java.util.List;
 

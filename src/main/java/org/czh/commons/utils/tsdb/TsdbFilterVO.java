@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.czh.commons.entity.IBaseEntity;
+import org.czh.commons_core.parent.entity.IBaseEntity;
 
 /**
  * @author : czh

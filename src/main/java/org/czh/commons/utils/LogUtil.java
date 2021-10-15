@@ -1,8 +1,8 @@
 package org.czh.commons.utils;
 
 import org.czh.commons.config.filter.RequestExecutionTimeFilter;
-import org.czh.commons.validate.EmptyAssert;
-import org.czh.commons.validate.EmptyValidate;
+import org.czh.commons_core.asserts.EmptyAssert;
+import org.czh.commons_core.validate.EmptyValidate;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
 

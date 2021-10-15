@@ -1,5 +1,7 @@
 package org.czh.commons.enums.parent;
 
+import org.czh.commons_core.parent.enums.IBaseEnum;
+
 /**
  * @author : czh
  * description : 字段枚举 接口

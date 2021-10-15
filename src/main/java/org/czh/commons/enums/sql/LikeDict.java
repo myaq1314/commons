@@ -2,7 +2,7 @@ package org.czh.commons.enums.sql;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.czh.commons.enums.parent.IKeyEnum;
+import org.czh.commons_core.parent.enums.IKeyEnum;
 
 /**
  * @author : czh
@@ -14,12 +14,12 @@ import org.czh.commons.enums.parent.IKeyEnum;
 @AllArgsConstructor
 public enum LikeDict implements IKeyEnum<String> {
 
-    START_LIKE("LIKE", "", "%"), // '${fieldName}%'
-    NOT_START_LIKE("NOT LIKE", "", "%"), // '${fieldName}%'
-    LIKE("LIKE", "%", "%"), // '%${fieldName}%'
-    NOT_LIKE("NOT LIKE", "%", "%"), // '%${fieldName}%'
-    END_LIKE("LIKE", "%", ""), // '%${fieldName}'
-    NOT_END_LIKE("NOT LIKE", "%", ""), // '%${fieldName}'
+    START_LIKE(" LIKE ", "", "%"), // '${fieldName}%'
+    NOT_START_LIKE(" NOT LIKE ", "", "%"), // '${fieldName}%'
+    LIKE(" LIKE ", "%", "%"), // '%${fieldName}%'
+    NOT_LIKE(" NOT LIKE ", "%", "%"), // '%${fieldName}%'
+    END_LIKE(" LIKE ", "%", ""), // '%${fieldName}'
+    NOT_END_LIKE(" NOT LIKE ", "%", ""), // '%${fieldName}'
 
     // 占位符
     ;

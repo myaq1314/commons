@@ -7,7 +7,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.czh.commons.validate.FlagAssert;
+import org.czh.commons_core.asserts.FlagAssert;
+import org.czh.commons_core.parent.entity.IBaseEntity;
 
 import java.util.ArrayList;
 import java.util.List;

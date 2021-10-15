@@ -6,9 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.util.EntityUtils;
-import org.czh.commons.entity.IBaseEntity;
-import org.czh.commons.validate.EmptyAssert;
-import org.czh.commons.validate.EmptyValidate;
+import org.czh.commons_core.asserts.EmptyAssert;
+import org.czh.commons_core.parent.entity.IBaseEntity;
+import org.czh.commons_core.validate.EmptyValidate;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

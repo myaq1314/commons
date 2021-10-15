@@ -2,7 +2,7 @@ package org.czh.commons.enums.sql;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.czh.commons.enums.parent.IKeyEnum;
+import org.czh.commons_core.parent.enums.IKeyEnum;
 
 /**
  * @author : czh
@@ -14,8 +14,8 @@ import org.czh.commons.enums.parent.IKeyEnum;
 @AllArgsConstructor
 public enum NullDict implements IKeyEnum<String> {
 
-    IS_NULL("IS NULL"),
-    NOT_NULL("IS NOT NULL"),
+    IS_NULL(" IS NULL "),
+    NOT_NULL(" IS NOT NULL "),
 
     // 占位符
     ;

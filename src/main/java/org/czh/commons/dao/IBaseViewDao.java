@@ -2,6 +2,7 @@ package org.czh.commons.dao;
 
 import org.apache.ibatis.annotations.Param;
 import org.czh.commons.entity.eo.BaseViewEO;
+import org.czh.commons_core.parent.dao.IBaseDao;
 
 import java.util.List;
 import java.util.Map;

@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.czh.commons_core.parent.entity.req.IBaseReqVO;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;

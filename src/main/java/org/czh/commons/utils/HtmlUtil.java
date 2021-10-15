@@ -1,6 +1,6 @@
 package org.czh.commons.utils;
 
-import org.czh.commons.validate.EmptyAssert;
+import org.czh.commons_core.asserts.EmptyAssert;
 
 import java.util.regex.Pattern;
 
@@ -34,12 +34,12 @@ public final class HtmlUtil {
         EmptyAssert.isNotBlank(text);
 
         return text.replaceAll("&", "&amp;")
-                .replaceAll("<", "&lt;")
-                .replaceAll(">", "&gt;")
-                .replaceAll(" ", "&nbsp;")
-                .replaceAll("'", "&#39;")
-                .replaceAll("\"", "&quot;")
-                .replaceAll("\n", "<br />");
+                   .replaceAll("<", "&lt;")
+                   .replaceAll(">", "&gt;")
+                   .replaceAll(" ", "&nbsp;")
+                   .replaceAll("'", "&#39;")
+                   .replaceAll("\"", "&quot;")
+                   .replaceAll("\n", "<br />");
     }
 
     public static String format(String html) {

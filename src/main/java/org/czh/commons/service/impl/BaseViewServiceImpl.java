@@ -5,11 +5,13 @@ import org.czh.commons.entity.Page;
 import org.czh.commons.entity.PageHelper;
 import org.czh.commons.entity.eo.BaseViewEO;
 import org.czh.commons.enums.parent.IColumnEnum;
-import org.czh.commons.exceptions.CommonException;
 import org.czh.commons.service.IBaseViewService;
-import org.czh.commons.utils.FieldUtil;
-import org.czh.commons.validate.EmptyAssert;
-import org.czh.commons.validate.EmptyValidate;
+import org.czh.commons.utils.sql.base.LimitUtil;
+import org.czh.commons.utils.sql.base.SelectUtil;
+import org.czh.commons_core.asserts.EmptyAssert;
+import org.czh.commons_core.exceptions.CommonException;
+import org.czh.commons_core.utils.FieldUtil;
+import org.czh.commons_core.validate.EmptyValidate;
 
 import java.util.List;
 import java.util.Map;
@@ -41,7 +43,7 @@ public abstract class BaseViewServiceImpl<Dao extends IBaseViewDao<Entity>, Enti
     public Entity getOneEntity(final Entity condition) {
         EmptyAssert.isNotNull(condition);
 
-        condition.setLimit(1, 1);
+        LimitUtil.set(condition, 1, 1);
         List<Entity> entityList = this.queryEntityList(condition);
         if (EmptyValidate.isEmpty(entityList)) {
             return null;
@@ -58,7 +60,7 @@ public abstract class BaseViewServiceImpl<Dao extends IBaseViewDao<Entity>, Enti
     public Map<String, Object> getOneMap(final Entity condition) {
         EmptyAssert.isNotNull(condition);
 
-        condition.setLimit(1, 1);
+        LimitUtil.set(condition, 1, 1);
         List<Map<String, Object>> entityList = this.queryMapList(condition);
         if (EmptyValidate.isEmpty(entityList)) {
             return null;
@@ -75,7 +77,7 @@ public abstract class BaseViewServiceImpl<Dao extends IBaseViewDao<Entity>, Enti
     public Entity getOnlyEntity(final Entity condition) {
         EmptyAssert.isNotNull(condition);
 
-        condition.setLimit(1, 2);
+        LimitUtil.set(condition, 1, 2);
         List<Entity> entityList = this.queryEntityList(condition);
         if (EmptyValidate.isEmpty(entityList)) {
             return null;
@@ -94,7 +96,7 @@ public abstract class BaseViewServiceImpl<Dao extends IBaseViewDao<Entity>, Enti
     public Map<String, Object> getOnlyMap(final Entity condition) {
         EmptyAssert.isNotNull(condition);
 
-        condition.setLimit(1, 2);
+        LimitUtil.set(condition, 1, 2);
         List<Map<String, Object>> entityList = this.queryMapList(condition);
         if (EmptyValidate.isEmpty(entityList)) {
             return null;
@@ -155,8 +157,7 @@ public abstract class BaseViewServiceImpl<Dao extends IBaseViewDao<Entity>, Enti
     public int getCount(final Entity condition) {
         EmptyAssert.isNotNull(condition);
 
-        condition.resetSelect()
-                .addSelectFunction("count", "count", 1);
+        SelectUtil.addFunc(condition, "count", "count", 1);
         Map<String, Object> resultMap = this.getOnlyMap(condition);
         if (EmptyValidate.isEmpty(resultMap)) {
             return 0;

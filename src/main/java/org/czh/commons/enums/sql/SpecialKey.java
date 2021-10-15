@@ -1,8 +1,8 @@
 package org.czh.commons.enums.sql;
 
-import org.czh.commons.enums.parent.IBaseEnum;
-import org.czh.commons.utils.convertor.EnumConvertor;
-import org.czh.commons.validate.EmptyValidate;
+import org.czh.commons_core.convertor.EnumConvertor;
+import org.czh.commons_core.parent.enums.IBaseEnum;
+import org.czh.commons_core.validate.EmptyValidate;
 
 import java.util.Set;
 
@@ -17,7 +17,7 @@ public enum SpecialKey implements IBaseEnum {
     serialVersionUID,
     insertSQLEOLList,
     updateSQLList,
-    tableNameSql,
+    tableNameSQL,
     distinctSQL,
     selectSQLList,
     whereSQLList,
@@ -33,7 +33,7 @@ public enum SpecialKey implements IBaseEnum {
 
     public static Set<String> getSpecialKeySet() {
         if (EmptyValidate.isNull(specialKeySet)) {
-            specialKeySet = EnumConvertor.convertToSet(SpecialKey.class, IBaseEnum::getName);
+            specialKeySet = EnumConvertor.convertToSet(SpecialKey.class, IBaseEnum::name);
         }
         return specialKeySet;
     }

@@ -9,8 +9,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.util.EntityUtils;
-import org.czh.commons.validate.EmptyAssert;
-import org.czh.commons.validate.EmptyValidate;
+import org.czh.commons_core.asserts.EmptyAssert;
+import org.czh.commons_core.validate.EmptyValidate;
 
 import javax.validation.constraints.NotNull;
 import java.io.IOException;
@@ -181,10 +181,10 @@ public final class HttpClientUtil {
 
         try {
             final RequestConfig requestConfig = RequestConfig.custom()
-                    .setConnectionRequestTimeout(2000)
-                    .setConnectTimeout(5000)
-                    .setSocketTimeout(5000)
-                    .build();
+                                                             .setConnectionRequestTimeout(2000)
+                                                             .setConnectTimeout(5000)
+                                                             .setSocketTimeout(5000)
+                                                             .build();
             baseRequest.setConfig(requestConfig);
 
             return HttpPoolUtil.getHttpClient().execute(baseRequest, HttpClientContext.create());

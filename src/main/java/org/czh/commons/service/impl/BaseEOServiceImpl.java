@@ -1,9 +1,9 @@
 package org.czh.commons.service.impl;
 
-import org.czh.commons.dao.IBaseDao;
-import org.czh.commons.entity.eo.IBaseEO;
 import org.czh.commons.service.IBaseEOService;
-import org.czh.commons.validate.EmptyValidate;
+import org.czh.commons_core.parent.dao.IBaseDao;
+import org.czh.commons_core.parent.entity.eo.IBaseEO;
+import org.czh.commons_core.validate.EmptyValidate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.ParameterizedType;
@@ -16,7 +16,6 @@ import java.lang.reflect.Type;
  * email 916419307@qq.com
  */
 public abstract class BaseEOServiceImpl<Dao extends IBaseDao<Entity>, Entity extends IBaseEO>
-        extends BaseServiceImpl
         implements IBaseEOService<Entity> {
 
     @Autowired

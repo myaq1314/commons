@@ -15,8 +15,8 @@ import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.scripting.defaults.DefaultParameterHandler;
 import org.czh.commons.entity.Page;
 import org.czh.commons.entity.PageHelper;
-import org.czh.commons.utils.FieldUtil;
-import org.czh.commons.validate.EmptyAssert;
+import org.czh.commons_core.asserts.EmptyAssert;
+import org.czh.commons_core.utils.FieldUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -50,7 +50,11 @@ public class DialectStatementHandlerInterceptor implements Interceptor {
 
             // 分页SQL<select>中parameterType属性对应的实体参数，即Mapper接口中执行分页方法的参数,该参数不得为空
             Object parameterObject = boundSql.getParameterObject();
-            BoundSql countBS = new BoundSql(mappedStatement.getConfiguration(), sqlCount, boundSql.getParameterMappings(), parameterObject);
+            BoundSql countBS = new BoundSql(mappedStatement.getConfiguration(),
+                                            sqlCount,
+                                            boundSql.getParameterMappings(),
+                                            parameterObject
+            );
             MetaObject metaParameters = FieldUtil.readField(boundSql, "metaParameters");
             FieldUtil.writeField(countBS, "metaParameters", metaParameters);
 

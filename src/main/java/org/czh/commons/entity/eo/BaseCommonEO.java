@@ -4,9 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.czh.commons.entity.eo.sql.IInsertEO;
-import org.czh.commons.entity.eo.sql.IUpdateEO;
-import org.czh.commons.entity.eo.sql.InsertEO;
+import org.czh.commons_core.parent.entity.eo.IBaseEO;
 
 import java.util.List;
 
@@ -20,10 +18,9 @@ import java.util.List;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-public abstract class BaseCommonEO extends BaseViewEO
-        implements IInsertEO, IUpdateEO, IBaseEO {
+public abstract class BaseCommonEO extends BaseViewEO implements IBaseEO {
 
-    private static final long serialVersionUID = -2976191070162397245L;
+    private static final long serialVersionUID = 6634357730206375008L;
 
     protected List<InsertEO> insertSQLEOLList;
     protected List<String> updateSQLList;

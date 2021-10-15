@@ -3,8 +3,8 @@ package org.czh.commons.config.filter;
 import com.alibaba.fastjson.JSONObject;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import org.czh.commons.validate.EmptyAssert;
-import org.czh.commons.validate.EmptyValidate;
+import org.czh.commons_core.asserts.EmptyAssert;
+import org.czh.commons_core.validate.EmptyValidate;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -132,7 +132,11 @@ public class RequestExecutionTimeFilter implements Filter {
         }
 
         String requestParamJsonString = requestParamJsonObj.toJSONString();
-        log.info("\nThe requestURI : {} \nThe UUID : {} \nThe Parameter : {}\n", requestURI, uuid, requestParamJsonString);
+        log.info("\nThe requestURI : {} \nThe UUID : {} \nThe Parameter : {}\n",
+                 requestURI,
+                 uuid,
+                 requestParamJsonString
+        );
 
         // 过滤链
         chain.doFilter(replaceRequest, replaceResponse);

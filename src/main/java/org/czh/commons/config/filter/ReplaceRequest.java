@@ -1,8 +1,8 @@
 package org.czh.commons.config.filter;
 
 import com.alibaba.fastjson.JSONObject;
-import org.czh.commons.validate.EmptyAssert;
-import org.czh.commons.validate.EmptyValidate;
+import org.czh.commons_core.asserts.EmptyAssert;
+import org.czh.commons_core.validate.EmptyValidate;
 
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;
@@ -107,6 +107,7 @@ public class ReplaceRequest extends HttpServletRequestWrapper {
         return JSONObject.parseObject(new String(this.body));
     }
 
+    @SuppressWarnings("unused")
     public void setBodyJson(JSONObject jsonObject) {
         EmptyAssert.isNotNull(jsonObject);
         this.body = jsonObject.toJSONString().getBytes();

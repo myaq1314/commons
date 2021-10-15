@@ -1,7 +1,7 @@
 package org.czh.commons.utils.fastjson;
 
-import org.czh.commons.utils.DateUtil;
-import org.czh.commons.validate.EmptyValidate;
+import org.czh.commons_core.utils.date.DateUtil;
+import org.czh.commons_core.validate.EmptyValidate;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -13,6 +13,7 @@ import java.util.Date;
  * date : 2021-07-19
  * email 916419307@qq.com
  */
+@SuppressWarnings("unused")
 public final class ConvertUtil {
 
     /*

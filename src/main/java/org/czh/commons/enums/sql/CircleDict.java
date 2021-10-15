@@ -2,7 +2,7 @@ package org.czh.commons.enums.sql;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.czh.commons.enums.parent.IKeyEnum;
+import org.czh.commons_core.parent.enums.IKeyEnum;
 
 /**
  * @author : czh
@@ -14,8 +14,8 @@ import org.czh.commons.enums.parent.IKeyEnum;
 @AllArgsConstructor
 public enum CircleDict implements IKeyEnum<String> {
 
-    IN("IN"),
-    NOT_IN("NOT IN"),
+    IN(" IN "),
+    NOT_IN(" NOT IN "),
 
     // 占位符
     ;

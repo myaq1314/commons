@@ -3,8 +3,8 @@ package org.czh.commons.utils.sql.eo;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
-import org.czh.commons.entity.eo.IBaseEO;
-import org.czh.commons.validate.EmptyAssert;
+import org.czh.commons_core.asserts.EmptyAssert;
+import org.czh.commons_core.parent.entity.eo.IBaseEO;
 
 /**
  * @author : czh

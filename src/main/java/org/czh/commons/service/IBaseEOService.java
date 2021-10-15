@@ -1,6 +1,7 @@
 package org.czh.commons.service;
 
-import org.czh.commons.entity.eo.IBaseEO;
+import org.czh.commons_core.parent.entity.eo.IBaseEO;
+import org.czh.commons_core.parent.service.IBaseService;
 
 /**
  * @author : czh

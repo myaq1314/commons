@@ -7,10 +7,10 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpRequestBase;
-import org.czh.commons.entity.IBaseEntity;
-import org.czh.commons.utils.FieldUtil;
-import org.czh.commons.validate.EmptyAssert;
-import org.czh.commons.validate.EmptyValidate;
+import org.czh.commons_core.asserts.EmptyAssert;
+import org.czh.commons_core.parent.entity.IBaseEntity;
+import org.czh.commons_core.utils.FieldUtil;
+import org.czh.commons_core.validate.EmptyValidate;
 
 import javax.validation.constraints.NotNull;
 import java.lang.reflect.Field;
@@ -45,7 +45,9 @@ public final class HeaderParamUtil {
         System.out.println(httpGetHeaderMap);
         System.out.println();
 
-        HttpEntityEnclosingRequestBase httpPost = EnclosingEnum.getEnclosingRequest(EnclosingEnum.POST, "www.baidu.com?aaa=123");
+        HttpEntityEnclosingRequestBase httpPost = EnclosingEnum.getEnclosingRequest(EnclosingEnum.POST,
+                                                                                    "www.baidu.com?aaa=123"
+        );
         addHeaderByEntity(httpPost, baseEntity);
         Map<String, String> httpPostHeaderMap = getHeaderMap(httpPost);
         System.out.println(httpPostHeaderMap);
@@ -60,7 +62,9 @@ public final class HeaderParamUtil {
         System.out.println(httpPutHeaderMap);
         System.out.println();
 
-        HttpEntityEnclosingRequestBase httpDelete = EnclosingEnum.getEnclosingRequest(EnclosingEnum.DELETE, "www.baidu.com?aaa=123");
+        HttpEntityEnclosingRequestBase httpDelete = EnclosingEnum.getEnclosingRequest(EnclosingEnum.DELETE,
+                                                                                      "www.baidu.com?aaa=123"
+        );
         addHeaderByMap(httpDelete, map);
         Map<String, String> httpDeleteHeaderMap = getHeaderMap(httpDelete);
         System.out.println(httpDeleteHeaderMap);
@@ -142,7 +146,8 @@ public final class HeaderParamUtil {
             return map;
         }
 
-        map = Arrays.stream(headers).collect(Collectors.toMap(NameValuePair::getName, NameValuePair::getValue, (a, b) -> b));
+        map = Arrays.stream(headers)
+                    .collect(Collectors.toMap(NameValuePair::getName, NameValuePair::getValue, (a, b) -> b));
         return map;
     }
 }

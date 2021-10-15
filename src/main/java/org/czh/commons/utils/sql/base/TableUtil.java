@@ -2,12 +2,12 @@ package org.czh.commons.utils.sql.base;
 
 import org.czh.commons.entity.eo.BaseViewEO;
 import org.czh.commons.enums.sql.SpecialKey;
-import org.czh.commons.utils.convertor.MapConvertor;
 import org.czh.commons.utils.sql.annotations.Table;
 import org.czh.commons.utils.sql.constant.SqlConstant;
-import org.czh.commons.validate.EmptyAssert;
-import org.czh.commons.validate.EmptyValidate;
-import org.czh.commons.validate.FlagAssert;
+import org.czh.commons_core.asserts.EmptyAssert;
+import org.czh.commons_core.asserts.FlagAssert;
+import org.czh.commons_core.convertor.MapConvertor;
+import org.czh.commons_core.validate.EmptyValidate;
 
 import java.util.Map;
 

@@ -2,7 +2,7 @@ package org.czh.commons.enums.sql;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.czh.commons.enums.parent.IKeyEnum;
+import org.czh.commons_core.parent.enums.IKeyEnum;
 
 /**
  * @author : czh
@@ -14,12 +14,12 @@ import org.czh.commons.enums.parent.IKeyEnum;
 @AllArgsConstructor
 public enum ScopeDict implements IKeyEnum<String> {
 
-    GREATER_EQUAL(">="),
-    GREATER(">"),
-    EQUAL("="),
-    UNEQUAL("!="),
-    LESS("<"),
-    LESS_EQUAL("<="),
+    GREATER_EQUAL(" >= "),
+    GREATER(" > "),
+    EQUAL(" = "),
+    UNEQUAL(" != "),
+    LESS(" < "),
+    LESS_EQUAL(" <= "),
 
     // 占位符
     ;

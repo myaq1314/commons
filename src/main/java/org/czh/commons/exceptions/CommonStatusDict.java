@@ -2,7 +2,7 @@ package org.czh.commons.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.czh.commons.enums.parent.IDictEnum;
+import org.czh.commons_core.parent.enums.IDictEnum;
 
 /**
  * @author : czh

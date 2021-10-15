@@ -8,7 +8,7 @@ import org.apache.ibatis.plugin.Invocation;
 import org.apache.ibatis.plugin.Plugin;
 import org.apache.ibatis.plugin.Signature;
 import org.apache.ibatis.session.RowBounds;
-import org.czh.commons.utils.FieldUtil;
+import org.czh.commons_core.utils.FieldUtil;
 
 import java.lang.reflect.Field;
 import java.sql.Statement;

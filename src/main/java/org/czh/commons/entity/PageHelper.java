@@ -1,7 +1,7 @@
 package org.czh.commons.entity;
 
-import org.czh.commons.validate.EmptyAssert;
-import org.czh.commons.validate.EmptyValidate;
+import org.czh.commons_core.asserts.EmptyAssert;
+import org.czh.commons_core.validate.EmptyValidate;
 
 import java.util.List;
 

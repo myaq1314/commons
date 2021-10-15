@@ -5,9 +5,9 @@ import lombok.Getter;
 import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
-import org.czh.commons.enums.parent.IKeyEnum;
-import org.czh.commons.utils.ConstructorUtil;
-import org.czh.commons.validate.EmptyAssert;
+import org.czh.commons_core.asserts.EmptyAssert;
+import org.czh.commons_core.parent.enums.IKeyEnum;
+import org.czh.commons_core.utils.ConstructorUtil;
 
 /**
  * @author : czh

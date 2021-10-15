@@ -4,9 +4,9 @@ import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import org.czh.commons.entity.IBaseEntity;
-import org.czh.commons.enums.parent.IDictEnum;
 import org.czh.commons.exceptions.CommonStatusDict;
+import org.czh.commons_core.parent.entity.IBaseEntity;
+import org.czh.commons_core.parent.enums.IDictEnum;
 
 import javax.xml.bind.annotation.XmlTransient;
 

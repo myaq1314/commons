@@ -24,7 +24,10 @@ public final class DeleteUtil {
         try {
             System.out.println(doDeleteJson("http://127.0.0.1:443/v1/siip/order/createAndPayDelete"));
             System.out.println(doDeleteJson("http://127.0.0.1:443/v1/siip/order/createAndPayDelete", paramMap));
-            System.out.println(doDeleteJson("http://127.0.0.1:443/v1/siip/order/createAndPayDelete", paramMap, headerMap));
+            System.out.println(doDeleteJson("http://127.0.0.1:443/v1/siip/order/createAndPayDelete",
+                                            paramMap,
+                                            headerMap
+            ));
         } catch (Exception e) {
             e.printStackTrace();
         }

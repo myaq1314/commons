@@ -1,7 +1,7 @@
 package org.czh.commons.utils;
 
-import org.czh.commons.validate.EmptyAssert;
-import org.czh.commons.validate.EmptyValidate;
+import org.czh.commons_core.asserts.EmptyAssert;
+import org.czh.commons_core.validate.EmptyValidate;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.Inet4Address;

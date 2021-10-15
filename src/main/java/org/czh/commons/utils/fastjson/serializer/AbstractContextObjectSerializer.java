@@ -3,7 +3,8 @@ package org.czh.commons.utils.fastjson.serializer;
 import com.alibaba.fastjson.serializer.BeanContext;
 import com.alibaba.fastjson.serializer.ContextObjectSerializer;
 import com.alibaba.fastjson.serializer.JSONSerializer;
-import org.czh.commons.validate.EmptyValidate;
+import org.czh.commons_core.copy.IObjectSerializer;
+import org.czh.commons_core.validate.EmptyValidate;
 
 import java.lang.reflect.Type;
 

@@ -2,6 +2,7 @@ package org.czh.commons.utils.fastjson.deserializer;
 
 import com.alibaba.fastjson.parser.DefaultJSONParser;
 import com.alibaba.fastjson.parser.deserializer.ContextObjectDeserializer;
+import org.czh.commons_core.copy.IObjectDeserializer;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;

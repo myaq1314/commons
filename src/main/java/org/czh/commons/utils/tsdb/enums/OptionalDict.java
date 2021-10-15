@@ -2,7 +2,7 @@ package org.czh.commons.utils.tsdb.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.czh.commons.enums.parent.IKeyEnum;
+import org.czh.commons_core.parent.enums.IKeyEnum;
 
 /**
  * @author : czh

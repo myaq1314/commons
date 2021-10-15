@@ -4,9 +4,10 @@ import org.czh.commons.dao.IBasePrimaryDao;
 import org.czh.commons.entity.eo.BasePrimaryEO;
 import org.czh.commons.enums.sql.CircleDict;
 import org.czh.commons.service.IBasePrimaryService;
-import org.czh.commons.utils.FieldUtil;
-import org.czh.commons.validate.EmptyAssert;
-import org.czh.commons.validate.EqualsAssert;
+import org.czh.commons.utils.sql.base.WhereUtil;
+import org.czh.commons_core.asserts.EmptyAssert;
+import org.czh.commons_core.asserts.EqualsAssert;
+import org.czh.commons_core.utils.FieldUtil;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.List;
  * date : 2021-06-28
  * email 916419307@qq.com
  */
+@SuppressWarnings("unused")
 public abstract class BasePrimaryServiceImpl<Dao extends IBasePrimaryDao<Entity>, Entity extends BasePrimaryEO>
         extends BaseCommonServiceImpl<Dao, Entity>
         implements IBasePrimaryService<Entity> {
@@ -97,7 +99,7 @@ public abstract class BasePrimaryServiceImpl<Dao extends IBasePrimaryDao<Entity>
 
         Entity condition = newInstance();
         condition.setTableNameSQL(tableName);
-        condition.addWhereCircle("id", CircleDict.IN, idList);
+        WhereUtil.addCircle(condition, "id", CircleDict.IN, idList.toArray());
         return this.queryEntityList(condition);
     }
 }

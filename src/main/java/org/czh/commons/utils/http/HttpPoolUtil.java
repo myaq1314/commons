@@ -86,9 +86,9 @@ public final class HttpPoolUtil {
                 final int usePoolNum = poolStats.getAvailable() + poolStats.getLeased() + poolStats.getPending();
                 if (isShowUsePoolLog) {
                     log.info("***********》关闭异常+空闲连接！ 空闲连接:" + poolStats.getAvailable()
-                            + " 持久连接:" + poolStats.getLeased()
-                            + " 最大连接数:" + poolStats.getMax()
-                            + " 阻塞连接数:" + poolStats.getPending());
+                                     + " 持久连接:" + poolStats.getLeased()
+                                     + " 最大连接数:" + poolStats.getMax()
+                                     + " 阻塞连接数:" + poolStats.getPending());
                 }
                 isShowUsePoolLog = usePoolNum != 0;
             }
@@ -96,7 +96,10 @@ public final class HttpPoolUtil {
     }
 
     private static CloseableHttpClient createHttpClient() {
-        return HttpClients.custom().setConnectionManager(connectionManager).setRetryHandler(configRetryHandler()).build();
+        return HttpClients.custom()
+                          .setConnectionManager(connectionManager)
+                          .setRetryHandler(configRetryHandler())
+                          .build();
     }
 
     private static HttpRequestRetryHandler configRetryHandler() {

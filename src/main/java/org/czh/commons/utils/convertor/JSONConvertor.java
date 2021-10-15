@@ -3,7 +3,7 @@ package org.czh.commons.utils.convertor;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import org.czh.commons.validate.EmptyAssert;
+import org.czh.commons_core.asserts.EmptyAssert;
 
 import java.util.Collection;
 import java.util.Map;

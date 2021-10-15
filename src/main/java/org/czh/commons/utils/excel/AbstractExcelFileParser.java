@@ -2,7 +2,7 @@ package org.czh.commons.utils.excel;
 
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.czh.commons.validate.EmptyValidate;
+import org.czh.commons_core.validate.EmptyValidate;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.czh.commons_core.parent.entity.eo.IBaseEO;
 
 /**
  * @author : czh
@@ -17,6 +18,6 @@ import lombok.ToString;
 @NoArgsConstructor
 public abstract class BasePrimaryEO extends BaseCommonEO implements IBaseEO {
 
-    private static final long serialVersionUID = -1286551223745302224L;
+    private static final long serialVersionUID = -8527963434331940231L;
 
 }
